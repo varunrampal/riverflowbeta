@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { TREATMENTS } from "../data/treatments"; // adjust path if different
 import Layout from "../components/Layout";
+import RequestConsultationForm from "../components/RequestConsultationForm";
 
 export default function AllTreatmentsPage() {
 
@@ -11,10 +12,10 @@ export default function AllTreatmentsPage() {
     : Object.values(TREATMENTS);
   return (
     <Layout>
-  <div className="min-h-screen bg-slate-50 py-10 lg:py-14">
+  <div className="min-h-screen bg-background py-10 lg:py-14">
       <div className="max-w-6xl mx-auto px-4">
         <div className="mb-8 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-secondary mb-2">
             Our Treatments
           </h1>
           <p className="text-slate-500 max-w-2xl mx-auto">
@@ -26,9 +27,9 @@ export default function AllTreatmentsPage() {
           {treatmentsArray.map((item) => (
             <article
               key={item.id}
-              className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-slate-100 flex flex-col"
+              className="bg-background rounded-xl overflow-hidden shadow-sm hover:shadow-md transition border border-accent/20 flex flex-col"
             >
-              <div className="h-48 bg-slate-100 overflow-hidden">
+              <div className="h-48 bg-secondary/5 overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -40,7 +41,7 @@ export default function AllTreatmentsPage() {
                 />
               </div>
               <div className="p-5 flex-1 flex flex-col">
-                <h2 className="text-lg font-semibold text-slate-900 mb-2">
+                <h2 className="text-lg font-semibold text-secondary mb-2">
                   {item.title}
                 </h2>
                 {item.short && (
@@ -48,18 +49,28 @@ export default function AllTreatmentsPage() {
                     {item.short}
                   </p>
                 )}
-                <div className="mt-auto">
+                <div className="mt-auto flex flex-col gap-3">
                   <Link
                     to={`/treatments/${item.id}`}
-                    className="inline-flex items-center gap-1 text-sm font-semibold text-[#692767] hover:text-[#4d1d53] transition"
+                    className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-secondary transition"
                   >
                     View details →
+                  </Link>
+                  <Link
+                    to={`/make-appointment?subject=${encodeURIComponent(
+                      item.title
+                    )}`}
+                    className="inline-flex items-center justify-center rounded-full border border-primary/30 px-4 py-2 text-xs font-semibold text-primary transition hover:bg-primary hover:text-white"
+                  >
+                    Make an Inquiry
                   </Link>
                 </div>
               </div>
             </article>
           ))}
         </div>
+
+        <RequestConsultationForm className="mt-12" />
       </div>
     </div>
     </Layout>

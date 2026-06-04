@@ -6,6 +6,10 @@ import hydrafacial from"../assets/images/services/HydraFacial.jpg"
 import hairservices from'../assets/images/services/HairServices.jpg'
 import oxygenofacial from'../assets/images/services/Oxygeneo.jpg'
 import scalp from'../assets/images/services/scalp.webp'
+import acne from'../assets/images/services/acne.jpg'
+import antiaging from'../assets/images/services/anti-aging.webp'
+import pigmentation from "../assets/images/services/pigmentation.jpeg";
+import skinrejuvenation from "../assets/images/services/skin-rejunivation.jpg";
 
 export const TREATMENTS = {
   facial: {
@@ -88,5 +92,46 @@ Welcome to Riverflow Laser & Skin Clinic top destination for innovative skincare
     content: `
 Welcome to Riverflow Laser & Skin Clinic top destination for innovative skincare solutions. An OxyGeneo facial is a three-in-one skin treatment that combines exfoliation, oxygenation, and infusion to improve skin texture, tone, and overall appearance.
     `,
+  },
+      acne: {
+    id: "acne",
+    title: "Acne Treatment",
+    image:
+      acne,
+    short: "Target overactive sebaceous glands to reduce acne inflammation.",
+    content: `
+Welcome to Riverflow Laser & Skin Clinic top destination for innovative skincare solutions. Using a controlled Nd:YAG laser to safely penetrate into skin and effectively target overactive sebaceous glands. Rejuva’s acne laser treatment reduces new acne inflammation.
+    `,
+  },
+  antiaging: {
+    id: "antiaging",
+    title: "Anti-Aging Treatments",
+    image:
+      antiaging,
+    short: "Reduce the appearance of wrinkles and fine lines.",
+    content: `
+Welcome to Riverflow Laser & Skin Clinic top destination for innovative skincare solutions. Our anti-aging treatments help reduce the appearance of wrinkles and fine lines, promoting a more youthful and radiant complexion.
+    `,
+  },
+  pigmentation: {
+    id: "pigmentation",
+    title: "Pigmentation Treatments",
+    image:
+      pigmentation,
+    short: "Target excess melanin to reduce dark spots and uneven tone.",
+    content: `
+Welcome to Riverflow Laser & Skin Clinic top destination for innovative skincare solutions. Pigmentation treatments target excess melanin to reduce dark spots, sun damage, and uneven tone, revealing clearer, more radiant skin.
+    `,
+  },
+  skinrejuvenation: {
+    id: "skinrejuvenation",
+    title: "Skin Rejuvenation",
+    image:
+      skinrejuvenation,
+    short: "Restore a youthful, radiant complexion.",
+    content: `
+Welcome to Riverflow Laser & Skin Clinic top destination for innovative skincare solutions. Skin rejuvenation refers to treatments designed to restore a youthful, radiant complexion by boosting collagen, removing damaged cells, or targeting pigmentation.
+    `,
   }
+
 };

@@ -1,10 +1,10 @@
 import img from '../assets/images/services/aboutimage.jpg'
 export default function AboutHome() {
   return (
-    <section id="about" className="py-12 lg:py-16 bg-white">
+    <section id="about" className="py-12 lg:py-16 bg-background">
       <div className="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-10 items-center">
         <div>
-          <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+          <p className="text-xs uppercase tracking-[0.3em] text-primary">
             About Us
           </p>
           <h2 className="text-2xl md:text-3xl font-bold mt-2 mb-3">
@@ -22,11 +22,11 @@ export default function AboutHome() {
           <ul className="space-y-2 text-slate-600">
             <li>• Personalized treatment plans</li>
             <li>• Trained & certified technicians</li>
-            <li>• Convenient Abbotsford location</li>
+            <li>• Convenient Langley location</li>
           </ul>
         </div>
         <div className="flex justify-center lg:justify-end">
-      <div className="w-90 sm:w-170 lg:w-70 rounded-3xl overflow-hidden shadow-md bg-slate-100">
+      <div className="w-90 sm:w-170 lg:w-70 rounded-3xl overflow-hidden shadow-md bg-secondary/5 border border-accent/20">
         <img
           src={img}
           alt="RiverFlow Laser"

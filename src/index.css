@@ -72,7 +72,7 @@ button:focus-visible {
 @tailwind utilities;
 
 body {
-  @apply bg-slate-50;
+  @apply bg-background;
 }
 
 

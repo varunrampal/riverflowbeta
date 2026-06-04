@@ -3,7 +3,7 @@ export default function TreatmentDetails({ treatment }) {
   if (!treatment) {
     return (
       <div className="max-w-4xl mx-auto py-16 px-4">
-        <div className="bg-slate-50 border border-slate-200 rounded-xl p-8 text-center">
+        <div className="bg-background border border-accent/30 rounded-xl p-8 text-center">
           <h2 className="text-xl font-semibold text-slate-800 mb-2">
             Treatment not found
           </h2>
@@ -29,7 +29,7 @@ export default function TreatmentDetails({ treatment }) {
 
     {/* CONTENT SIDE */}
     <div>
-      <p className="text-xs font-semibold uppercase tracking-wide text-[#692767] mb-2">
+      <p className="text-xs font-semibold uppercase tracking-wide text-primary mb-2">
         Riverflow Laser & Skin Clinic
       </p>
       <h1 className="text-3xl font-bold text-slate-900 mb-3">
@@ -42,7 +42,7 @@ export default function TreatmentDetails({ treatment }) {
       <a
          href="https://app.squareup.com/appointments/book/9qze62967coq3v/L0BCN9T6Y4JAQ/start"
             target="_blank"
-        className="inline-flex items-center rounded-md bg-[#692767] px-6 py-2 text-sm font-semibold text-white hover:bg-[#531f58] transition"
+        className="inline-flex items-center rounded-md bg-primary px-6 py-2 text-sm font-semibold text-white hover:bg-secondary transition"
       >
         Book Now
       </a>

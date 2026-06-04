@@ -9,6 +9,7 @@ import TeamPage from './pages/TeamPage.jsx';
 import FAQPage from './pages/FAQPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
+import MakeAppointmentPage from './pages/MakeAppointmentPage.jsx';
 function App() {
   const [count, setCount] = useState(0)
 
@@ -24,6 +25,7 @@ function App() {
            <Route path="/faq" element={<FAQPage />} />
            <Route path="/contact" element={<ContactPage />} />
              <Route path="/about" element={<AboutPage />} />
+             <Route path="/make-appointment" element={<MakeAppointmentPage />} />
         </Routes>
         {/* <FacebookMessenger/> */}
     </BrowserRouter>

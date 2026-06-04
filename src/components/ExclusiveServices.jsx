@@ -17,7 +17,7 @@ export default function ExclusiveServices() {
   }}
 >
   {/* dark overlay */}
-  <div className="absolute inset-0 bg-slate-950/20" aria-hidden="true"></div>
+  <div className="absolute inset-0 bg-secondary/45" aria-hidden="true"></div>
 
   <div className="relative max-w-6xl mx-auto px-4 text-center text-white">
     {/* heading */}
@@ -37,7 +37,7 @@ export default function ExclusiveServices() {
     <div className="grid gap-8 md:grid-cols-3">
       {/* card 1 */}
       <div className="bg-slate-900/20 backdrop-blur-sm rounded-2xl p-6 flex flex-col h-full border border-white/10
-                      transition-all duration-300 ease-out hover:-translate-y-2 hover:border-[#692767] hover:bg-slate-900/60">
+                      transition-all duration-300 ease-out hover:-translate-y-2 hover:border-accent hover:bg-secondary/70">
         {/* tinted image */}
         <div className="relative mx-auto h-32 w-32 mb-5 flex items-center justify-center">
           <img
@@ -45,17 +45,16 @@ export default function ExclusiveServices() {
             alt="Morpheus8"
             className="h-28 w-auto object-contain"
           />
-          <div className="absolute inset-0 bg-[#c7a3e5] mix-blend-color opacity-90 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-primary mix-blend-color opacity-80 pointer-events-none"></div>
         </div>
 
-        <h3 className="text-lg font-semibold mb-3">Morpheus8</h3>
+        <h3 className="text-lg font-semibold mb-3">Laser Hair Removal</h3>
         <p className="text-sm text-slate-100 flex-1">
-          Transform your skin with Morpheus8, an innovative fractional skin treatment that
-          stimulates collagen and tightens sagging skin.
+          Discover our premium Laser Hair Removal treatment, designed to deliver silky-smooth, hair-free skin effortlessly.
         </p>
         <a
-          href="/morpheus-8"
-          className="inline-flex items-center gap-2 text-sm font-semibold mt-5 text-[#ffffff] hover:text-[#ffffff]"
+          href="/treatments/laserhairremoval"
+          className="inline-flex items-center gap-2 text-sm font-semibold mt-5 text-white hover:text-accent"
         >
           Read More
           <i className="fa-solid fa-arrow-right-long" />
@@ -64,7 +63,7 @@ export default function ExclusiveServices() {
 
       {/* card 2 */}
       <div className="bg-slate-900/20 backdrop-blur-sm rounded-2xl p-6 flex flex-col h-full border border-white/10
-                      transition-all duration-300 ease-out hover:-translate-y-2 hover:border-[#692767] hover:bg-slate-900/60">
+                      transition-all duration-300 ease-out hover:-translate-y-2 hover:border-accent hover:bg-secondary/70">
         {/* tinted image */}
         <div className="relative mx-auto h-32 w-32 mb-5 flex items-center justify-center">
           <img
@@ -72,7 +71,7 @@ export default function ExclusiveServices() {
             alt="Uptown Signature Glass Facial"
             className="h-28 w-auto object-contain"
           />
-          <div className="absolute inset-0 bg-[#c7a3e5] mix-blend-color opacity-90 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-primary mix-blend-color opacity-80 pointer-events-none"></div>
         </div>
 
         <h3 className="text-lg font-semibold mb-3">
@@ -83,8 +82,8 @@ export default function ExclusiveServices() {
           luminous, refreshed appearance.
         </p>
         <a
-          href="#"
-          className="inline-flex items-center gap-2 text-sm font-semibold mt-5 text-[#fffff] hover:text-[#fffff]"
+          href="/treatments/hydrafacial"
+          className="inline-flex items-center gap-2 text-sm font-semibold mt-5 text-white hover:text-accent"
         >
           Read More
           <i className="fa-solid fa-arrow-right-long" />
@@ -93,7 +92,7 @@ export default function ExclusiveServices() {
 
       {/* card 3 */}
       <div className="bg-slate-900/20 backdrop-blur-sm rounded-2xl p-6 flex flex-col h-full border border-white/10
-                      transition-all duration-300 ease-out hover:-translate-y-2 hover:border-[#692767] hover:bg-slate-900/60">
+                      transition-all duration-300 ease-out hover:-translate-y-2 hover:border-accent hover:bg-secondary/70">
         {/* tinted image */}
         <div className="relative mx-auto h-32 w-32 mb-5 flex items-center justify-center">
           <img
@@ -101,7 +100,7 @@ export default function ExclusiveServices() {
             alt="The Hydr-Oxy Facial"
             className="h-28 w-auto object-contain"
           />
-          <div className="absolute inset-0 bg-[#c7a3e5] mix-blend-color opacity-90 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-primary mix-blend-color opacity-80 pointer-events-none"></div>
         </div>
 
         <h3 className="text-lg font-semibold mb-3">OxyGeneo Facial</h3>
@@ -109,8 +108,8 @@ export default function ExclusiveServices() {
           Replenish and hydrate with oxygen infusion and nourishing serums for soft, glowing skin.
         </p>
         <a
-          href="/the-hydr-oxy-facial"
-          className="inline-flex items-center gap-2 text-sm font-semibold mt-5 text-[#ffffff] hover:text-[#ffffff]"
+          href="/treatments/oxygenofacial"
+          className="inline-flex items-center gap-2 text-sm font-semibold mt-5 text-white hover:text-accent"
         >
           Read More
           <i className="fa-solid fa-arrow-right-long" />

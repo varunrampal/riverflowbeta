@@ -8,9 +8,9 @@ const gallery = [
 
     return (
 
-        <section id="gallery" className="py-12 lg:py-16 bg-[#f4f5f7]">
+        <section id="gallery" className="py-12 lg:py-16 bg-secondary/5">
             <div className="max-w-6xl mx-auto px-4 mb-6">
-                <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+                <p className="text-xs uppercase tracking-[0.3em] text-primary">
                     gallery
                 </p>
                 <h2 className="text-2xl md:text-3xl font-bold mt-2 mb-2">
@@ -24,7 +24,7 @@ const gallery = [
                 {gallery.map((img, idx) => (
                     <div
                         key={idx}
-                        className="rounded-2xl overflow-hidden bg-slate-200 aspect-[4/3]"
+                        className="rounded-2xl overflow-hidden bg-secondary/10 aspect-[4/3] border border-accent/20"
                     >
                         <img src={img} alt="" className="w-full h-full object-cover" />
                     </div>

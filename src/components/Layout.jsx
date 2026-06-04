@@ -1,17 +1,20 @@
 import Header from './Header.jsx';
 import TopBar from './TopBar.jsx';
 import Footer from './Footer.jsx';
+import FloatingBookButton from './FloatingBookButton.jsx';
 
 export default function Layout({ children }) {
   return (
-    <div className="min-h-screen bg-[#f4f5f7] text-slate-900">
+    <div className="min-h-screen bg-background text-secondary">
       <TopBar/>
       <Header />
 
       {/* Main content */}
-      <main className="flex-1 p-4 bg-white overflow-y-auto">
+      <main className="flex-1 bg-background">
         {children}
       </main>
+
+      <FloatingBookButton />
 
       {/* <a
    href="https://www.facebook.com/ShopTrueCanada"

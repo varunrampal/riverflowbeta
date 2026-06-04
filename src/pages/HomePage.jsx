@@ -4,6 +4,7 @@ import Hero from "../components/Hero";
 import Treatments from "../components/Treatments";
 // import About from "../components/About";
 import AboutHome from "../components/AboutHome";
+import GoogleReviews from "../components/GoogleReviews";
 import Gallery from "../components/Gallery";
 import Contact from "../components/Contact"
 import ExclusiveServices from '../components/ExclusiveServices';
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Layout>
          <Hero />
          <AboutHome />
+         <GoogleReviews />
          <Treatments />
          <ExclusiveServices />
          {/* <MachinesSection /> */}

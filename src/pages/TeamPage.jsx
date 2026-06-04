@@ -3,11 +3,11 @@ import Layout from '../components/Layout';
 export default function TeamPage() {
   return (
     <Layout>
-<section id="about" className="py-10 lg:py-14 bg-white">
+<section id="about" className="py-10 lg:py-14 bg-background">
   <div className="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap- items-start">
     {/* TEXT */}
     <div>
-      <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+      <p className="text-xs uppercase tracking-[0.3em] text-primary">
         Meet the Team
       </p>
       <h2 className="text-2xl md:text-3xl font-bold mt-1 mb-3">
@@ -26,7 +26,7 @@ export default function TeamPage() {
       <blockquote className="text-slate-700 italic">
         “As a woman who understands the toll unwanted hair can take, I know how
         important safe and effective solutions are.”
-        <span className="not-italic font-medium text-slate-900">
+        <span className="not-italic font-medium text-secondary">
           {" "}
           — Jyoti Sharma, Esthetician
         </span>

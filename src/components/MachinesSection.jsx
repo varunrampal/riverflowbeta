@@ -32,10 +32,10 @@ const machines = [
 
 export default function MachinesSection() {
   return (
-    <section className="py-14 md:py-16 bg-slate-50">
+    <section className="py-14 md:py-16 bg-background">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+          <h2 className="text-2xl md:text-3xl font-bold text-secondary">
             Our Advanced Devices
           </h2>
           <p className="text-slate-500 mt-2 max-w-2xl mx-auto">
@@ -53,7 +53,7 @@ export default function MachinesSection() {
             >
               {/* Image */}
               <div className="md:w-1/2">
-                <div className="overflow-hidden rounded-2xl shadow-sm bg-white">
+                <div className="overflow-hidden rounded-2xl shadow-sm bg-background border border-accent/20">
                   <img
                     src={item.img}
                     alt={item.title}
@@ -64,7 +64,7 @@ export default function MachinesSection() {
 
               {/* Text */}
               <div className="md:w-1/2">
-                <h3 className="text-xl md:text-2xl font-semibold text-slate-900 mb-3">
+                <h3 className="text-xl md:text-2xl font-semibold text-secondary mb-3">
                   {item.title}
                 </h3>
                 <p className="text-slate-600 mb-3 leading-relaxed">
@@ -72,7 +72,7 @@ export default function MachinesSection() {
                 </p>
                 <p className="text-slate-600 leading-relaxed">{item.desc2}</p>
                 <div className="mt-5">
-                  <button className="inline-flex items-center gap-2 rounded-full bg-[#692767] text-white px-5 py-2 text-sm font-medium shadow-sm hover:bg-[#582056] transition">
+                  <button className="inline-flex items-center gap-2 rounded-full bg-primary text-white px-5 py-2 text-sm font-medium shadow-sm hover:bg-secondary transition">
                     Learn more
                     <span aria-hidden="true">→</span>
                   </button>

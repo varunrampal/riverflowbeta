@@ -65,7 +65,7 @@ const AboutSlider = () => {
             </div>
             <ul className="list-check">
               <li className="relative p-1.25 ps-7.5 text-base before:absolute before:left-0 before:font-black before:content-['\f109'] before:font-['flaticon'] before:text-primary before:top-2">
-                2961 Townline Rd, Abbotsford, BC V2T 5G5
+                Unit 108 – 19705 56 Avenue Langley, BC V3A 3X
               </li>
               {/* <li className="relative p-1.25 ps-7.5 text-base before:absolute before:left-0 before:font-black before:content-['\f109'] before:font-['flaticon'] before:text-primary before:top-2">
                 <a href="mailto:email@domain.com" className="text-body">

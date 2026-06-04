@@ -4,13 +4,13 @@ export default function TopBar() {
 
     return (
 
-        <div className="bg-[#692767] text-white text-sm">
+        <div className="bg-secondary text-white text-sm">
             <div className="max-w-6xl mx-auto px-4 py-2 flex flex-wrap gap-3 items-center justify-between">
                 <p className="flex items-center gap-2">
-                    <span className="inline-flex items-center gap-2 bg-[#692767]/10 text-[#692767] px-3 py-1 rounded-full text-xs font-medium mb-4" />
-                    2961 Townline Rd Abbotsford, BC V2T 5J8
+                    {/* <span className="inline-flex items-center gap-2 bg-accent/20 text-accent px-3 py-1 rounded-full text-xs font-medium mb-4" /> */}
+                    Unit 108 – 19705 56 Avenue Langley, BC V3A 3X7
                 </p>
-                <p className="font-medium">
+                {/* <p className="font-medium">
                     Call:{" "}
                     <a
                         href="tel:+16045550000"
@@ -18,7 +18,7 @@ export default function TopBar() {
                     >
                         +1 (604) 621-8311
                     </a>
-                </p>
+                </p> */}
             </div>
         </div>
 

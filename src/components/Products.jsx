@@ -2,7 +2,7 @@ import skincareproducts from '../assets/images/services/skincareproducts.jpg'
 
 export default function Products() {
   return (
-    <section className="bg-[#ffffff] py-10 lg:py-16">
+    <section className="bg-background py-10 lg:py-16">
   <div className="mx-auto max-w-6xl px-4">
     <div className="grid items-center gap-10 lg:grid-cols-2">
       {/* image - shows first on mobile */}
@@ -25,7 +25,7 @@ export default function Products() {
         </p>
         <a
          href="https://app.squareup.com/appointments/book/9qze62967coq3v/L0BCN9T6Y4JAQ/start"
-         target="_blank" className="inline-flex items-center rounded-md text-white bg-[#692767] px-6 py-2 text-sm font-semibold uppercase tracking-wide hover:bg-[#531f58] transition"
+         target="_blank" className="inline-flex items-center rounded-md text-white bg-primary px-6 py-2 text-sm font-semibold uppercase tracking-wide hover:bg-secondary transition"
         >
           Book Now
         </a>

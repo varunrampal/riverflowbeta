@@ -72,15 +72,15 @@ export default function FAQPage(){
       const [openIndex, setOpenIndex] = useState(0);
     return(
 <Layout>
- <section className="bg-white py-10 lg:py-14">
+ <section className="bg-background py-10 lg:py-14">
       <div className="max-w-5xl mx-auto px-4">
         {/* Intro (from your previous section) */}
         <p className="text-xs uppercase tracking-[0.3em] text-slate-400 mb-3">
           Laser Hair Removal
         </p>
-        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4 leading-tight">
+        <h2 className="text-2xl md:text-3xl font-bold text-secondary mb-4 leading-tight">
           Laser Hair Removal FAQs:{" "}
-          <span className="text-[#692767]">13 Questions You’ve Been Dying to Ask</span>
+          <span className="text-primary">13 Questions You’ve Been Dying to Ask</span>
         </h2>
         <p className="text-slate-600 mb-6">
           People have been plucking, waxing, and tweezing unwanted hair for decades. But when laser hair removal technology came to be in the mid-1990s, it changed the way that we groom.
@@ -97,16 +97,16 @@ And even though it’s been around for quite some time, people still have lots o
             return (
               <div
                 key={idx}
-                className="border border-slate-200 rounded-xl overflow-hidden bg-white"
+                className="border border-accent/25 rounded-xl overflow-hidden bg-background"
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? -1 : idx)}
                   className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
                 >
-                  <span className="font-semibold text-slate-900">{item.question}</span>
+                  <span className="font-semibold text-secondary">{item.question}</span>
                   <span
                     className={`shrink-0 h-7 w-7 rounded-full grid place-items-center text-white transition ${
-                      isOpen ? "bg-[#692767] rotate-45" : "bg-[#692767]"
+                      isOpen ? "bg-primary rotate-45" : "bg-primary"
                     }`}
                   >
                     +
