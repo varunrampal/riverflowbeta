@@ -98,8 +98,8 @@ export default function Footer() {
             </h6>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="mailto:varun.rampall@gmail.com" className="hover:text-accent">
-                 varun.rampall@gmail.com
+                <a href="mailto:info@riverflowlaser.com" className="hover:text-accent">
+                info@riverflowlaser.com
                 </a>
               </li>
               <li>

@@ -16,13 +16,13 @@ export default function Header() {
             <img src={logo} alt="Riverflow laser" />
           </Link>
         </div>
-            <div>
-                <div className="text-base font-semibold leading-none">
-                Riverflow Laser & Skin Clinic Inc
+            <div className="border-l-2 border-primary/60 pl-3">
+              <div className="font-serif text-lg font-bold leading-tight text-secondary sm:text-xl">
+                Riverflow
               </div>
-              {/* <div className="text-sm font-semibold leading-none">
-                Glow Your Skin Like Never Before
-              </div> */}
+              <div className="text-[10px] font-bold uppercase leading-tight tracking-[0.22em] text-primary sm:text-xs">
+                Laser & Skin Clinic Inc
+              </div>
               
             </div>
           </div>
