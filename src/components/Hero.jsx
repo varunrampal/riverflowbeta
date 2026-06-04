@@ -58,10 +58,10 @@ export default function Hero() {
                     {/* <span className="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-xs uppercase tracking-[0.25em] font-semibold mb-5">
                       {slide.preTitle}
                     </span> */}
-                    <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl tracking-tight mb-2 leading-tight sm:mb-6">
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl tracking-tight mb-2 leading-tight sm:mb-6 text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.65)]">
                       {slide.title}
                     </h1>
-                    <p className="text-sm sm:text-base lg:text-lg text-white max-w-xl mb-0 sm:mb-8">
+                    <p className="text-sm sm:text-base lg:text-lg text-white/95 max-w-xl mb-0 sm:mb-8 drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]">
                       {slide.description}
                     </p>
                     {/* <div className="flex flex-wrap gap-4">
