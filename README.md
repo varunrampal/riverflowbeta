@@ -30,3 +30,9 @@ Tailwind CSS
 HTML5
 CSS3
 Render Hosting
+
+🌐 Deployment
+
+The website is deployed on Render:
+
+https://riverflowbeta.onrender.com/
