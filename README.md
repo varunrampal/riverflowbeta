@@ -36,3 +36,7 @@ Render Hosting
 The website is deployed on Render:
 
 https://riverflowbeta.onrender.com/
+
+<img width="1908" height="966" alt="ezgif-331e4aa867c3313c" src="https://github.com/user-attachments/assets/82df68b8-adc5-44a0-9466-3b1a74e17433" />
+
+
