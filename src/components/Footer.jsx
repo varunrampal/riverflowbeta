@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import logo from '../assets/images/logo.png'
 
 export default function Footer() {
@@ -12,7 +12,7 @@ export default function Footer() {
             <a href="https://riverflowlaser.com/">
               <img
                 src={logo}
-                alt="Uptown Med Spa"
+                alt="Riverflow Laser & Skin Clinic logo"
                 className="h-16 w-auto object-contain"
               />
             </a>
@@ -103,7 +103,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="tel:778-322-7262" className="hover:text-accent">
+                <a href="tel:+16046218311" className="hover:text-accent">
                 (604) 621-8311
                 </a>
               </li>

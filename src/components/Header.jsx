@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useLocation } from 'react-router-dom';
+import { useState } from "react";
+import { Link } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
 
 
@@ -13,7 +13,7 @@ export default function Header() {
                   <div className="logo">
           {/* ✅ Logo now links to home page */}
           <Link to="/" >
-            <img src={logo} alt="Riverflow laser" />
+            <img src={logo} alt="Riverflow Laser & Skin Clinic logo" />
           </Link>
         </div>
             <div className="border-l-2 border-primary/60 pl-3">

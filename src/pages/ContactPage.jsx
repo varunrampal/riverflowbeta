@@ -1,8 +1,34 @@
 // src/pages/Contact.jsx
+import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
+import SEO from "../components/SEO";
+import { breadcrumbSchema, localBusinessSchema, webPageSchema } from "../utils/seo";
+
+const contextLinkClass =
+  "font-semibold text-primary underline underline-offset-4 transition hover:text-secondary";
+
 export default function ContactPage() {
   return (
     <Layout>
+    <SEO
+      title="Contact Riverflow Laser & Skin Clinic | Langley, BC"
+      description="Contact Riverflow Laser & Skin Clinic in Langley, BC. Call 604.621.8311, email info@riverflowlaser.com, or visit Unit 108 - 19705 56 Avenue."
+      canonicalPath="/contact"
+      structuredData={[
+        webPageSchema({
+          name: "Contact Riverflow Laser & Skin Clinic",
+          description:
+            "Clinic location, phone, email, map, and business hours for Riverflow Laser & Skin Clinic in Langley, BC.",
+          path: "/contact",
+          type: "ContactPage",
+        }),
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ]),
+        localBusinessSchema(),
+      ]}
+    />
     <div className="min-h-screen bg-background">
       {/* Header */}
       <section className="bg-background border-b border-accent/25">
@@ -10,6 +36,21 @@ export default function ContactPage() {
           <h1 className="text-3xl font-bold text-secondary">Contact Us</h1>
           <p className="text-slate-500 mt-2">
             We’d love to hear from you. Call, email, or visit us at our Langley location.
+          </p>
+          <p className="text-slate-500 mt-3">
+            Ask us about{" "}
+            <Link to="/treatments/laserhairremoval" className={contextLinkClass}>
+              laser hair removal
+            </Link>
+            ,{" "}
+            <Link to="/treatments/hydrafacial" className={contextLinkClass}>
+              HydraFacial
+            </Link>
+            , or{" "}
+            <Link to="/treatments/skinrejuvenation" className={contextLinkClass}>
+              skin rejuvenation
+            </Link>{" "}
+            before choosing your appointment.
           </p>
         </div>
       </section>
@@ -24,7 +65,7 @@ export default function ContactPage() {
             </h2>
             <p className="text-slate-600">
               Unit 108 – 19705 56 Avenue
-<               br />
+              <br />
               Langley, BC <br />
               V3A 3X7 
             </p>
@@ -46,7 +87,7 @@ export default function ContactPage() {
                 Email
               </p>
               <p className="text-base font-medium text-secondary mt-1">
-                <a href="mailto:varun.rampall@gmail.com" className="hover:text-primary">
+                <a href="mailto:info@riverflowlaser.com" className="hover:text-primary">
                   info@riverflowlaser.com
                 </a>
               </p>
@@ -76,7 +117,20 @@ export default function ContactPage() {
 
           {/* Optional message */}
           <p className="text-sm text-slate-500">
-            If you're visiting for the first time, please call ahead so our team can guide you inside the property.
+            If you're visiting for the first time, please call ahead so our team
+            can guide you inside the property. You can also browse our{" "}
+            <Link to="/treatments" className={contextLinkClass}>
+              full treatment menu
+            </Link>{" "}
+            or compare{" "}
+            <Link to="/treatments/microneedling" className={contextLinkClass}>
+              microneedling
+            </Link>{" "}
+            and{" "}
+            <Link to="/treatments/chemicalpeels" className={contextLinkClass}>
+              chemical peels
+            </Link>{" "}
+            before you arrive.
           </p>
         </div>
 

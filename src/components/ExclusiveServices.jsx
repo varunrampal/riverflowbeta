@@ -1,4 +1,5 @@
 import exclusiveBg from '../assets/images/services/ExclusiveServiceBkg.jpg'
+import { Link } from "react-router-dom";
 
 export default function ExclusiveServices() {
     return (
@@ -42,7 +43,7 @@ export default function ExclusiveServices() {
         <div className="relative mx-auto h-32 w-32 mb-5 flex items-center justify-center">
           <img
             src="https://langley.uptownmedspa.ca/wp-content/uploads/2024/09/morpheus8.png.webp"
-            alt="Morpheus8"
+            alt="Laser hair removal service at Riverflow Laser"
             className="h-28 w-auto object-contain"
           />
           <div className="absolute inset-0 bg-primary mix-blend-color opacity-80 pointer-events-none"></div>
@@ -52,13 +53,13 @@ export default function ExclusiveServices() {
         <p className="text-sm text-slate-100 flex-1">
           Discover our premium Laser Hair Removal treatment, designed to deliver silky-smooth, hair-free skin effortlessly.
         </p>
-        <a
-          href="/treatments/laserhairremoval"
+        <Link
+          to="/treatments/laserhairremoval"
           className="inline-flex items-center gap-2 text-sm font-semibold mt-5 text-white hover:text-accent"
         >
           Read More
           <i className="fa-solid fa-arrow-right-long" />
-        </a>
+        </Link>
       </div>
 
       {/* card 2 */}
@@ -68,7 +69,7 @@ export default function ExclusiveServices() {
         <div className="relative mx-auto h-32 w-32 mb-5 flex items-center justify-center">
           <img
             src="https://langley.uptownmedspa.ca/wp-content/uploads/2024/09/Signature-Glass-Facial.png.webp"
-            alt="Uptown Signature Glass Facial"
+            alt="HydraFacial signature service at Riverflow Laser"
             className="h-28 w-auto object-contain"
           />
           <div className="absolute inset-0 bg-primary mix-blend-color opacity-80 pointer-events-none"></div>
@@ -81,13 +82,13 @@ export default function ExclusiveServices() {
           Experience our signature hydra facial, customized to your skin’s needs, providing a
           luminous, refreshed appearance.
         </p>
-        <a
-          href="/treatments/hydrafacial"
+        <Link
+          to="/treatments/hydrafacial"
           className="inline-flex items-center gap-2 text-sm font-semibold mt-5 text-white hover:text-accent"
         >
           Read More
           <i className="fa-solid fa-arrow-right-long" />
-        </a>
+        </Link>
       </div>
 
       {/* card 3 */}
@@ -97,7 +98,7 @@ export default function ExclusiveServices() {
         <div className="relative mx-auto h-32 w-32 mb-5 flex items-center justify-center">
           <img
             src="https://langley.uptownmedspa.ca/wp-content/uploads/2024/09/Hydr-Oxy-Facial.png.webp"
-            alt="The Hydr-Oxy Facial"
+            alt="OxyGeneo facial service at Riverflow Laser"
             className="h-28 w-auto object-contain"
           />
           <div className="absolute inset-0 bg-primary mix-blend-color opacity-80 pointer-events-none"></div>
@@ -107,13 +108,13 @@ export default function ExclusiveServices() {
         <p className="text-sm text-slate-100 flex-1">
           Replenish and hydrate with oxygen infusion and nourishing serums for soft, glowing skin.
         </p>
-        <a
-          href="/treatments/oxygenofacial"
+        <Link
+          to="/treatments/oxygenofacial"
           className="inline-flex items-center gap-2 text-sm font-semibold mt-5 text-white hover:text-accent"
         >
           Read More
           <i className="fa-solid fa-arrow-right-long" />
-        </a>
+        </Link>
       </div>
     </div>
   </div>

@@ -51,7 +51,7 @@ const AboutSlider = () => {
           <div className="mb-8.75">
             <div className="w-40 mb-5">
               <a href="index.html">
-                <img src={logo} alt="/" />
+                <img src={logo} alt="Riverflow Laser & Skin Clinic logo" />
               </a>
             </div>
             <p>

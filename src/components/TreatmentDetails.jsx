@@ -1,5 +1,38 @@
 // src/components/TreatmentDetails.jsx
-import BeforeAfterGallery from "./BeforeAfterGallery";
+import { Link } from "react-router-dom";
+
+const contextLinkClass =
+  "font-semibold text-primary underline underline-offset-4 transition hover:text-secondary";
+
+const relatedTreatments = {
+  facial: ["hydrafacial", "chemicalpeels", "skinrejuvenation"],
+  laserhairremoval: ["hydrafacial", "skinrejuvenation", "antiaging"],
+  microneedling: ["skinrejuvenation", "chemicalpeels", "pigmentation"],
+  chemicalpeels: ["acne", "pigmentation", "hydrafacial"],
+  hairservices: ["facial", "hydrafacial", "scalp"],
+  hydrafacial: ["facial", "oxygenofacial", "skinrejuvenation"],
+  scalp: ["hairservices", "facial", "hydrafacial"],
+  oxygenofacial: ["hydrafacial", "facial", "skinrejuvenation"],
+  acne: ["chemicalpeels", "hydrafacial", "pigmentation"],
+  antiaging: ["skinrejuvenation", "microneedling", "hydrafacial"],
+  pigmentation: ["chemicalpeels", "skinrejuvenation", "microneedling"],
+  skinrejuvenation: ["antiaging", "microneedling", "pigmentation"],
+};
+
+const treatmentNames = {
+  facial: "signature facial",
+  laserhairremoval: "laser hair removal",
+  microneedling: "microneedling",
+  chemicalpeels: "chemical peels",
+  hairservices: "hair services",
+  hydrafacial: "HydraFacial",
+  scalp: "scalp therapy",
+  oxygenofacial: "OxyGeneo facial",
+  acne: "acne treatment",
+  antiaging: "anti-aging treatments",
+  pigmentation: "pigmentation treatments",
+  skinrejuvenation: "skin rejuvenation",
+};
 
 export default function TreatmentDetails({ treatment }) {
   if (!treatment) {
@@ -16,6 +49,9 @@ export default function TreatmentDetails({ treatment }) {
       </div>
     );
   }
+
+  const relatedIds =
+    relatedTreatments[treatment.id] || ["hydrafacial", "skinrejuvenation", "facial"];
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 lg:py-16">
@@ -38,6 +74,18 @@ export default function TreatmentDetails({ treatment }) {
           <p className="mb-4 text-sm text-slate-500">{treatment.short}</p>
           <p className="mb-6 whitespace-pre-line text-sm leading-relaxed text-slate-600">
             {treatment.content}
+          </p>
+          <p className="mb-6 text-sm leading-relaxed text-slate-600">
+            Clients interested in {treatment.title} often also compare{" "}
+            {relatedIds.map((id, index) => (
+              <span key={id}>
+                {index > 0 ? (index === relatedIds.length - 1 ? ", and " : ", ") : ""}
+                <Link to={`/treatments/${id}`} className={contextLinkClass}>
+                  {treatmentNames[id]}
+                </Link>
+              </span>
+            ))}
+            .
           </p>
           <a
             href="https://app.squareup.com/appointments/book/9qze62967coq3v/L0BCN9T6Y4JAQ/start"

@@ -8,7 +8,7 @@ return (
       <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
         <img
           src={freeconsultation}
-          alt="Franchise with Uptown Med Spa"
+          alt="Riverflow Laser consultation for personalized skincare support"
           className="w-full max-w-md lg:max-w-lg h-auto"
           loading="lazy"
         />

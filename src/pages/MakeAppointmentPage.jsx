@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import { submitClinicForm } from "../utils/formSubmit";
+import SEO from "../components/SEO";
+import { breadcrumbSchema, webPageSchema } from "../utils/seo";
 
 const inputClass =
-  "mt-2 w-full rounded-lg border border-accent/30 bg-white px-4 py-3 text-sm text-secondary outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20";
+  "mt-2 w-full rounded-lg border border-accent/30 bg-white px-4 py-2.5 text-sm text-secondary outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 sm:py-3";
+const contextLinkClass =
+  "font-semibold text-primary underline underline-offset-4 transition hover:text-secondary";
 
 export default function MakeAppointmentPage() {
   const [searchParams] = useSearchParams();
@@ -51,6 +55,24 @@ export default function MakeAppointmentPage() {
 
   return (
     <Layout>
+      <SEO
+        title="Make an Appointment Inquiry | Riverflow Laser Langley"
+        description="Send an appointment inquiry to Riverflow Laser & Skin Clinic in Langley, BC for laser hair removal, facials, HydraFacial, microneedling, peels, and skin treatments."
+        canonicalPath="/make-appointment"
+        structuredData={[
+          webPageSchema({
+            name: "Make an Appointment Inquiry",
+            description:
+              "Appointment inquiry form for Riverflow Laser & Skin Clinic in Langley, BC.",
+            path: "/make-appointment",
+            type: "ContactPage",
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Make an Appointment", path: "/make-appointment" },
+          ]),
+        ]}
+      />
       <section className="bg-background py-10 lg:py-14">
         <div className="mx-auto max-w-6xl px-4">
           <div className="mb-8 max-w-2xl">
@@ -62,11 +84,39 @@ export default function MakeAppointmentPage() {
             </h1>
             <p className="mt-4 text-sm leading-relaxed text-slate-600">
               Share your preferred date and time, and our team will contact you
-              to confirm availability.
+              to confirm availability. Popular appointment requests include{" "}
+              <Link to="/treatments/laserhairremoval" className={contextLinkClass}>
+                laser hair removal
+              </Link>
+              ,{" "}
+              <Link to="/treatments/hydrafacial" className={contextLinkClass}>
+                HydraFacial
+              </Link>
+              , and{" "}
+              <Link to="/treatments/microneedling" className={contextLinkClass}>
+                microneedling
+              </Link>
+              .
             </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <a
+                href="https://app.squareup.com/appointments/book/9qze62967coq3v/L0BCN9T6Y4JAQ/start"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-secondary"
+              >
+                Book Online
+              </a>
+              <a
+                href="tel:+16046218311"
+                className="inline-flex items-center justify-center rounded-full border border-primary/30 px-5 py-3 text-sm font-semibold text-primary transition hover:bg-primary hover:text-white"
+              >
+                Call 604.621.8311
+              </a>
+            </div>
           </div>
 
-          <div className="grid gap-8 rounded-2xl border border-accent/25 bg-background p-6 shadow-sm lg:grid-cols-[0.8fr_1.2fr] lg:p-8">
+          <div className="grid gap-6 rounded-2xl border border-accent/25 bg-background p-5 shadow-sm sm:gap-8 sm:p-6 lg:grid-cols-[0.8fr_1.2fr] lg:p-8">
             <div className="flex flex-col justify-between gap-6">
               <div>
                 <h2 className="text-2xl font-bold text-secondary">
@@ -74,11 +124,27 @@ export default function MakeAppointmentPage() {
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">
                   Fill out the form and include the treatment you are interested
-                  in. We will reply within 24-48 hours.
+                  in. If you are unsure, compare{" "}
+                  <Link to="/treatments/acne" className={contextLinkClass}>
+                    acne treatment
+                  </Link>
+                  ,{" "}
+                  <Link to="/treatments/pigmentation" className={contextLinkClass}>
+                    pigmentation treatment
+                  </Link>
+                  , and{" "}
+                  <Link to="/treatments/antiaging" className={contextLinkClass}>
+                    anti-aging treatments
+                  </Link>{" "}
+                  before sending your request. We will reply within 24-48 hours.
+                </p>
+                <p className="mt-3 text-sm font-medium text-secondary sm:hidden">
+                  On mobile, just send your name, phone, and treatment interest.
+                  We will confirm date and time by phone.
                 </p>
               </div>
 
-              <div className="rounded-xl bg-secondary px-5 py-4 text-white">
+              <div className="hidden rounded-xl bg-secondary px-5 py-4 text-white sm:block">
                 <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/70">
                   Prefer to call?
                 </p>
@@ -91,7 +157,7 @@ export default function MakeAppointmentPage() {
               </div>
             </div>
 
-            <form className="grid gap-4 sm:grid-cols-2" onSubmit={handleSubmit}>
+            <form className="grid gap-3 sm:grid-cols-2 sm:gap-4" onSubmit={handleSubmit}>
               <label className="text-sm font-semibold text-secondary">
                 Name
                 <input
@@ -115,17 +181,6 @@ export default function MakeAppointmentPage() {
               </label>
 
               <label className="text-sm font-semibold text-secondary">
-                Email
-                <input
-                  className={inputClass}
-                  type="email"
-                  name="email"
-                  placeholder="you@example.com"
-                  required
-                />
-              </label>
-
-              <label className="text-sm font-semibold text-secondary">
                 Subject
                 <input
                   className={inputClass}
@@ -137,23 +192,32 @@ export default function MakeAppointmentPage() {
                 />
               </label>
 
-              <label className="text-sm font-semibold text-secondary">
-                Date
-                <input className={inputClass} type="date" name="date" required />
+              <label className="hidden text-sm font-semibold text-secondary sm:block">
+                Email <span className="font-normal text-slate-500">(optional)</span>
+                <input
+                  className={inputClass}
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                />
               </label>
 
-              <label className="text-sm font-semibold text-secondary">
-                Time
-                <input className={inputClass} type="time" name="time" required />
+              <label className="hidden text-sm font-semibold text-secondary sm:block">
+                Date <span className="font-normal text-slate-500">(preferred)</span>
+                <input className={inputClass} type="date" name="date" />
               </label>
 
-              <label className="text-sm font-semibold text-secondary sm:col-span-2">
-                Message
+              <label className="hidden text-sm font-semibold text-secondary sm:block">
+                Time <span className="font-normal text-slate-500">(preferred)</span>
+                <input className={inputClass} type="time" name="time" />
+              </label>
+
+              <label className="hidden text-sm font-semibold text-secondary sm:col-span-2 sm:block">
+                Message <span className="font-normal text-slate-500">(optional)</span>
                 <textarea
                   className={`${inputClass} min-h-36 resize-y`}
                   name="message"
                   placeholder="Tell us anything we should know before contacting you."
-                  required
                 ></textarea>
               </label>
 

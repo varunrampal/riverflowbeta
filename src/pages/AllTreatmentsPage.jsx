@@ -1,17 +1,46 @@
-// src/pages/AllTreatments.jsx
-import React from "react";
 import { Link } from "react-router-dom";
 import { TREATMENTS } from "../data/treatments"; // adjust path if different
 import Layout from "../components/Layout";
 import RequestConsultationForm from "../components/RequestConsultationForm";
+import SEO from "../components/SEO";
+import {
+  breadcrumbSchema,
+  localBusinessSchema,
+  treatmentServiceSchema,
+  treatmentsItemListSchema,
+  webPageSchema,
+} from "../utils/seo";
 
 export default function AllTreatmentsPage() {
 
     const treatmentsArray = Array.isArray(TREATMENTS)
     ? TREATMENTS
     : Object.values(TREATMENTS);
+    const contextLinkClass =
+      "font-semibold text-primary underline underline-offset-4 transition hover:text-secondary";
+
   return (
     <Layout>
+  <SEO
+    title="Laser & Skin Treatments in Langley, BC | Riverflow Laser"
+    description="Explore Riverflow Laser & Skin Clinic treatments in Langley, including laser hair removal, HydraFacial, facials, microneedling, chemical peels, acne care, pigmentation, and skin rejuvenation."
+    canonicalPath="/treatments"
+    structuredData={[
+      localBusinessSchema(),
+      webPageSchema({
+        name: "Laser and Skin Treatments in Langley, BC",
+        description:
+          "A full list of laser, facial, hair, and skin rejuvenation services at Riverflow Laser & Skin Clinic.",
+        path: "/treatments",
+      }),
+      breadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Treatments", path: "/treatments" },
+      ]),
+      treatmentsItemListSchema(treatmentsArray),
+      ...treatmentsArray.map(treatmentServiceSchema),
+    ]}
+  />
   <div className="min-h-screen bg-background py-10 lg:py-14">
       <div className="max-w-6xl mx-auto px-4">
         <div className="mb-8 text-center">
@@ -20,6 +49,25 @@ export default function AllTreatmentsPage() {
           </h1>
           <p className="text-slate-500 max-w-2xl mx-auto">
             Explore our full range of services.
+          </p>
+          <p className="mt-4 text-slate-500 max-w-3xl mx-auto">
+            Many clients start with{" "}
+            <Link to="/treatments/laserhairremoval" className={contextLinkClass}>
+              laser hair removal
+            </Link>
+            , choose{" "}
+            <Link to="/treatments/hydrafacial" className={contextLinkClass}>
+              HydraFacial
+            </Link>{" "}
+            for a hydrated glow, or compare{" "}
+            <Link to="/treatments/microneedling" className={contextLinkClass}>
+              microneedling
+            </Link>{" "}
+            with{" "}
+            <Link to="/treatments/chemicalpeels" className={contextLinkClass}>
+              chemical peels
+            </Link>{" "}
+            for texture and tone.
           </p>
         </div>
 

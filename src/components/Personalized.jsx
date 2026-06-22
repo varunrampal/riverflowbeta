@@ -11,10 +11,10 @@ export default function Personalized() {
                 <div class="flex items-center mb-3.75 wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="0.8s">
                     <div class="rounded-6xl inline-flex items-center justify-center sm:py-2.5 py-2 xl:pr-12.5 sm:pr-7.5 pr-3.75 sm:pl-3.75 pl-2.5 xl:min-h-17.5 sm:min-h-15.5 min-h-13.75 mr-5 bg-transparent border border-secondary">
                         <div class="flex pr-6.25 mr-6.25 border-r border-black/10">
-                            <img class="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar1.webp" alt="" />
-                            <img class="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar2.webp" alt="" />
-                            <img class="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar3.webp" alt="" />
-                            <img class="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar4.webp" alt="" />
+                            <img class="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar1.webp" alt="Riverflow Laser client avatar 1" />
+                            <img class="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar2.webp" alt="Riverflow Laser client avatar 2" />
+                            <img class="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar3.webp" alt="Riverflow Laser client avatar 3" />
+                            <img class="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar4.webp" alt="Riverflow Laser client avatar 4" />
                         </div>
                         <div class="">
                             <span class="xl:text-base sm:text-sm text-xs">Talk to over 215 doctor</span>
@@ -39,8 +39,8 @@ export default function Personalized() {
                     <span class="text-sm font-medium">12k+ ratings on google</span>
                 </div>
                 <div class="absolute -bottom-[11%] 2xxl:-right-[12%] -right-7.5 max-xxl:hidden" data-bottom-top="transform: translateY(-30px)" data-top-bottom="transform: translateY(30px)">
-                    <img src="images/about/img2.webp" class="2xxl:max-w-37.5 max-w-30 absolute rotate-[-20deg] -left-[60%]" alt="" />
-                    <img src="images/about/img3.webp" class="2xxl:max-w-37.5 max-w-30" alt="" />
+                    <img src="images/about/img2.webp" class="2xxl:max-w-37.5 max-w-30 absolute rotate-[-20deg] -left-[60%]" alt="Personalized skincare consultation accent image" />
+                    <img src="images/about/img3.webp" class="2xxl:max-w-37.5 max-w-30" alt="Riverflow Laser skincare treatment accent image" />
                 </div>
             </div>
         </div>

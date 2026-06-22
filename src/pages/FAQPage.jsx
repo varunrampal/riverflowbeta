@@ -1,5 +1,11 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
+import SEO from "../components/SEO";
+import { breadcrumbSchema, faqPageSchema, webPageSchema } from "../utils/seo";
+
+const contextLinkClass =
+  "font-semibold text-primary underline underline-offset-4 transition hover:text-secondary";
 
 const faqs = [
   {
@@ -72,22 +78,62 @@ export default function FAQPage(){
       const [openIndex, setOpenIndex] = useState(0);
     return(
 <Layout>
+ <SEO
+  title="Laser Hair Removal FAQs in Langley, BC | Riverflow Laser"
+  description="Read answers to common laser hair removal questions, including safety, preparation, side effects, treatment areas, cost, and expected results."
+  canonicalPath="/faq"
+  structuredData={[
+    webPageSchema({
+      name: "Laser Hair Removal FAQs",
+      description:
+        "Common laser hair removal questions answered by Riverflow Laser & Skin Clinic.",
+      path: "/faq",
+      type: "FAQPage",
+    }),
+    breadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "FAQ", path: "/faq" },
+    ]),
+    faqPageSchema(faqs),
+  ]}
+ />
  <section className="bg-background py-10 lg:py-14">
       <div className="max-w-5xl mx-auto px-4">
         {/* Intro (from your previous section) */}
         <p className="text-xs uppercase tracking-[0.3em] text-slate-400 mb-3">
           Laser Hair Removal
         </p>
-        <h2 className="text-2xl md:text-3xl font-bold text-secondary mb-4 leading-tight">
+        <h1 className="text-2xl md:text-3xl font-bold text-secondary mb-4 leading-tight">
           Laser Hair Removal FAQs:{" "}
           <span className="text-primary">13 Questions You’ve Been Dying to Ask</span>
-        </h2>
+        </h1>
         <p className="text-slate-600 mb-6">
           People have been plucking, waxing, and tweezing unwanted hair for decades. But when laser hair removal technology came to be in the mid-1990s, it changed the way that we groom.
 
 Over the past twenty years, laser hair removal has become the go-to method for stopping unwanted hair growth.
 
 And even though it’s been around for quite some time, people still have lots of questions about it.
+        </p>
+
+        <p className="text-slate-600 mb-6">
+          Start with our{" "}
+          <Link to="/treatments/laserhairremoval" className={contextLinkClass}>
+            laser hair removal service
+          </Link>{" "}
+          if you are comparing treatment options. For skin texture, breakouts,
+          or uneven tone, clients often also review{" "}
+          <Link to="/treatments/hydrafacial" className={contextLinkClass}>
+            HydraFacial
+          </Link>
+          ,{" "}
+          <Link to="/treatments/acne" className={contextLinkClass}>
+            acne treatment
+          </Link>
+          , and{" "}
+          <Link to="/treatments/pigmentation" className={contextLinkClass}>
+            pigmentation treatments
+          </Link>
+          .
         </p>
 
         {/* Accordion */}

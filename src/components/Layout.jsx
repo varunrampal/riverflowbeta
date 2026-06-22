@@ -5,7 +5,7 @@ import FloatingBookButton from './FloatingBookButton.jsx';
 
 export default function Layout({ children }) {
   return (
-    <div className="min-h-screen bg-background text-secondary">
+    <div className="min-h-screen bg-background pb-20 text-secondary sm:pb-0">
       <TopBar/>
       <Header />
 

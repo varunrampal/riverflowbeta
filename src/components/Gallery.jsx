@@ -26,7 +26,11 @@ const gallery = [
                         key={idx}
                         className="rounded-2xl overflow-hidden bg-secondary/10 aspect-[4/3] border border-accent/20"
                     >
-                        <img src={img} alt="" className="w-full h-full object-cover" />
+                        <img
+                            src={img}
+                            alt={`Riverflow Laser clinic interior gallery image ${idx + 1}`}
+                            className="w-full h-full object-cover"
+                        />
                     </div>
                 ))}
             </div>

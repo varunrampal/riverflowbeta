@@ -29,10 +29,10 @@
 												<span className="size-11 min-w-11 bg-white rounded-2lg text-heading inline-flex items-center justify-center -my-2.75 -mr-4.5 ml-3"><i className="feather icon-arrow-right"></i></span>
 											</a>
 											{/* <div className="flex ml-12.5 max-xl:hidden wow fadeInUp" data-wow-delay="0.8s" data-wow-duration="0.8s">
-												<img className="w-15 aspect-square -ml-3 first:ml-0 rounded-full" src="images/avatar/small/avatar1.webp" alt=""/>
-												<img className="w-15 aspect-square -ml-3 first:ml-0 rounded-full" src="images/avatar/small/avatar2.webp" alt=""/>
-												<img className="w-15 aspect-square -ml-3 first:ml-0 rounded-full" src="images/avatar/small/avatar3.webp" alt=""/>
-												<img className="w-15 aspect-square -ml-3 first:ml-0 rounded-full" src="images/avatar/small/avatar4.webp" alt=""/>
+												<img className="w-15 aspect-square -ml-3 first:ml-0 rounded-full" src="images/avatar/small/avatar1.webp" alt="Riverflow Laser client avatar 1"/>
+												<img className="w-15 aspect-square -ml-3 first:ml-0 rounded-full" src="images/avatar/small/avatar2.webp" alt="Riverflow Laser client avatar 2"/>
+												<img className="w-15 aspect-square -ml-3 first:ml-0 rounded-full" src="images/avatar/small/avatar3.webp" alt="Riverflow Laser client avatar 3"/>
+												<img className="w-15 aspect-square -ml-3 first:ml-0 rounded-full" src="images/avatar/small/avatar4.webp" alt="Riverflow Laser client avatar 4"/>
 												<a href="about-us.html" className="avatar btn btn-square !size-15 btn-white shadow-btn [writing-mode:tb-rl] !rounded-5xl -ml-3 first:ml-0 group">
 													<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<path className="group-hover:stroke-white" d="M7 17L17 7" stroke="var(--color-secondary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
@@ -45,7 +45,7 @@
 								</div>
 								<div className="md:w-1/2 w-full self-end wow fadeInRight" data-wow-delay="0.8s" data-wow-duration="0.8s">
 									<div className="relative 2xxl:w-187.5 xxl:w-162.5 lg:w-105 sm:w-87.5 w-65 3xl:ml-12.5 lg:ml-0 md:-ml-7.5 max-md:mx-auto" data-bottom-top="transform: translateY(-50px)" data-top-bottom="transform: translateY(50px)">
-										<img className="thumbnail" src={img1} alt=""/>
+										<img className="thumbnail" src={img1} alt="Riverflow Laser personalized aesthetic treatment hero"/>
 										{/* <div className="absolute 3xl:right-5 sm:-right-10 -right-7.5 lg:bottom-20 sm:bottom-8.75 bottom-5" data-bottom-top="transform: translateY(-50px)" data-top-bottom="transform: translateY(50px)">
 											<button className="flex items-center justify-center" data-type="youtube" data-src="https://www.youtube.com/embed/o8OgzQdA70c">
 												<i className="fa-solid fa-play block animate-rotate [animation-direction:reverse] text-black xl:text-2xl absolute z-1"></i>
@@ -72,14 +72,14 @@
 							</div> */}
 							<div className="3xl:top-[15%] top-[12%] left-[7%] absolute max-xl:hidden animate-move3" data-bottom-top="transform: translateY(-50px)" data-top-bottom="transform: translateY(50px)">
 								<div className="relative overflow-hidden rounded-full">
-									<img src={img2} alt=""/>
+									<img src={img2} alt="Riverflow Laser skincare client portrait"/>
 								</div>
 							</div>
 							{/* <div className="absolute bottom-[6%] left-[42%] max-lg:hidden animate-move3" data-bottom-top="transform: translateY(-50px)" data-top-bottom="transform: translateY(50px)">
-								<img src="images/hero-banner/img3.jpg" alt="" className="rounded-ee-[65%] 2xl:size-28.75 size-23.75 object-cover"/>
+								<img src="images/hero-banner/img3.jpg" alt="Riverflow Laser clinic treatment detail" className="rounded-ee-[65%] 2xl:size-28.75 size-23.75 object-cover"/>
 							</div> */}
 							{/* <div className="bottom-12.5 left-20 absolute max-xl:hidden" data-bottom-top="transform: translateY(-50px)" data-top-bottom="transform: translateY(50px)">
-								<img src="images/hero-banner/img4.jpg" alt="" className="3xl:rounded-e-5xl rounded-e-2xxl 3xl:h-50 3xl:w-30 w-20 h-37.5 object-cover"/>
+								<img src="images/hero-banner/img4.jpg" alt="Riverflow Laser skincare treatment detail" className="3xl:rounded-e-5xl rounded-e-2xxl 3xl:h-50 3xl:w-30 w-20 h-37.5 object-cover"/>
 							</div> */}
 
 							<svg className="absolute sm:top-[18%] top-[10%] sm:right-[38%] right-[80%] lg:w-15 sm:w-7.5 w-5 animate-identifier" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -110,7 +110,7 @@
 					<div className="xl:w-5/12 lg:w-1/2 w-full mb-3.75">
 						<div className="2xxl:-ml-10 lg:ml-0 sm:ml-7.5 ml-3.75 lg:pr-10 relative mb-21.25" data-bottom-top="transform: translateY(-30px)" data-top-bottom="transform: translateY(30px)">
 							<div className="relative overflow-hidden 2xl:h-155 sm:h-130 h-87.5 2xl:rounded-es-[150px] sm:rounded-es-[180px] rounded-es-8xl z-1">
-								<img src={imgPersonalized} alt="" className="size-full object-cover"/>
+								<img src={imgPersonalized} alt="Personalized skincare consultation at Riverflow Laser" className="size-full object-cover"/>
 							</div>
 							<div className="absolute top-7.5 sm:-left-7.5 -ml-3.75 h-full 2xl:w-54.5 lg:w-[40%] md:w-[31%] sm:w-[42%] w-[38%]">
 								<svg className="size-full" viewBox="0 0 217 620" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -137,10 +137,10 @@
 							<div className="flex items-center mb-3.75 wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="0.8s">
 								<div className="rounded-6xl inline-flex items-center justify-center sm:py-2.5 py-2 xl:pr-12.5 sm:pr-7.5 pr-3.75 sm:pl-3.75 pl-2.5 xl:min-h-17.5 sm:min-h-15.5 min-h-13.75 mr-5 bg-transparent border border-secondary">
 									<div className="flex pr-6.25 mr-6.25 border-r border-black/10">
-										{/* <img className="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar1.webp" alt=""/>
-										<img className="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar2.webp" alt=""/>
-										<img className="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar3.webp" alt=""/>
-										<img className="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar4.webp" alt=""/> */}
+										{/* <img className="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar1.webp" alt="Riverflow Laser client avatar 1"/>
+										<img className="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar2.webp" alt="Riverflow Laser client avatar 2"/>
+										<img className="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar3.webp" alt="Riverflow Laser client avatar 3"/>
+										<img className="xl:w-12 sm:w-10.5 w-8 aspect-square rounded-full border-white border-2 first:ml-0 -ml-3" src="images/avatar/small/avatar4.webp" alt="Riverflow Laser client avatar 4"/> */}
 									
 									<a href="about-us.html" className="btn btn-square btn-white lg:!size-17.5 lg:!min-w-17.5 md:!size-15 md:!min-w-15 !size-13.75 !min-w-13.75 !rounded-5xl shadow-7"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7 7H17V17" stroke="var(--color-primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
 									<span className="xl:text-base sm:text-sm text-xs">Learn More</span>
@@ -166,8 +166,8 @@
 								<span className="text-sm font-medium">12k+ ratings on google</span>
 							</div> */}
 							<div className="absolute -bottom-[11%] 2xxl:-right-[12%] -right-7.5 max-xxl:hidden" data-bottom-top="transform: translateY(-30px)" data-top-bottom="transform: translateY(30px)">
-								<img src="images/about/img2.webp" className="2xxl:max-w-37.5 max-w-30 absolute rotate-[-20deg] -left-[60%]" alt=""/>
-								<img src="images/about/img3.webp" className="2xxl:max-w-37.5 max-w-30" alt=""/>
+								<img src="images/about/img2.webp" className="2xxl:max-w-37.5 max-w-30 absolute rotate-[-20deg] -left-[60%]" alt="Personalized skincare consultation accent image"/>
+								<img src="images/about/img3.webp" className="2xxl:max-w-37.5 max-w-30" alt="Riverflow Laser skincare treatment accent image"/>
 							</div>
 						</div>
 					</div>
@@ -218,7 +218,7 @@
 							<div className="rounded-2xl opacity-100 duration-500 h-full overflow-hidden z-1 flex bg-white w-[inherit] flex-1 [.swiper-slide.active_&]:w-full before:text-[150px] before:leading-normal before:font-semibold before:text-secondary before:opacity-5 before:absolute before:right-3.75 before:top-3.75 before:z-1 before:duration-500 before:[content:'0'_counter(counter-item)]">
 								<div className="flex 2xl:gap-7.5 md:gap-5 gap-2.5 2xl:p-7.5 p-5 2xl:min-w-187.5 lg:min-w-150 min-w-full max-md:flex-col">
 									<div className="flex xl:w-75 xl:h-110 xl:min-w-75 md:w-62.5 md:min-w-62.5 md:h-100 sm:h-87.5 h-70 w-full min-w-full relative overflow-hidden">
-										<img src={LaserHairRemoval} alt="/" className="size-full object-cover rounded-xxl"/>
+										<img src={LaserHairRemoval} alt="Laser hair removal treatment at Riverflow Laser" className="size-full object-cover rounded-xxl"/>
 										<a href="appointment.html" className="btn btn-white !absolute 2xl:bottom-5 bottom-2.5 2xl:left-5 left-2.5 2xl:right-5 right-2.5 rounded-lg font-medium justify-center">
 											<i className="feather icon-calendar mr-1.25 text-primary"></i>
 											Book An appointment
@@ -249,7 +249,7 @@
 							<div className="rounded-2xl opacity-100 duration-500 h-full overflow-hidden z-1 flex bg-white w-[inherit] flex-1 [.swiper-slide.active_&]:w-full before:text-[150px] before:leading-normal before:font-semibold before:text-secondary before:opacity-5 before:absolute before:right-3.75 before:top-3.75 before:z-1 before:duration-500 before:[content:'0'_counter(counter-item)]">
 								<div className="flex 2xl:gap-7.5 md:gap-5 gap-2.5 2xl:p-7.5 p-5 2xl:min-w-187.5 lg:min-w-150 min-w-full max-md:flex-col">
 									<div className="flex xl:w-75 xl:h-110 xl:min-w-75 md:w-62.5 md:min-w-62.5 md:h-100 sm:h-87.5 h-70 w-full min-w-full relative overflow-hidden">
-										<img src="images/services/middle/img2.webp" alt="/" className="size-full object-cover rounded-xxl"/>
+										<img src="images/services/middle/img2.webp" alt="Dermatologic surgery service image" className="size-full object-cover rounded-xxl"/>
 										<a href="appointment.html" className="btn btn-white !absolute 2xl:bottom-5 bottom-2.5 2xl:left-5 left-2.5 2xl:right-5 right-2.5 rounded-lg font-medium justify-center">
 											<i className="feather icon-calendar mr-1.25 text-primary"></i>
 											Book An appointment
@@ -269,7 +269,7 @@
 											<div className="flex justify-between items-center">
 												<div className="flex items-center gap-3">
 													<div className="size-15 min-w-15">
-														<img src="images/avatar/middle/avatar1.webp" alt="" className="size-full object-cover rounded-full"/>
+														<img src="images/avatar/middle/avatar1.webp" alt="Service provider profile image" className="size-full object-cover rounded-full"/>
 													</div>
 													<div className="">
 														<h6 className="text-lg mb-0">Nashid Martines</h6>
@@ -295,7 +295,7 @@
 							<div className="rounded-2xl opacity-100 duration-500 h-full overflow-hidden z-1 flex bg-white w-[inherit] flex-1 [.swiper-slide.active_&]:w-full before:text-[150px] before:leading-normal before:font-semibold before:text-secondary before:opacity-5 before:absolute before:right-3.75 before:top-3.75 before:z-1 before:duration-500 before:[content:'0'_counter(counter-item)]">
 								<div className="flex 2xl:gap-7.5 md:gap-5 gap-2.5 2xl:p-7.5 p-5 2xl:min-w-187.5 lg:min-w-150 min-w-full max-md:flex-col">
 									<div className="flex xl:w-75 xl:h-110 xl:min-w-75 md:w-62.5 md:min-w-62.5 md:h-100 sm:h-87.5 h-70 w-full min-w-full relative overflow-hidden">
-										<img src="images/services/middle/img3.webp" alt="/" className="size-full object-cover rounded-xxl"/>
+										<img src="images/services/middle/img3.webp" alt="Earlobe repair service image" className="size-full object-cover rounded-xxl"/>
 										<a href="appointment.html" className="btn btn-white !absolute 2xl:bottom-5 bottom-2.5 2xl:left-5 left-2.5 2xl:right-5 right-2.5 rounded-lg font-medium justify-center">
 											<i className="feather icon-calendar mr-1.25 text-primary"></i>
 											Book An appointment
@@ -315,7 +315,7 @@
 											<div className="flex justify-between items-center">
 												<div className="flex items-center gap-3">
 													<div className="size-15 min-w-15">
-														<img src="images/avatar/middle/avatar1.webp" alt="" className="size-full object-cover rounded-full"/>
+														<img src="images/avatar/middle/avatar1.webp" alt="Service provider profile image" className="size-full object-cover rounded-full"/>
 													</div>
 													<div className="">
 														<h6 className="text-lg mb-0">Nashid Martines</h6>
@@ -341,7 +341,7 @@
 							<div className="rounded-2xl opacity-100 duration-500 h-full overflow-hidden z-1 flex bg-white w-[inherit] flex-1 [.swiper-slide.active_&]:w-full before:text-[150px] before:leading-normal before:font-semibold before:text-secondary before:opacity-5 before:absolute before:right-3.75 before:top-3.75 before:z-1 before:duration-500 before:[content:'0'_counter(counter-item)]">
 								<div className="flex 2xl:gap-7.5 md:gap-5 gap-2.5 2xl:p-7.5 p-5 2xl:min-w-187.5 lg:min-w-150 min-w-full max-md:flex-col">
 									<div className="flex xl:w-75 xl:h-110 xl:min-w-75 md:w-62.5 md:min-w-62.5 md:h-100 sm:h-87.5 h-70 w-full min-w-full relative overflow-hidden">
-										<img src="images/services/middle/img4.webp" alt="/" className="size-full object-cover rounded-xxl"/>
+										<img src="images/services/middle/img4.webp" alt="Laser resurfacing service image" className="size-full object-cover rounded-xxl"/>
 										<a href="appointment.html" className="btn btn-white !absolute 2xl:bottom-5 bottom-2.5 2xl:left-5 left-2.5 2xl:right-5 right-2.5 rounded-lg font-medium justify-center">
 											<i className="feather icon-calendar mr-1.25 text-primary"></i>
 											Book An appointment
@@ -361,7 +361,7 @@
 											<div className="flex justify-between items-center">
 												<div className="flex items-center gap-3">
 													<div className="size-15 min-w-15">
-														<img src="images/avatar/middle/avatar1.webp" alt="" className="size-full object-cover rounded-full"/>
+														<img src="images/avatar/middle/avatar1.webp" alt="Service provider profile image" className="size-full object-cover rounded-full"/>
 													</div>
 													<div className="">
 														<h6 className="text-lg mb-0">Nashid Martines</h6>
@@ -387,7 +387,7 @@
 							<div className="rounded-2xl opacity-100 duration-500 h-full overflow-hidden z-1 flex bg-white w-[inherit] flex-1 [.swiper-slide.active_&]:w-full before:text-[150px] before:leading-normal before:font-semibold before:text-secondary before:opacity-5 before:absolute before:right-3.75 before:top-3.75 before:z-1 before:duration-500 before:[content:'0'_counter(counter-item)]">
 								<div className="flex 2xl:gap-7.5 md:gap-5 gap-2.5 2xl:p-7.5 p-5 2xl:min-w-187.5 lg:min-w-150 min-w-full max-md:flex-col">
 									<div className="flex xl:w-75 xl:h-110 xl:min-w-75 md:w-62.5 md:min-w-62.5 md:h-100 sm:h-87.5 h-70 w-full min-w-full relative overflow-hidden">
-										<img src="images/services/middle/img5.webp" alt="/" className="size-full object-cover rounded-xxl"/>
+										<img src="images/services/middle/img5.webp" alt="Anti-aging service image" className="size-full object-cover rounded-xxl"/>
 										<a href="appointment.html" className="btn btn-white !absolute 2xl:bottom-5 bottom-2.5 2xl:left-5 left-2.5 2xl:right-5 right-2.5 rounded-lg font-medium justify-center">
 											<i className="feather icon-calendar mr-1.25 text-primary"></i>
 											Book An appointment
@@ -407,7 +407,7 @@
 											<div className="flex justify-between items-center">
 												<div className="flex items-center gap-3">
 													<div className="size-15 min-w-15">
-														<img src="images/avatar/middle/avatar1.webp" alt="" className="size-full object-cover rounded-full"/>
+														<img src="images/avatar/middle/avatar1.webp" alt="Service provider profile image" className="size-full object-cover rounded-full"/>
 													</div>
 													<div className="">
 														<h6 className="text-lg mb-0">Nashid Martines</h6>

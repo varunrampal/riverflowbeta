@@ -22,7 +22,7 @@ export default function Header1() {
 							<a href="index.html" className="block">
 								<img
 									src={logo}
-									alt="logo"
+									alt="Riverflow Laser & Skin Clinic logo"
 									width="90"
 									height="90"
 									className="float-left rounded-full w-24 h-24 object-cover mr-4 mb-2"
@@ -40,7 +40,7 @@ export default function Header1() {
 						<div className="flex lg:basis-auto lg:grow max-lg:flex-col justify-start font-title max-lg:fixed max-lg:h-screen max-lg:px-5 max-lg:top-0 max-lg:-left-75 max-lg:z-9999 max-lg:bg-white max-lg:w-72 max-lg:overflow-auto max-lg:duration-700 header-nav custom-scroll">
 							<div className="flex  items-center relative z-9 py-6.25 lg:hidden w-33.75 h-15.25">
 								<a href="index.html" className="table-cell align-middle">
-									<img src={logo} alt="" className="object-contain duration-500" />
+									<img src={logo} alt="Riverflow Laser & Skin Clinic logo" className="object-contain duration-500" />
 
 								</a>
 
@@ -248,7 +248,7 @@ export default function Header1() {
 	<div className="p-7.5 grow overflow-y-auto">
 		<div className="mb-8.75">
 			<div className="w-40 mb-5">
-				<a href="index.html"><img src="../skincare/images/logo.svg" alt="/"/></a>
+				<a href="index.html"><img src="../skincare/images/logo.svg" alt="Riverflow Laser & Skin Clinic logo"/></a>
 			</div>
 			<p>ClinicMaster is a modern and responsive Tailwind HTML template designed for health and medical websites. Ideal for clinics, hospitals, and healthcare professionals seeking a professional online presence with an elegant and user-friendly design.</p>
 		</div>
@@ -336,7 +336,7 @@ export default function Header1() {
 					<li className="py-5 border-b border-black/10">
 						<div className="flex items-center justify-center">
 							<div className="relative overflow-hidden size-20 min-w-20 rounded-2xl mr-4">
-								<img src="images/shop/img1.webp" alt=""/>
+								<img src="images/shop/img1.webp" alt="Herbal skincare product in shopping cart"/>
 							</div>
 							<div className="mr-2.5 flex-1">
 								<h3 className="font-semibold text-sm"><a href="shop-details.html">Herbal beauty</a></h3>
@@ -359,7 +359,7 @@ export default function Header1() {
 					<li className="py-5 border-b border-black/10">
 						<div className="flex items-center justify-center">
 							<div className="relative overflow-hidden size-20 min-w-20 rounded-2xl mr-4">
-								<img src="images/shop/img2.webp" alt=""/>
+								<img src="images/shop/img2.webp" alt="Green beauty skincare product in shopping cart"/>
 							</div>
 							<div className="mr-2.5 flex-1">
 								<h3 className="font-semibold text-sm"><a href="shop-details.html">Green beauty</a></h3>
@@ -382,7 +382,7 @@ export default function Header1() {
 					<li className="py-5 border-b border-black/10">
 						<div className="flex items-center justify-center">
 							<div className="relative overflow-hidden size-20 min-w-20 rounded-2xl mr-4">
-								<img src="images/shop/img4.webp" alt=""/>
+								<img src="images/shop/img4.webp" alt="Sun care skincare product in shopping cart"/>
 							</div>
 							<div className="mr-2.5 flex-1">
 								<h3 className="font-semibold text-sm"><a href="shop-details.html">Sun beauty</a></h3>

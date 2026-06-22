@@ -2,7 +2,7 @@ import { useState } from "react";
 import { submitClinicForm } from "../utils/formSubmit";
 
 const inputClass =
-  "mt-2 w-full rounded-lg border border-accent/30 bg-white px-4 py-3 text-sm text-secondary outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20";
+  "mt-2 w-full rounded-lg border border-accent/30 bg-white px-4 py-2.5 text-sm text-secondary outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 sm:py-3";
 
 const submitToFormSubmit = async (formData) => {
   const subject = formData.get("subject") || "Consultation Request";
@@ -54,7 +54,7 @@ export default function RequestConsultationForm({ className = "" }) {
 
   return (
     <div
-      className={`grid gap-8 rounded-2xl border border-accent/25 bg-background p-6 shadow-sm lg:grid-cols-[0.85fr_1.15fr] lg:p-8 ${className}`}
+      className={`grid gap-6 rounded-2xl border border-accent/25 bg-background p-5 shadow-sm sm:gap-8 sm:p-6 lg:grid-cols-[0.85fr_1.15fr] lg:p-8 ${className}`}
     >
       <div className="flex flex-col justify-between gap-6">
         <div>
@@ -68,9 +68,13 @@ export default function RequestConsultationForm({ className = "" }) {
             Share your contact details and treatment goals, and our team will
             follow up with the next available appointment options.
           </p>
+          <p className="mt-3 text-sm font-medium text-secondary sm:hidden">
+            Quick mobile request: name, phone, and treatment interest are enough
+            to get started.
+          </p>
         </div>
 
-        <div className="rounded-xl bg-secondary px-5 py-4 text-white">
+        <div className="hidden rounded-xl bg-secondary px-5 py-4 text-white sm:block">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/70">
             Prefer to call?
           </p>
@@ -84,7 +88,7 @@ export default function RequestConsultationForm({ className = "" }) {
       </div>
 
       <form
-        className="grid gap-4 sm:grid-cols-2"
+        className="grid gap-3 sm:grid-cols-2 sm:gap-4"
         onSubmit={handleConsultationSubmit}
       >
         <label className="text-sm font-semibold text-secondary">
@@ -94,17 +98,6 @@ export default function RequestConsultationForm({ className = "" }) {
             type="text"
             name="name"
             placeholder="Your name"
-            required
-          />
-        </label>
-
-        <label className="text-sm font-semibold text-secondary">
-          Email
-          <input
-            className={inputClass}
-            type="email"
-            name="email"
-            placeholder="you@example.com"
             required
           />
         </label>
@@ -120,6 +113,16 @@ export default function RequestConsultationForm({ className = "" }) {
           />
         </label>
 
+        <label className="hidden text-sm font-semibold text-secondary sm:block">
+          Email
+          <input
+            className={inputClass}
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+          />
+        </label>
+
         <label className="text-sm font-semibold text-secondary">
           Subject
           <input
@@ -131,13 +134,12 @@ export default function RequestConsultationForm({ className = "" }) {
           />
         </label>
 
-        <label className="text-sm font-semibold text-secondary sm:col-span-2">
-          Notes
+        <label className="hidden text-sm font-semibold text-secondary sm:col-span-2 sm:block">
+          Notes <span className="font-normal text-slate-500">(optional)</span>
           <textarea
             className={`${inputClass} min-h-32 resize-y`}
             name="details"
             placeholder="Tell us about your goals, timing, or questions."
-            required
           ></textarea>
         </label>
 

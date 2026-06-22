@@ -9,7 +9,7 @@ export default function Products() {
       <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
         <img
           src={skincareproducts}
-          alt="Franchise with Uptown Med Spa"
+          alt="Certified skincare products used at Riverflow Laser & Skin Clinic"
           className="w-full max-w-md lg:max-w-lg h-auto"
           loading="lazy"
         />
