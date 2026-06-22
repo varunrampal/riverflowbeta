@@ -136,14 +136,14 @@ const pages = [
       "Riverflow Laser & Skin Clinic Langley | Laser Hair Removal & Skin Care",
     h1: "Riverflow Laser & Skin Clinic Langley",
     description:
-      "Riverflow Laser & Skin Clinic in Langley, BC offers laser hair removal, facials, HydraFacial, chemical peels, microneedling, acne care, pigmentation treatments, and skin rejuvenation.",
+      "Riverflow Laser & Skin Clinic in Langley offers laser hair removal, HydraFacial, facials, microneedling, acne care, and skin rejuvenation.",
   },
   {
     path: "/treatments",
     title: "Laser & Skin Treatments in Langley, BC | Riverflow Laser",
     h1: "Laser & Skin Treatments in Langley, BC",
     description:
-      "Explore Riverflow Laser & Skin Clinic treatments in Langley, including laser hair removal, HydraFacial, facials, microneedling, chemical peels, acne care, pigmentation, and skin rejuvenation.",
+      "Explore laser and skin treatments in Langley, including laser hair removal, HydraFacial, facials, microneedling, chemical peels, and acne care.",
   },
   {
     path: "/about",
@@ -254,13 +254,29 @@ const contextLinksMarkup = (page) => {
     .join(", ");
 };
 
+const fallbackH2ForPage = (page) => {
+  if (page.path === "/") {
+    return "Laser Hair Removal and Skin Care in Langley";
+  }
+
+  if (page.path === "/treatments") {
+    return "Laser and Skin Treatment Services";
+  }
+
+  if (page.treatment) {
+    return `${page.treatment.title} Details and Booking`;
+  }
+
+  return `${page.h1} Information`;
+};
+
 const businessSchema = () => ({
   "@type": ["MedicalBusiness", "HealthAndBeautyBusiness", "LocalBusiness"],
   "@id": businessId,
   name: "Riverflow Laser & Skin Clinic Inc",
   alternateName: siteName,
   description:
-    "Riverflow Laser & Skin Clinic in Langley, BC offers laser hair removal, facials, HydraFacial, chemical peels, microneedling, acne care, pigmentation treatments, and skin rejuvenation.",
+    "Riverflow Laser & Skin Clinic in Langley offers laser hair removal, HydraFacial, facials, microneedling, acne care, and skin rejuvenation.",
   url: `${siteUrl}/`,
   image: `${siteUrl}/assets/riverflow-logo.png`,
   logo: `${siteUrl}/assets/riverflow-logo.png`,
@@ -372,6 +388,7 @@ const fallbackMarkup = ({ h1, description, path: routePath }) => `<!--seo-fallba
         <section>
           <p>${siteName}</p>
           <h1>${escapeHtml(h1)}</h1>
+          <h2>${escapeHtml(fallbackH2ForPage({ h1, path: routePath, treatment: routePath.startsWith("/treatments/") ? treatmentBySlug[routePath.split("/").pop()] : null }))}</h2>
           <p>${escapeHtml(description)}</p>
           <p>Related services: ${contextLinksMarkup({ h1, description, path: routePath, treatment: routePath.startsWith("/treatments/") ? treatmentBySlug[routePath.split("/").pop()] : null })}.</p>
           <a href="/make-appointment${routePath.startsWith("/treatments/") ? `?subject=${encodeURIComponent(h1.replace(" in Langley, BC", ""))}` : ""}">Make an Inquiry</a>

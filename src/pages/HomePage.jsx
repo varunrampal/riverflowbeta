@@ -24,7 +24,7 @@ export default function HomePage() {
       <Layout>
          <SEO
             title="Riverflow Laser & Skin Clinic Langley | Laser Hair Removal & Skin Care"
-            description="Visit Riverflow Laser & Skin Clinic in Langley, BC for laser hair removal, facials, HydraFacial, chemical peels, microneedling, acne care, and skin rejuvenation."
+            description="Riverflow Laser & Skin Clinic in Langley offers laser hair removal, HydraFacial, facials, microneedling, acne care, and skin rejuvenation."
             canonicalPath="/"
             structuredData={[
                localBusinessSchema(),

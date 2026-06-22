@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   defaultTitle:
     "Riverflow Laser & Skin Clinic Langley | Laser Hair Removal & Skin Care",
   defaultDescription:
-    "Riverflow Laser & Skin Clinic in Langley, BC offers laser hair removal, facials, HydraFacial, chemical peels, microneedling, acne care, pigmentation treatments, and skin rejuvenation.",
+    "Riverflow Laser & Skin Clinic in Langley offers laser hair removal, HydraFacial, facials, microneedling, acne care, and skin rejuvenation.",
   keywords: [
     "Riverflow Laser",
     "Riverflow Laser & Skin Clinic",

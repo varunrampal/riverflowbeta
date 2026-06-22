@@ -4,6 +4,8 @@ services:
     runtime: static
     buildCommand: npm ci && npm run build
     staticPublishPath: ./dist
+    domains:
+      - riverflowlaser.com
     routes:
       - type: rewrite
         source: /*
