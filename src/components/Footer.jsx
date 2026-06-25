@@ -109,7 +109,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://maps.app.goo.gl/zmvnwoiffVJM6hSS7"
+                  href="https://maps.google.com/?cid=7786788616964143170&amp;g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF&amp;hl=en-US&amp;source=embed"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-accent"
