@@ -10,7 +10,9 @@ import {
   formatBlogDate,
   getBlogPostBySlug,
   getPublishedBlogPosts,
+  trackBlogEvent,
 } from "../data/blog";
+import { TREATMENTS } from "../data/treatments";
 import {
   blogPostSchema,
   breadcrumbSchema,
@@ -22,6 +24,7 @@ export default function BlogDetailsPage() {
   const { slug } = useParams();
   const [posts, setPosts] = useState(() => getPublishedBlogPosts());
   const [remotePost, setRemotePost] = useState(null);
+  const [activeTimelineIndex, setActiveTimelineIndex] = useState(0);
 
   useEffect(() => {
     let active = true;
@@ -58,9 +61,54 @@ export default function BlogDetailsPage() {
   );
 
   const relatedPosts = useMemo(
-    () => posts.filter((item) => item.slug !== slug).slice(0, 3),
-    [posts, slug],
+    () => {
+      const currentConcerns = new Set(post?.concerns || []);
+
+      return posts
+        .filter((item) => item.slug !== slug)
+        .sort((left, right) => {
+          const leftMatches = (left.concerns || []).filter((item) =>
+            currentConcerns.has(item),
+          ).length;
+          const rightMatches = (right.concerns || []).filter((item) =>
+            currentConcerns.has(item),
+          ).length;
+          return rightMatches - leftMatches;
+        })
+        .slice(0, 3);
+    },
+    [post?.concerns, posts, slug],
   );
+
+  const relatedTreatments = useMemo(
+    () =>
+      (post?.treatmentIds || [])
+        .map((id) => TREATMENTS[id])
+        .filter(Boolean)
+        .slice(0, 3),
+    [post?.treatmentIds],
+  );
+
+  useEffect(() => {
+    setActiveTimelineIndex(0);
+
+    if (!post?.id) {
+      return;
+    }
+
+    const sessionKey = `riverflow-blog-view:${post.id}`;
+
+    try {
+      if (sessionStorage.getItem(sessionKey)) {
+        return;
+      }
+      sessionStorage.setItem(sessionKey, "1");
+    } catch {
+      // Analytics is best-effort when browser storage is unavailable.
+    }
+
+    trackBlogEvent("view", { postId: post.id });
+  }, [post?.id]);
 
   if (!post) {
     return (
@@ -145,6 +193,18 @@ export default function BlogDetailsPage() {
             <h1 className="mt-4 text-3xl font-bold leading-tight text-secondary md:text-5xl">
               {post.title}
             </h1>
+            {post.concerns?.length ? (
+              <div className="mt-5 flex flex-wrap gap-2">
+                {post.concerns.map((concern) => (
+                  <span
+                    key={concern}
+                    className="rounded-full bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary"
+                  >
+                    {concern}
+                  </span>
+                ))}
+              </div>
+            ) : null}
             {post.excerpt ? (
               <p className="mt-5 text-lg leading-8 text-slate-600">
                 {post.excerpt}
@@ -170,7 +230,117 @@ export default function BlogDetailsPage() {
             ))}
           </div>
 
-          <div className="mt-10 rounded-lg border border-accent/20 bg-secondary/5 p-5">
+          {post.reviewedBy ? (
+            <div className="mt-10 flex items-start gap-4 rounded-2xl border border-accent/25 bg-background p-5 shadow-sm">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <i className="fa-solid fa-shield-heart" aria-hidden="true"></i>
+              </div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                  Content review
+                </p>
+                <p className="mt-1 font-semibold text-secondary">
+                  Reviewed by {post.reviewedBy}
+                  {post.reviewerRole ? `, ${post.reviewerRole}` : ""}
+                </p>
+                {post.reviewedAt ? (
+                  <p className="mt-1 text-sm text-slate-500">
+                    Reviewed {formatBlogDate(post.reviewedAt)} for clarity and treatment education.
+                  </p>
+                ) : null}
+              </div>
+            </div>
+          ) : null}
+
+          {post.timeline?.length ? (
+            <section className="mt-12" aria-labelledby="care-path-title">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+                Your care path
+              </p>
+              <h2 id="care-path-title" className="mt-2 text-2xl font-bold text-secondary">
+                What the journey can look like
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                Use this educational timeline as a conversation starter. Your provider may adjust every step for your skin.
+              </p>
+              <div className="mt-6 grid gap-4 md:grid-cols-[0.42fr_0.58fr]">
+                <div className="flex gap-2 overflow-x-auto pb-1 md:flex-col md:overflow-visible">
+                  {post.timeline.map((step, index) => (
+                    <button
+                      type="button"
+                      key={`${step.label}-${step.title}`}
+                      onClick={() => setActiveTimelineIndex(index)}
+                      aria-pressed={activeTimelineIndex === index}
+                      className={`min-w-36 rounded-xl border px-4 py-3 text-left transition md:min-w-0 ${
+                        activeTimelineIndex === index
+                          ? "border-primary bg-primary text-white shadow-sm"
+                          : "border-accent/25 bg-white text-secondary hover:border-primary/50"
+                      }`}
+                    >
+                      <span className="block text-[11px] font-semibold uppercase tracking-[0.18em] opacity-75">
+                        {step.label || `Step ${index + 1}`}
+                      </span>
+                      <span className="mt-1 block text-sm font-semibold">{step.title}</span>
+                    </button>
+                  ))}
+                </div>
+                <div className="rounded-2xl bg-secondary p-6 text-white">
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                    {post.timeline[activeTimelineIndex]?.label || `Step ${activeTimelineIndex + 1}`}
+                  </span>
+                  <h3 className="mt-2 text-xl font-bold">
+                    {post.timeline[activeTimelineIndex]?.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-white/80">
+                    {post.timeline[activeTimelineIndex]?.description}
+                  </p>
+                </div>
+              </div>
+            </section>
+          ) : null}
+
+          {relatedTreatments.length ? (
+            <section className="mt-12" aria-labelledby="related-treatments-title">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+                Explore your options
+              </p>
+              <h2 id="related-treatments-title" className="mt-2 text-2xl font-bold text-secondary">
+                Treatments connected to this guide
+              </h2>
+              <div className="mt-5 grid gap-4 sm:grid-cols-3">
+                {relatedTreatments.map((treatment) => (
+                  <Link
+                    key={treatment.id}
+                    to={`/treatments/${treatment.id}`}
+                    onClick={() =>
+                      trackBlogEvent("treatment_click", {
+                        postId: post.id,
+                        treatmentId: treatment.id,
+                      })
+                    }
+                    className="group overflow-hidden rounded-xl border border-accent/20 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                  >
+                    <img
+                      src={treatment.image}
+                      alt=""
+                      className="h-28 w-full object-cover"
+                      loading="lazy"
+                    />
+                    <div className="p-4">
+                      <h3 className="text-sm font-semibold text-secondary group-hover:text-primary">
+                        {treatment.title}
+                      </h3>
+                      <p className="mt-2 line-clamp-2 text-xs leading-5 text-slate-500">
+                        {treatment.short}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
+          <div className="mt-12 rounded-2xl border border-accent/20 bg-secondary/5 p-6">
             <h2 className="text-lg font-semibold text-secondary">
               Ready to plan your next treatment?
             </h2>
@@ -179,12 +349,26 @@ export default function BlogDetailsPage() {
               and we will help match your skin goals to the right service.
             </p>
             <Link
-              to="/make-appointment"
+              to={`/make-appointment?${new URLSearchParams({
+                subject: relatedTreatments[0]?.title || post.title,
+                source: "blog",
+                article: post.slug,
+                post: post.id,
+              }).toString()}`}
+              onClick={() =>
+                trackBlogEvent("appointment_click", {
+                  postId: post.id,
+                  treatmentId: relatedTreatments[0]?.id || "",
+                })
+              }
               className="mt-4 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-secondary"
             >
-              Make an inquiry
+              Continue with this guide
               <i className="fa-solid fa-arrow-right text-xs" aria-hidden="true"></i>
             </Link>
+            <p className="mt-4 text-xs leading-5 text-slate-500">
+              Blog content is educational and is not a diagnosis or a substitute for an in-person consultation.
+            </p>
           </div>
         </section>
       </article>

@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import { submitClinicForm } from "../utils/formSubmit";
 import SEO from "../components/SEO";
 import { breadcrumbSchema, webPageSchema } from "../utils/seo";
+import { trackBlogEvent } from "../data/blog";
 
 const inputClass =
   "mt-2 w-full rounded-lg border border-accent/30 bg-white px-4 py-2.5 text-sm text-secondary outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 sm:py-3";
@@ -13,6 +14,9 @@ const contextLinkClass =
 export default function MakeAppointmentPage() {
   const [searchParams] = useSearchParams();
   const subjectFromQuery = searchParams.get("subject") || "";
+  const sourceArticle = searchParams.get("article") || "";
+  const sourcePostId = searchParams.get("post") || "";
+  const cameFromBlog = searchParams.get("source") === "blog" && sourceArticle;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState({ type: "", message: "" });
 
@@ -36,8 +40,13 @@ export default function MakeAppointmentPage() {
         date: formData.get("date"),
         time: formData.get("time"),
         message: formData.get("message"),
+        source_page: cameFromBlog ? `Blog: ${sourceArticle}` : "Website",
         _subject: `Riverflow Appointment Inquiry: ${subject}`,
       });
+
+      if (sourcePostId) {
+        trackBlogEvent("inquiry_submit", { postId: sourcePostId });
+      }
 
       form.reset();
       setFormStatus({ type: "success", message: successMessage });
@@ -98,6 +107,12 @@ export default function MakeAppointmentPage() {
               </Link>
               .
             </p>
+            {cameFromBlog ? (
+              <div className="mt-4 rounded-xl border border-primary/20 bg-primary/5 px-4 py-3 text-sm text-secondary">
+                <span className="font-semibold text-primary">Your guide is connected.</span>{" "}
+                We’ll include the article you were reading so the team has context for your inquiry.
+              </div>
+            ) : null}
             <div className="mt-5 flex flex-wrap gap-3">
               <a
                 href="https://app.squareup.com/appointments/book/9qze62967coq3v/L0BCN9T6Y4JAQ/start"

@@ -4,6 +4,17 @@ import skincareProductsImage from "../assets/images/services/skincareproducts.jp
 
 const BLOG_API_URL = "/api/blog";
 
+export const BLOG_CONCERNS = [
+  "Acne & congestion",
+  "Dryness & dehydration",
+  "Pigmentation & uneven tone",
+  "Fine lines & firmness",
+  "Texture & scarring",
+  "Unwanted hair",
+  "Scalp & hair care",
+  "Maintenance & glow",
+];
+
 export const BLOG_POSTS = [
   {
     id: "skin-recovery-after-seasonal-dryness",
@@ -22,6 +33,31 @@ Between appointments, keep your routine steady. Use a gentle cleanser, a hydrati
     author: "Riverflow Team",
     publishedAt: "2026-06-20",
     status: "published",
+    concerns: ["Dryness & dehydration", "Maintenance & glow"],
+    treatmentIds: ["hydrafacial", "facial", "oxygenofacial"],
+    timeline: [
+      {
+        label: "Start here",
+        title: "Calm and simplify",
+        description:
+          "Pause harsh exfoliation and use a gentle cleanser, moisturizer, and daily SPF while comfort returns.",
+      },
+      {
+        label: "Next step",
+        title: "Plan professional hydration",
+        description:
+          "Once the skin feels settled, a consultation can help determine whether a facial or HydraFacial fits your goals.",
+      },
+      {
+        label: "Maintain",
+        title: "Keep a steady rhythm",
+        description:
+          "Support results with consistent home care and introduce stronger active ingredients gradually.",
+      },
+    ],
+    reviewedBy: "Jyoti Sharma",
+    reviewerRole: "Esthetician",
+    reviewedAt: "2026-06-20",
   },
   {
     id: "microneedling-texture-and-glow",
@@ -40,6 +76,31 @@ After treatment, simple aftercare matters. Avoid harsh exfoliation, protect your
     author: "Riverflow Team",
     publishedAt: "2026-06-12",
     status: "published",
+    concerns: ["Texture & scarring", "Fine lines & firmness"],
+    treatmentIds: ["microneedling", "skinrejuvenation", "chemicalpeels"],
+    timeline: [
+      {
+        label: "Before",
+        title: "Review your routine",
+        description:
+          "Share current products, skin history, and treatment goals during your consultation so preparation can be personalized.",
+      },
+      {
+        label: "Treatment day",
+        title: "Support the renewal response",
+        description:
+          "Microneedling creates controlled micro-channels as part of a treatment plan selected for your skin.",
+      },
+      {
+        label: "After",
+        title: "Protect the recovery window",
+        description:
+          "Follow provider aftercare, avoid harsh exfoliation, and be especially consistent with sun protection.",
+      },
+    ],
+    reviewedBy: "Jyoti Sharma",
+    reviewerRole: "Esthetician",
+    reviewedAt: "2026-06-12",
   },
   {
     id: "choosing-skincare-products",
@@ -58,6 +119,31 @@ When in doubt, bring your current products to your consultation. Your provider c
     author: "Riverflow Team",
     publishedAt: "2026-06-01",
     status: "published",
+    concerns: ["Maintenance & glow", "Dryness & dehydration"],
+    treatmentIds: ["facial", "hydrafacial", "chemicalpeels"],
+    timeline: [
+      {
+        label: "Audit",
+        title: "Start with the essentials",
+        description:
+          "Keep a cleanser, moisturizer, and daily SPF as the foundation before adding targeted products.",
+      },
+      {
+        label: "Choose",
+        title: "Add one goal-focused product",
+        description:
+          "Select an active ingredient for your primary concern and introduce it gradually instead of changing everything at once.",
+      },
+      {
+        label: "Review",
+        title: "Coordinate with treatments",
+        description:
+          "Bring your routine to appointments so your provider can advise what to pause before peels, laser, or other services.",
+      },
+    ],
+    reviewedBy: "Jyoti Sharma",
+    reviewerRole: "Esthetician",
+    reviewedAt: "2026-06-01",
   },
 ];
 
@@ -109,6 +195,28 @@ export const blogExcerpt = (post = {}, maxLength = 160) => {
   return `${text.slice(0, maxLength - 3).replace(/\s+\S*$/, "")}...`;
 };
 
+const normalizeStringList = (value) => {
+  const items = Array.isArray(value)
+    ? value
+    : String(value || "").split(",");
+
+  return [...new Set(items.map(cleanBlogText).filter(Boolean))];
+};
+
+const normalizeTimeline = (value) => {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value
+    .map((item) => ({
+      label: cleanBlogText(item?.label),
+      title: cleanBlogText(item?.title),
+      description: cleanBlogText(item?.description),
+    }))
+    .filter((item) => item.title && item.description);
+};
+
 export const normalizeBlogPost = (post = {}) => {
   const title = cleanBlogText(post.title) || "Untitled blog post";
   const content = String(post.content || "").trim();
@@ -126,6 +234,12 @@ export const normalizeBlogPost = (post = {}) => {
     publishedAt:
       post.publishedAt || new Date().toISOString().slice(0, 10),
     status: post.status === "draft" ? "draft" : "published",
+    concerns: normalizeStringList(post.concerns),
+    treatmentIds: normalizeStringList(post.treatmentIds),
+    timeline: normalizeTimeline(post.timeline),
+    reviewedBy: cleanBlogText(post.reviewedBy),
+    reviewerRole: cleanBlogText(post.reviewerRole),
+    reviewedAt: cleanBlogText(post.reviewedAt),
   };
 };
 
@@ -234,6 +348,45 @@ export const logoutFromBlogAdmin = async () => {
 export const getBlogAdminSession = async () => {
   const data = await blogApiRequest("session");
   return Boolean(data.authenticated);
+};
+
+export const trackBlogEvent = async (
+  eventType,
+  { postId = "", treatmentId = "" } = {},
+) => {
+  if (!postId) {
+    return;
+  }
+
+  if (typeof window !== "undefined") {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: `blog_${eventType}`,
+      blog_post_id: postId,
+      treatment_id: treatmentId || undefined,
+    });
+  }
+
+  await blogApiRequest("track", {
+    method: "POST",
+    body: { eventType, postId, treatmentId },
+  }).catch(() => null);
+};
+
+export const fetchBlogAnalytics = async () => {
+  const data = await blogApiRequest("analytics");
+
+  return Object.fromEntries(
+    (data.analytics || []).map((row) => [
+      String(row.postId || ""),
+      {
+        views: Number(row.views || 0),
+        treatmentClicks: Number(row.treatmentClicks || 0),
+        appointmentClicks: Number(row.appointmentClicks || 0),
+        inquirySubmits: Number(row.inquirySubmits || 0),
+      },
+    ]),
+  );
 };
 
 export const formatBlogDate = (dateValue) => {

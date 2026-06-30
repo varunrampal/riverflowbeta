@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import {
+  BLOG_CONCERNS,
   blogExcerpt,
   fetchPublishedBlogPosts,
   formatBlogDate,
@@ -18,6 +19,23 @@ import {
 export default function BlogPage() {
   const [posts, setPosts] = useState(() => getPublishedBlogPosts());
   const [error, setError] = useState("");
+  const [activeConcern, setActiveConcern] = useState("All");
+
+  const availableConcerns = useMemo(
+    () =>
+      BLOG_CONCERNS.filter((concern) =>
+        posts.some((post) => post.concerns?.includes(concern)),
+      ),
+    [posts],
+  );
+
+  const visiblePosts = useMemo(
+    () =>
+      activeConcern === "All"
+        ? posts
+        : posts.filter((post) => post.concerns?.includes(activeConcern)),
+    [activeConcern, posts],
+  );
 
   useEffect(() => {
     let active = true;
@@ -75,6 +93,30 @@ export default function BlogPage() {
             Treatment notes, skin care guidance, and clinic updates from
             Riverflow Laser & Skin Clinic.
           </p>
+          {availableConcerns.length ? (
+            <div className="mt-7 rounded-2xl border border-accent/20 bg-white p-4 shadow-sm sm:p-5">
+              <p className="text-sm font-semibold text-secondary">
+                What would you like guidance with?
+              </p>
+              <div className="mt-3 flex flex-wrap gap-2" aria-label="Filter articles by concern">
+                {["All", ...availableConcerns].map((concern) => (
+                  <button
+                    type="button"
+                    key={concern}
+                    onClick={() => setActiveConcern(concern)}
+                    aria-pressed={activeConcern === concern}
+                    className={`rounded-full px-4 py-2 text-sm font-semibold transition ${
+                      activeConcern === concern
+                        ? "bg-primary text-white shadow-sm"
+                        : "bg-secondary/5 text-secondary hover:bg-primary/10 hover:text-primary"
+                    }`}
+                  >
+                    {concern}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
       </section>
 
@@ -85,9 +127,9 @@ export default function BlogPage() {
               {error}
             </p>
           ) : null}
-          {posts.length ? (
+          {visiblePosts.length ? (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {posts.map((post) => (
+              {visiblePosts.map((post) => (
                 <article
                   key={post.id}
                   className="flex overflow-hidden rounded-lg border border-accent/20 bg-background shadow-sm transition hover:shadow-md"
@@ -107,6 +149,18 @@ export default function BlogPage() {
                       </div>
                     ) : null}
                     <div className="flex flex-1 flex-col p-5">
+                      {post.concerns?.length ? (
+                        <div className="mb-3 flex flex-wrap gap-2">
+                          {post.concerns.slice(0, 2).map((concern) => (
+                            <span
+                              key={concern}
+                              className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary"
+                            >
+                              {concern}
+                            </span>
+                          ))}
+                        </div>
+                      ) : null}
                       <div className="mb-3 flex flex-wrap items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-slate-500">
                         <span>{post.category}</span>
                         <span
@@ -138,8 +192,19 @@ export default function BlogPage() {
           ) : (
             <div className="rounded-lg border border-accent/20 bg-secondary/5 p-8 text-center">
               <h2 className="text-xl font-semibold text-secondary">
-                No blog posts published yet.
+                {posts.length
+                  ? "No articles match that concern yet."
+                  : "No blog posts published yet."}
               </h2>
+              {posts.length ? (
+                <button
+                  type="button"
+                  onClick={() => setActiveConcern("All")}
+                  className="mt-4 text-sm font-semibold text-primary hover:text-secondary"
+                >
+                  View all articles
+                </button>
+              ) : null}
             </div>
           )}
         </div>

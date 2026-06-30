@@ -3,9 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import {
+  BLOG_CONCERNS,
   createBlogSlug,
   deleteBlogPostFromApi,
   fetchAdminBlogPosts,
+  fetchBlogAnalytics,
   formatBlogDate,
   getBlogAdminSession,
   logoutFromBlogAdmin,
@@ -14,6 +16,7 @@ import {
   saveBlogPostToApi,
   sortBlogPosts,
 } from "../data/blog";
+import { TREATMENTS } from "../data/treatments";
 
 const MAX_IMAGE_WIDTH = 1400;
 const IMAGE_QUALITY = 0.82;
@@ -36,6 +39,12 @@ const blankPost = () => ({
   author: "Riverflow Team",
   publishedAt: today(),
   status: "published",
+  concerns: [],
+  treatmentIds: [],
+  timeline: [],
+  reviewedBy: "",
+  reviewerRole: "",
+  reviewedAt: "",
 });
 
 const readFileAsDataUrl = (file) =>
@@ -81,6 +90,7 @@ export default function AdminBlogPage() {
   const [saving, setSaving] = useState(false);
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
+  const [analytics, setAnalytics] = useState({});
 
   const sortedPosts = useMemo(() => sortBlogPosts(posts), [posts]);
 
@@ -96,10 +106,14 @@ export default function AdminBlogPage() {
           return;
         }
 
-        const nextPosts = await fetchAdminBlogPosts();
+        const [nextPosts, nextAnalytics] = await Promise.all([
+          fetchAdminBlogPosts(),
+          fetchBlogAnalytics().catch(() => ({})),
+        ]);
 
         if (active) {
           setPosts(nextPosts);
+          setAnalytics(nextAnalytics);
           setLoading(false);
         }
       } catch {
@@ -122,6 +136,47 @@ export default function AdminBlogPage() {
   const updateField = (name, value) => {
     setForm((current) => ({ ...current, [name]: value }));
     setError("");
+  };
+
+  const toggleListField = (name, value) => {
+    setForm((current) => {
+      const values = current[name] || [];
+      return {
+        ...current,
+        [name]: values.includes(value)
+          ? values.filter((item) => item !== value)
+          : [...values, value],
+      };
+    });
+    setError("");
+  };
+
+  const addTimelineStep = () => {
+    setForm((current) => ({
+      ...current,
+      timeline: [
+        ...(current.timeline || []),
+        { label: "Next step", title: "", description: "" },
+      ],
+    }));
+  };
+
+  const updateTimelineStep = (index, name, value) => {
+    setForm((current) => ({
+      ...current,
+      timeline: (current.timeline || []).map((step, stepIndex) =>
+        stepIndex === index ? { ...step, [name]: value } : step,
+      ),
+    }));
+  };
+
+  const removeTimelineStep = (index) => {
+    setForm((current) => ({
+      ...current,
+      timeline: (current.timeline || []).filter(
+        (_, stepIndex) => stepIndex !== index,
+      ),
+    }));
   };
 
   const handleTitleChange = (value) => {
@@ -295,6 +350,18 @@ export default function AdminBlogPage() {
   }
 
   const saveLabel = saving ? "Saving..." : "Save";
+  const analyticsTotals = Object.values(analytics).reduce(
+    (totals, item) => ({
+      views: totals.views + item.views,
+      actions:
+        totals.actions +
+        item.treatmentClicks +
+        item.appointmentClicks +
+        item.inquirySubmits,
+      inquiries: totals.inquiries + item.inquirySubmits,
+    }),
+    { views: 0, actions: 0, inquiries: 0 },
+  );
 
   return (
     <Layout>
@@ -435,6 +502,70 @@ export default function AdminBlogPage() {
                 />
               </label>
 
+              <fieldset className="md:col-span-2">
+                <legend className="mb-2 text-sm font-semibold text-secondary">
+                  Reader Concerns
+                </legend>
+                <div className="flex flex-wrap gap-2">
+                  {BLOG_CONCERNS.map((concern) => (
+                    <label
+                      key={concern}
+                      className={`cursor-pointer rounded-full border px-3 py-2 text-xs font-semibold transition ${
+                        form.concerns?.includes(concern)
+                          ? "border-primary bg-primary text-white"
+                          : "border-accent/30 bg-background text-secondary hover:border-primary/50"
+                      }`}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={form.concerns?.includes(concern) || false}
+                        onChange={() => toggleListField("concerns", concern)}
+                        className="sr-only"
+                      />
+                      {concern}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              <div className="grid gap-4 rounded-lg border border-accent/20 bg-secondary/5 p-4 md:col-span-2 md:grid-cols-3">
+                <label>
+                  <span className="mb-1 block text-sm font-semibold text-secondary">
+                    Reviewed By
+                  </span>
+                  <input
+                    type="text"
+                    value={form.reviewedBy || ""}
+                    onChange={(event) => updateField("reviewedBy", event.target.value)}
+                    placeholder="Jyoti Sharma"
+                    className="w-full rounded-md border border-accent/30 bg-background px-3 py-2 text-sm outline-none transition focus:border-primary"
+                  />
+                </label>
+                <label>
+                  <span className="mb-1 block text-sm font-semibold text-secondary">
+                    Reviewer Role
+                  </span>
+                  <input
+                    type="text"
+                    value={form.reviewerRole || ""}
+                    onChange={(event) => updateField("reviewerRole", event.target.value)}
+                    placeholder="Esthetician"
+                    className="w-full rounded-md border border-accent/30 bg-background px-3 py-2 text-sm outline-none transition focus:border-primary"
+                  />
+                </label>
+                <label>
+                  <span className="mb-1 block text-sm font-semibold text-secondary">
+                    Review Date
+                  </span>
+                  <input
+                    type="date"
+                    value={form.reviewedAt || ""}
+                    onChange={(event) => updateField("reviewedAt", event.target.value)}
+                    className="w-full rounded-md border border-accent/30 bg-background px-3 py-2 text-sm outline-none transition focus:border-primary"
+                  />
+                </label>
+              </div>
+
               <label className="md:col-span-2">
                 <span className="mb-1 block text-sm font-semibold text-secondary">
                   Excerpt
@@ -458,6 +589,101 @@ export default function AdminBlogPage() {
                   className="w-full rounded-md border border-accent/30 bg-background px-3 py-2 text-sm leading-6 outline-none transition focus:border-primary"
                 ></textarea>
               </label>
+
+              <fieldset className="md:col-span-2">
+                <legend className="mb-2 text-sm font-semibold text-secondary">
+                  Related Treatments
+                </legend>
+                <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                  {Object.values(TREATMENTS).map((treatment) => (
+                    <label
+                      key={treatment.id}
+                      className={`flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold transition ${
+                        form.treatmentIds?.includes(treatment.id)
+                          ? "border-primary bg-primary/10 text-primary"
+                          : "border-accent/25 bg-background text-secondary hover:border-primary/50"
+                      }`}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={form.treatmentIds?.includes(treatment.id) || false}
+                        onChange={() =>
+                          toggleListField("treatmentIds", treatment.id)
+                        }
+                        className="h-4 w-4 accent-primary"
+                      />
+                      {treatment.title}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              <fieldset className="md:col-span-2">
+                <div className="mb-3 flex items-center justify-between gap-3">
+                  <div>
+                    <legend className="text-sm font-semibold text-secondary">
+                      Interactive Care Timeline
+                    </legend>
+                    <p className="mt-1 text-xs text-slate-500">
+                      Add educational steps such as preparation, treatment day, and aftercare.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={addTimelineStep}
+                    className="shrink-0 rounded-full border border-primary/30 px-3 py-2 text-xs font-semibold text-primary transition hover:bg-primary hover:text-white"
+                  >
+                    Add step
+                  </button>
+                </div>
+                <div className="space-y-3">
+                  {(form.timeline || []).map((step, index) => (
+                    <div
+                      key={index}
+                      className="grid gap-3 rounded-lg border border-accent/20 bg-secondary/5 p-4 md:grid-cols-[0.35fr_0.65fr_auto]"
+                    >
+                      <input
+                        type="text"
+                        value={step.label}
+                        onChange={(event) =>
+                          updateTimelineStep(index, "label", event.target.value)
+                        }
+                        placeholder="Before"
+                        aria-label={`Timeline step ${index + 1} label`}
+                        className="rounded-md border border-accent/30 bg-background px-3 py-2 text-sm outline-none focus:border-primary"
+                      />
+                      <input
+                        type="text"
+                        value={step.title}
+                        onChange={(event) =>
+                          updateTimelineStep(index, "title", event.target.value)
+                        }
+                        placeholder="Prepare your skin"
+                        aria-label={`Timeline step ${index + 1} title`}
+                        className="rounded-md border border-accent/30 bg-background px-3 py-2 text-sm outline-none focus:border-primary"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeTimelineStep(index)}
+                        className="rounded-md px-3 py-2 text-sm font-semibold text-red-600 hover:bg-red-50"
+                        aria-label={`Remove timeline step ${index + 1}`}
+                      >
+                        Remove
+                      </button>
+                      <textarea
+                        rows="2"
+                        value={step.description}
+                        onChange={(event) =>
+                          updateTimelineStep(index, "description", event.target.value)
+                        }
+                        placeholder="Explain this stage in plain language."
+                        aria-label={`Timeline step ${index + 1} description`}
+                        className="rounded-md border border-accent/30 bg-background px-3 py-2 text-sm leading-6 outline-none focus:border-primary md:col-span-3"
+                      ></textarea>
+                    </div>
+                  ))}
+                </div>
+              </fieldset>
             </div>
 
             <div className="mt-5 rounded-lg border border-accent/20 bg-secondary/5 p-4">
@@ -565,6 +791,21 @@ export default function AdminBlogPage() {
               </span>
             </div>
 
+            <div className="mb-5 grid grid-cols-3 gap-2">
+              {[
+                ["Views", analyticsTotals.views],
+                ["Actions", analyticsTotals.actions],
+                ["Inquiries", analyticsTotals.inquiries],
+              ].map(([label, value]) => (
+                <div key={label} className="rounded-lg bg-secondary/5 p-3 text-center">
+                  <strong className="block text-lg text-secondary">{value}</strong>
+                  <span className="text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
             <div className="space-y-3">
               {sortedPosts.map((post) => (
                 <button
@@ -600,6 +841,15 @@ export default function AdminBlogPage() {
                       <p className="mt-1 truncate text-xs text-slate-500">
                         /blog/{post.slug}
                       </p>
+                      <div className="mt-2 flex flex-wrap gap-2 text-[11px] font-semibold text-slate-500">
+                        <span>{analytics[post.id]?.views || 0} views</span>
+                        <span aria-hidden="true">·</span>
+                        <span>
+                          {analytics[post.id]?.appointmentClicks || 0} booking clicks
+                        </span>
+                        <span aria-hidden="true">·</span>
+                        <span>{analytics[post.id]?.inquirySubmits || 0} inquiries</span>
+                      </div>
                     </div>
                   </div>
                 </button>

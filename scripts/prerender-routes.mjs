@@ -116,6 +116,10 @@ const blogPosts = [
       "Hydration, gentle exfoliation, and a consistent treatment rhythm can help tired skin look smooth and comfortable again.",
     publishedAt: "2026-06-20",
     image: `${siteUrl}/assets/riverflow-logo.png`,
+    reviewedBy: "Jyoti Sharma",
+    reviewerRole: "Esthetician",
+    reviewedAt: "2026-06-20",
+    concerns: ["Dryness & dehydration", "Maintenance & glow"],
   },
   {
     slug: "microneedling-texture-and-glow",
@@ -124,6 +128,10 @@ const blogPosts = [
       "Microneedling can support collagen renewal for clients focused on texture, fine lines, and a more even-looking complexion.",
     publishedAt: "2026-06-12",
     image: `${siteUrl}/assets/riverflow-logo.png`,
+    reviewedBy: "Jyoti Sharma",
+    reviewerRole: "Esthetician",
+    reviewedAt: "2026-06-12",
+    concerns: ["Texture & scarring", "Fine lines & firmness"],
   },
   {
     slug: "choosing-skincare-products",
@@ -132,6 +140,10 @@ const blogPosts = [
       "A focused at-home routine helps maintain results without crowding your skin with too many active ingredients at once.",
     publishedAt: "2026-06-01",
     image: `${siteUrl}/assets/riverflow-logo.png`,
+    reviewedBy: "Jyoti Sharma",
+    reviewerRole: "Esthetician",
+    reviewedAt: "2026-06-01",
+    concerns: ["Maintenance & glow", "Dryness & dehydration"],
   },
 ];
 
@@ -435,11 +447,20 @@ const blogPostSchema = (post) => ({
   description: post.description,
   image: post.image,
   datePublished: post.publishedAt,
-  dateModified: post.publishedAt,
+  dateModified: post.reviewedAt || post.publishedAt,
+  keywords: post.concerns?.join(", "),
   author: {
     "@type": "Organization",
     name: "Riverflow Laser & Skin Clinic Inc",
   },
+  reviewedBy: post.reviewedBy
+    ? {
+        "@type": "Person",
+        name: post.reviewedBy,
+        jobTitle: post.reviewerRole,
+        url: `${siteUrl}/team`,
+      }
+    : undefined,
   publisher: {
     "@id": businessId,
   },

@@ -68,6 +68,31 @@ const seedPosts = [
     author: "Riverflow Team",
     publishedAt: "2026-06-20",
     status: "published",
+    concerns: ["Dryness & dehydration", "Maintenance & glow"],
+    treatmentIds: ["hydrafacial", "facial", "oxygenofacial"],
+    timeline: [
+      {
+        label: "Start here",
+        title: "Calm and simplify",
+        description:
+          "Pause harsh exfoliation and use a gentle cleanser, moisturizer, and daily SPF while comfort returns.",
+      },
+      {
+        label: "Next step",
+        title: "Plan professional hydration",
+        description:
+          "Once the skin feels settled, a consultation can help determine whether a facial or HydraFacial fits your goals.",
+      },
+      {
+        label: "Maintain",
+        title: "Keep a steady rhythm",
+        description:
+          "Support results with consistent home care and introduce stronger active ingredients gradually.",
+      },
+    ],
+    reviewedBy: "Jyoti Sharma",
+    reviewerRole: "Esthetician",
+    reviewedAt: "2026-06-20",
   },
   {
     id: "microneedling-texture-and-glow",
@@ -83,6 +108,31 @@ const seedPosts = [
     author: "Riverflow Team",
     publishedAt: "2026-06-12",
     status: "published",
+    concerns: ["Texture & scarring", "Fine lines & firmness"],
+    treatmentIds: ["microneedling", "skinrejuvenation", "chemicalpeels"],
+    timeline: [
+      {
+        label: "Before",
+        title: "Review your routine",
+        description:
+          "Share current products, skin history, and treatment goals during your consultation so preparation can be personalized.",
+      },
+      {
+        label: "Treatment day",
+        title: "Support the renewal response",
+        description:
+          "Microneedling creates controlled micro-channels as part of a treatment plan selected for your skin.",
+      },
+      {
+        label: "After",
+        title: "Protect the recovery window",
+        description:
+          "Follow provider aftercare, avoid harsh exfoliation, and be especially consistent with sun protection.",
+      },
+    ],
+    reviewedBy: "Jyoti Sharma",
+    reviewerRole: "Esthetician",
+    reviewedAt: "2026-06-12",
   },
   {
     id: "choosing-skincare-products",
@@ -98,6 +148,31 @@ const seedPosts = [
     author: "Riverflow Team",
     publishedAt: "2026-06-01",
     status: "published",
+    concerns: ["Maintenance & glow", "Dryness & dehydration"],
+    treatmentIds: ["facial", "hydrafacial", "chemicalpeels"],
+    timeline: [
+      {
+        label: "Audit",
+        title: "Start with the essentials",
+        description:
+          "Keep a cleanser, moisturizer, and daily SPF as the foundation before adding targeted products.",
+      },
+      {
+        label: "Choose",
+        title: "Add one goal-focused product",
+        description:
+          "Select an active ingredient for your primary concern and introduce it gradually instead of changing everything at once.",
+      },
+      {
+        label: "Review",
+        title: "Coordinate with treatments",
+        description:
+          "Bring your routine to appointments so your provider can advise what to pause before peels, laser, or other services.",
+      },
+    ],
+    reviewedBy: "Jyoti Sharma",
+    reviewerRole: "Esthetician",
+    reviewedAt: "2026-06-01",
   },
 ];
 
@@ -225,6 +300,19 @@ const cellValue = (cell) => {
   return null;
 };
 
+const parseJsonArray = (value) => {
+  if (Array.isArray(value)) {
+    return value;
+  }
+
+  try {
+    const parsed = JSON.parse(String(value || "[]"));
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+};
+
 const normalizePostForOutput = (post) => ({
   id: String(post.id || ""),
   slug: String(post.slug || ""),
@@ -237,9 +325,15 @@ const normalizePostForOutput = (post) => ({
   author: String(post.author || "Riverflow Team"),
   publishedAt: String(post.publishedAt || post.published_at || ""),
   status: post.status === "draft" ? "draft" : "published",
+  concerns: parseJsonArray(post.concerns),
+  treatmentIds: parseJsonArray(post.treatmentIds || post.treatment_ids),
+  timeline: parseJsonArray(post.timeline),
+  reviewedBy: String(post.reviewedBy || post.reviewed_by || ""),
+  reviewerRole: String(post.reviewerRole || post.reviewer_role || ""),
+  reviewedAt: String(post.reviewedAt || post.reviewed_at || ""),
 });
 
-const rowsToAssoc = (result) => {
+const rowsToObjects = (result) => {
   const names = (result.cols || []).map((col, index) =>
     typeof col === "string" ? col : col.name || col.column || `col_${index}`,
   );
@@ -249,20 +343,44 @@ const rowsToAssoc = (result) => {
     row.forEach((cell, index) => {
       item[names[index] || `col_${index}`] = cellValue(cell);
     });
-    return normalizePostForOutput(item);
+    return item;
   });
 };
 
+const rowsToAssoc = (result) =>
+  rowsToObjects(result).map(normalizePostForOutput);
+
 const queryPosts = async (sql, args = []) =>
   rowsToAssoc(executeResult(await executeSql(sql, args)));
+
+const queryRows = async (sql, args = []) =>
+  rowsToObjects(executeResult(await executeSql(sql, args)));
 
 const queryValue = async (sql, args = []) => {
   const result = executeResult(await executeSql(sql, args));
   return cellValue(result.rows?.[0]?.[0]);
 };
 
-const selectColumns =
-  "id, slug, title, excerpt, content, image, image_alt AS imageAlt, category, author, published_at AS publishedAt, status";
+const selectColumns = `blog_posts.id AS id,
+  blog_posts.slug AS slug,
+  blog_posts.title AS title,
+  blog_posts.excerpt AS excerpt,
+  blog_posts.content AS content,
+  blog_posts.image AS image,
+  blog_posts.image_alt AS imageAlt,
+  blog_posts.category AS category,
+  blog_posts.author AS author,
+  blog_posts.published_at AS publishedAt,
+  blog_posts.status AS status,
+  blog_post_enrichment.concerns AS concerns,
+  blog_post_enrichment.treatment_ids AS treatmentIds,
+  blog_post_enrichment.timeline AS timeline,
+  blog_post_enrichment.reviewed_by AS reviewedBy,
+  blog_post_enrichment.reviewer_role AS reviewerRole,
+  blog_post_enrichment.reviewed_at AS reviewedAt`;
+
+const postsWithEnrichment = `blog_posts
+  LEFT JOIN blog_post_enrichment ON blog_post_enrichment.post_id = blog_posts.id`;
 
 const initDatabase = async () => {
   await tursoRequest([
@@ -287,6 +405,26 @@ const initDatabase = async () => {
     statement(
       "CREATE INDEX IF NOT EXISTS idx_blog_posts_status_date ON blog_posts (status, published_at DESC)",
     ),
+    statement(`CREATE TABLE IF NOT EXISTS blog_post_enrichment (
+      post_id TEXT PRIMARY KEY,
+      concerns TEXT NOT NULL DEFAULT "[]",
+      treatment_ids TEXT NOT NULL DEFAULT "[]",
+      timeline TEXT NOT NULL DEFAULT "[]",
+      reviewed_by TEXT NOT NULL DEFAULT "",
+      reviewer_role TEXT NOT NULL DEFAULT "",
+      reviewed_at TEXT NOT NULL DEFAULT "",
+      updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    )`),
+    statement(`CREATE TABLE IF NOT EXISTS blog_events (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      post_id TEXT NOT NULL,
+      event_type TEXT NOT NULL,
+      treatment_id TEXT NOT NULL DEFAULT "",
+      created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    )`),
+    statement(
+      "CREATE INDEX IF NOT EXISTS idx_blog_events_post_type ON blog_events (post_id, event_type)",
+    ),
     { type: "close" },
   ]);
 
@@ -294,24 +432,53 @@ const initDatabase = async () => {
     "blog_seeded",
   ]);
 
-  if (seeded === "1") {
-    return;
-  }
+  if (seeded !== "1") {
+    const count = Number(
+      (await queryValue("SELECT COUNT(*) FROM blog_posts")) || 0,
+    );
 
-  const count = Number(
-    (await queryValue("SELECT COUNT(*) FROM blog_posts")) || 0,
-  );
-
-  if (count === 0) {
-    for (const post of seedPosts) {
-      await upsertPost(post);
+    if (count === 0) {
+      for (const post of seedPosts) {
+        await upsertPost(post);
+      }
     }
+
+    await executeSql(
+      "INSERT INTO app_meta (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+      ["blog_seeded", "1"],
+    );
   }
 
-  await executeSql(
-    "INSERT INTO app_meta (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value",
-    ["blog_seeded", "1"],
-  );
+  for (const post of seedPosts) {
+    await executeSql(
+      `INSERT INTO blog_post_enrichment (
+        post_id, concerns, treatment_ids, timeline, reviewed_by, reviewer_role, reviewed_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT(post_id) DO NOTHING`,
+      [
+        post.id,
+        JSON.stringify(post.concerns || []),
+        JSON.stringify(post.treatmentIds || []),
+        JSON.stringify(post.timeline || []),
+        post.reviewedBy || "",
+        post.reviewerRole || "",
+        post.reviewedAt || "",
+      ],
+    );
+  }
+};
+
+let databaseReady = null;
+
+const ensureDatabase = () => {
+  if (!databaseReady) {
+    databaseReady = initDatabase().catch((error) => {
+      databaseReady = null;
+      throw error;
+    });
+  }
+
+  return databaseReady;
 };
 
 const slugify = (value = "") =>
@@ -347,6 +514,24 @@ const normalizeInputPost = (post = {}) => {
       String(post.publishedAt || "").trim() ||
       new Date().toISOString().slice(0, 10),
     status: post.status === "draft" ? "draft" : "published",
+    concerns: Array.isArray(post.concerns)
+      ? post.concerns.map((item) => String(item).trim()).filter(Boolean)
+      : [],
+    treatmentIds: Array.isArray(post.treatmentIds)
+      ? post.treatmentIds.map((item) => String(item).trim()).filter(Boolean)
+      : [],
+    timeline: Array.isArray(post.timeline)
+      ? post.timeline
+          .map((item) => ({
+            label: String(item?.label || "").trim(),
+            title: String(item?.title || "").trim(),
+            description: String(item?.description || "").trim(),
+          }))
+          .filter((item) => item.title && item.description)
+      : [],
+    reviewedBy: String(post.reviewedBy || "").trim(),
+    reviewerRole: String(post.reviewerRole || "").trim(),
+    reviewedAt: String(post.reviewedAt || "").trim(),
   };
 };
 
@@ -383,9 +568,33 @@ const upsertPost = async (inputPost) => {
     ],
   );
 
-  const rows = await queryPosts(`SELECT ${selectColumns} FROM blog_posts WHERE id = ?`, [
-    post.id,
-  ]);
+  await executeSql(
+    `INSERT INTO blog_post_enrichment (
+      post_id, concerns, treatment_ids, timeline, reviewed_by, reviewer_role, reviewed_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+    ON CONFLICT(post_id) DO UPDATE SET
+      concerns = excluded.concerns,
+      treatment_ids = excluded.treatment_ids,
+      timeline = excluded.timeline,
+      reviewed_by = excluded.reviewed_by,
+      reviewer_role = excluded.reviewer_role,
+      reviewed_at = excluded.reviewed_at,
+      updated_at = CURRENT_TIMESTAMP`,
+    [
+      post.id,
+      JSON.stringify(post.concerns),
+      JSON.stringify(post.treatmentIds),
+      JSON.stringify(post.timeline),
+      post.reviewedBy,
+      post.reviewerRole,
+      post.reviewedAt,
+    ],
+  );
+
+  const rows = await queryPosts(
+    `SELECT ${selectColumns} FROM ${postsWithEnrichment} WHERE blog_posts.id = ?`,
+    [post.id],
+  );
   return rows[0] || post;
 };
 
@@ -496,11 +705,13 @@ const handleBlogApi = async (req, res, url) => {
     return;
   }
 
-  await initDatabase();
+  await ensureDatabase();
 
   if (action === "list") {
     const posts = await queryPosts(
-      `SELECT ${selectColumns} FROM blog_posts WHERE status = ? ORDER BY published_at DESC, updated_at DESC`,
+      `SELECT ${selectColumns} FROM ${postsWithEnrichment}
+      WHERE blog_posts.status = ?
+      ORDER BY blog_posts.published_at DESC, blog_posts.updated_at DESC`,
       ["published"],
     );
     json(res, 200, { ok: true, posts });
@@ -510,7 +721,8 @@ const handleBlogApi = async (req, res, url) => {
   if (action === "post") {
     const slug = slugify(url.searchParams.get("slug") || "");
     const posts = await queryPosts(
-      `SELECT ${selectColumns} FROM blog_posts WHERE slug = ? AND status = ? LIMIT 1`,
+      `SELECT ${selectColumns} FROM ${postsWithEnrichment}
+      WHERE blog_posts.slug = ? AND blog_posts.status = ? LIMIT 1`,
       [slug, "published"],
     );
     json(res, 200, { ok: true, post: posts[0] || null });
@@ -520,9 +732,49 @@ const handleBlogApi = async (req, res, url) => {
   if (action === "all") {
     requireAdmin(req);
     const posts = await queryPosts(
-      `SELECT ${selectColumns} FROM blog_posts ORDER BY published_at DESC, updated_at DESC`,
+      `SELECT ${selectColumns} FROM ${postsWithEnrichment}
+      ORDER BY blog_posts.published_at DESC, blog_posts.updated_at DESC`,
     );
     json(res, 200, { ok: true, posts });
+    return;
+  }
+
+  if (action === "track") {
+    const body = await readRequestJson(req);
+    const eventType = String(body.eventType || "").trim();
+    const postId = String(body.postId || "").trim().slice(0, 120);
+    const treatmentId = String(body.treatmentId || "").trim().slice(0, 120);
+    const allowedEvents = new Set([
+      "view",
+      "treatment_click",
+      "appointment_click",
+      "inquiry_submit",
+    ]);
+
+    if (!postId || !allowedEvents.has(eventType)) {
+      json(res, 400, { ok: false, error: "Invalid analytics event." });
+      return;
+    }
+
+    await executeSql(
+      "INSERT INTO blog_events (post_id, event_type, treatment_id) VALUES (?, ?, ?)",
+      [postId, eventType, treatmentId],
+    );
+    json(res, 200, { ok: true });
+    return;
+  }
+
+  if (action === "analytics") {
+    requireAdmin(req);
+    const analytics = await queryRows(`SELECT
+      post_id AS postId,
+      SUM(CASE WHEN event_type = 'view' THEN 1 ELSE 0 END) AS views,
+      SUM(CASE WHEN event_type = 'treatment_click' THEN 1 ELSE 0 END) AS treatmentClicks,
+      SUM(CASE WHEN event_type = 'appointment_click' THEN 1 ELSE 0 END) AS appointmentClicks,
+      SUM(CASE WHEN event_type = 'inquiry_submit' THEN 1 ELSE 0 END) AS inquirySubmits
+      FROM blog_events
+      GROUP BY post_id`);
+    json(res, 200, { ok: true, analytics });
     return;
   }
 
@@ -543,6 +795,8 @@ const handleBlogApi = async (req, res, url) => {
       throw new Error("Post id is required.");
     }
 
+    await executeSql("DELETE FROM blog_events WHERE post_id = ?", [id]);
+    await executeSql("DELETE FROM blog_post_enrichment WHERE post_id = ?", [id]);
     await executeSql("DELETE FROM blog_posts WHERE id = ?", [id]);
     json(res, 200, { ok: true });
     return;

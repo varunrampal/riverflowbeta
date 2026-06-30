@@ -158,11 +158,28 @@ export const blogPostSchema = (post) => ({
   description: post.excerpt,
   image: post.image ? absoluteUrl(post.image) : absoluteUrl(SITE_CONFIG.logoPath),
   datePublished: post.publishedAt,
-  dateModified: post.publishedAt,
-  author: {
-    "@type": "Organization",
-    name: post.author || SITE_CONFIG.name,
-  },
+  dateModified: post.reviewedAt || post.publishedAt,
+  keywords: post.concerns?.join(", ") || undefined,
+  author:
+    post.author && post.author !== "Riverflow Team"
+      ? {
+          "@type": "Person",
+          name: post.author,
+          url: absoluteUrl("/team"),
+        }
+      : {
+          "@type": "Organization",
+          name: SITE_CONFIG.name,
+          url: SITE_CONFIG.url,
+        },
+  reviewedBy: post.reviewedBy
+    ? {
+        "@type": "Person",
+        name: post.reviewedBy,
+        jobTitle: post.reviewerRole || undefined,
+        url: absoluteUrl("/team"),
+      }
+    : undefined,
   publisher: {
     "@id": `${SITE_CONFIG.url}/#business`,
   },
