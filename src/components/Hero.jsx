@@ -79,7 +79,7 @@ export default function Hero() {
                       </a>
                       <a
                         href={`tel:${SITE_CONFIG.phone}`}
-                        className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/40 bg-white/15 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/25 sm:px-6"
+                        className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/40 bg-secondary px-5 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-primary sm:px-6"
                       >
                         Call {SITE_CONFIG.phoneDisplay}
                       </a>
