@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-export default function TopBar() {
-    const [open, setOpen] = useState(false);
+import { Link } from "react-router-dom";
 
+export default function TopBar() {
     return (
 
         <div className="bg-secondary text-white text-sm">
@@ -19,6 +18,12 @@ export default function TopBar() {
                         +1 (604) 621-8311
                     </a>
                 </p> */}
+                <Link
+                    to="/admin/login"
+                    className="font-medium underline underline-offset-2 hover:text-accent"
+                >
+                    Admin Login
+                </Link>
             </div>
         </div>
 

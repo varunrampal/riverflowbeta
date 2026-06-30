@@ -137,6 +137,40 @@ export const treatmentServiceSchema = (treatment) => ({
   areaServed,
 });
 
+export const blogItemListSchema = (posts) => ({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Riverflow Laser & Skin Clinic Blog",
+  itemListElement: posts.map((post, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: post.title,
+    description: post.excerpt,
+    url: absoluteUrl(`/blog/${post.slug}`),
+  })),
+});
+
+export const blogPostSchema = (post) => ({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": `${absoluteUrl(`/blog/${post.slug}`)}#blogposting`,
+  headline: post.title,
+  description: post.excerpt,
+  image: post.image ? absoluteUrl(post.image) : absoluteUrl(SITE_CONFIG.logoPath),
+  datePublished: post.publishedAt,
+  dateModified: post.publishedAt,
+  author: {
+    "@type": "Organization",
+    name: post.author || SITE_CONFIG.name,
+  },
+  publisher: {
+    "@id": `${SITE_CONFIG.url}/#business`,
+  },
+  mainEntityOfPage: {
+    "@id": `${absoluteUrl(`/blog/${post.slug}`)}#webpage`,
+  },
+});
+
 export const faqPageSchema = (faqs) => ({
   "@context": "https://schema.org",
   "@type": "FAQPage",

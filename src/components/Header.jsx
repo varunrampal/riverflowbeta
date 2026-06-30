@@ -48,6 +48,9 @@ export default function Header() {
                 <Link to="/team"  className="hover:text-primary text-secondary font-bold" onClick={() => setOpen(false)}>
             Team
           </Link>
+             <Link to="/blog" className="hover:text-primary font-bold text-secondary">
+          Blog
+          </Link>
              <Link to="/faq" className="hover:text-primary font-bold text-secondary">
           FAQS
           </Link>
@@ -101,6 +104,9 @@ export default function Header() {
     
           <Link to="/team"  className="block py-1 text-secondary hover:text-primary font-bold"  onClick={() => setOpen(false)}>
             Team
+          </Link>
+            <Link to="/blog"  className="block py-1 text-secondary hover:text-primary font-bold"  onClick={() => setOpen(false)}>
+            Blog
           </Link>
             <Link to="/faq"  className="block py-1 text-secondary hover:text-primary font-bold"  onClick={() => setOpen(false)}>
             FAQS

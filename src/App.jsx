@@ -7,6 +7,10 @@ import FAQPage from './pages/FAQPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import MakeAppointmentPage from './pages/MakeAppointmentPage.jsx';
+import BlogPage from './pages/BlogPage.jsx';
+import BlogDetailsPage from './pages/BlogDetailsPage.jsx';
+import AdminBlogPage from './pages/AdminBlogPage.jsx';
+import AdminLoginPage from './pages/AdminLoginPage.jsx';
 function App() {
   return (
     <>
@@ -17,9 +21,13 @@ function App() {
          <Route path="/treatments/:slug" element={<TreatmentDetailsPage />} />
          <Route path="/team" element={<TeamPage />} />
            <Route path="/faq" element={<FAQPage />} />
-           <Route path="/contact" element={<ContactPage />} />
+         <Route path="/contact" element={<ContactPage />} />
              <Route path="/about" element={<AboutPage />} />
              <Route path="/make-appointment" element={<MakeAppointmentPage />} />
+             <Route path="/blog" element={<BlogPage />} />
+             <Route path="/blog/:slug" element={<BlogDetailsPage />} />
+             <Route path="/admin/login" element={<AdminLoginPage />} />
+             <Route path="/admin/blog" element={<AdminBlogPage />} />
         </Routes>
         {/* <FacebookMessenger/> */}
     </BrowserRouter>

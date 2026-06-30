@@ -108,6 +108,33 @@ const treatmentBySlug = Object.fromEntries(
   treatments.map((treatment) => [treatment.slug, treatment]),
 );
 
+const blogPosts = [
+  {
+    slug: "skin-recovery-after-seasonal-dryness",
+    title: "A Simple Skin Recovery Plan After Seasonal Dryness",
+    description:
+      "Hydration, gentle exfoliation, and a consistent treatment rhythm can help tired skin look smooth and comfortable again.",
+    publishedAt: "2026-06-20",
+    image: `${siteUrl}/assets/riverflow-logo.png`,
+  },
+  {
+    slug: "microneedling-texture-and-glow",
+    title: "How Microneedling Supports Smoother-Looking Skin",
+    description:
+      "Microneedling can support collagen renewal for clients focused on texture, fine lines, and a more even-looking complexion.",
+    publishedAt: "2026-06-12",
+    image: `${siteUrl}/assets/riverflow-logo.png`,
+  },
+  {
+    slug: "choosing-skincare-products",
+    title: "Choosing Skincare Products Between Clinic Visits",
+    description:
+      "A focused at-home routine helps maintain results without crowding your skin with too many active ingredients at once.",
+    publishedAt: "2026-06-01",
+    image: `${siteUrl}/assets/riverflow-logo.png`,
+  },
+];
+
 const relatedTreatmentSlugs = {
   facial: ["hydrafacial", "chemicalpeels", "skinrejuvenation"],
   laserhairremoval: ["hydrafacial", "skinrejuvenation", "antiaging"],
@@ -180,6 +207,21 @@ const pages = [
     description:
       "Send an appointment inquiry to Riverflow Laser & Skin Clinic in Langley, BC for laser hair removal, facials, HydraFacial, microneedling, peels, and skin treatments.",
   },
+  {
+    path: "/blog",
+    title: "Skin Care Blog | Riverflow Laser & Skin Clinic Langley",
+    h1: "Skin Care Blog",
+    description:
+      "Read Riverflow Laser & Skin Clinic blog posts about laser hair removal, facials, HydraFacial, microneedling, skin care, and treatment planning.",
+    blog: true,
+  },
+  ...blogPosts.map((post) => ({
+    path: `/blog/${post.slug}`,
+    title: `${post.title} | Riverflow Laser Blog`,
+    h1: post.title,
+    description: post.description,
+    post,
+  })),
   ...treatments.map((treatment) => ({
     path: `/treatments/${treatment.slug}`,
     title: `${treatment.title} in Langley, BC | Riverflow Laser`,
@@ -243,6 +285,14 @@ const contextLinksForPage = (page) => {
     ];
   }
 
+  if (page.path === "/blog" || page.post) {
+    return [
+      { href: "/treatments/hydrafacial", label: "HydraFacial" },
+      { href: "/treatments/microneedling", label: "microneedling" },
+      { href: "/make-appointment", label: "consultation inquiry" },
+    ];
+  }
+
   return defaultContextLinks;
 };
 
@@ -265,6 +315,14 @@ const fallbackH2ForPage = (page) => {
 
   if (page.treatment) {
     return `${page.treatment.title} Details and Booking`;
+  }
+
+  if (page.path === "/blog") {
+    return "Skin Care Articles and Treatment Notes";
+  }
+
+  if (page.post) {
+    return "Riverflow Laser Blog Article";
   }
 
   return `${page.h1} Information`;
@@ -358,6 +416,38 @@ const itemListSchema = () => ({
   })),
 });
 
+const blogItemListSchema = () => ({
+  "@type": "ItemList",
+  name: "Riverflow Laser & Skin Clinic Blog",
+  itemListElement: blogPosts.map((post, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: post.title,
+    description: post.description,
+    url: `${siteUrl}/blog/${post.slug}`,
+  })),
+});
+
+const blogPostSchema = (post) => ({
+  "@type": "BlogPosting",
+  "@id": `${siteUrl}/blog/${post.slug}#blogposting`,
+  headline: post.title,
+  description: post.description,
+  image: post.image,
+  datePublished: post.publishedAt,
+  dateModified: post.publishedAt,
+  author: {
+    "@type": "Organization",
+    name: "Riverflow Laser & Skin Clinic Inc",
+  },
+  publisher: {
+    "@id": businessId,
+  },
+  mainEntityOfPage: {
+    "@id": `${siteUrl}/blog/${post.slug}#webpage`,
+  },
+});
+
 const structuredDataForPage = (page) => {
   const graph = [businessSchema(), websiteSchema(), webPageSchema(page)];
 
@@ -367,6 +457,14 @@ const structuredDataForPage = (page) => {
 
   if (page.treatment) {
     graph.push(serviceSchema(page.treatment));
+  }
+
+  if (page.path === "/blog") {
+    graph.push(blogItemListSchema());
+  }
+
+  if (page.post) {
+    graph.push(blogPostSchema(page.post));
   }
 
   return {
@@ -383,18 +481,32 @@ const structuredDataScript = (page) =>
     structuredDataForPage(page),
   )}</script>`;
 
-const fallbackMarkup = ({ h1, description, path: routePath }) => `<!--seo-fallback-start-->
+const fallbackMarkup = ({ h1, description, path: routePath }) => {
+  const fallbackPage = {
+    h1,
+    description,
+    path: routePath,
+    treatment: routePath.startsWith("/treatments/")
+      ? treatmentBySlug[routePath.split("/").pop()]
+      : null,
+    post: routePath.startsWith("/blog/")
+      ? blogPosts.find((post) => post.slug === routePath.split("/").pop())
+      : null,
+  };
+
+  return `<!--seo-fallback-start-->
       <main>
         <section>
           <p>${siteName}</p>
           <h1>${escapeHtml(h1)}</h1>
-          <h2>${escapeHtml(fallbackH2ForPage({ h1, path: routePath, treatment: routePath.startsWith("/treatments/") ? treatmentBySlug[routePath.split("/").pop()] : null }))}</h2>
+          <h2>${escapeHtml(fallbackH2ForPage(fallbackPage))}</h2>
           <p>${escapeHtml(description)}</p>
-          <p>Related services: ${contextLinksMarkup({ h1, description, path: routePath, treatment: routePath.startsWith("/treatments/") ? treatmentBySlug[routePath.split("/").pop()] : null })}.</p>
+          <p>Related services: ${contextLinksMarkup(fallbackPage)}.</p>
           <a href="/make-appointment${routePath.startsWith("/treatments/") ? `?subject=${encodeURIComponent(h1.replace(" in Langley, BC", ""))}` : ""}">Make an Inquiry</a>
         </section>
       </main>
       <!--seo-fallback-end-->`;
+};
 
 const renderRouteHtml = (baseHtml, page) => {
   const title = escapeHtml(page.title);

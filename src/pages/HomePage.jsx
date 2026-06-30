@@ -9,6 +9,7 @@ import GoogleReviews from "../components/GoogleReviews";
 import ExclusiveServices from '../components/ExclusiveServices';
 import Products from "../components/Products";
 import Consultation from "../components/Consultation";
+import LatestBlog from "../components/LatestBlog";
 import { TREATMENTS } from "../data/treatments";
 import {
    localBusinessSchema,
@@ -43,6 +44,7 @@ export default function HomePage() {
          <AboutHome />
          <GoogleReviews />
          <Treatments />
+         <LatestBlog />
          <ExclusiveServices />
          {/* <MachinesSection /> */}
          <Products />

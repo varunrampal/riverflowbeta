@@ -83,10 +83,16 @@ export default function Footer() {
                  <Link to='/team' className="hover:text-accent">Team</Link>
               </li>
               <li>
+                 <Link to='/blog' className="hover:text-accent">Blog</Link>
+              </li>
+              <li>
                  <Link to='/contact' className="hover:text-accent">Contact</Link>
               </li>
               <li>
                   <Link to='/faq' className="hover:text-accent">FAQS</Link>
+              </li>
+              <li>
+                  <Link to='/admin/login' className="hover:text-accent">Admin Login</Link>
               </li>
             </ul>
           </div>
