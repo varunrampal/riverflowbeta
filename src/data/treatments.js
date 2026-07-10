@@ -11,12 +11,12 @@ import antiaging from'../assets/images/services/anti-aging.webp'
 import pigmentation from "../assets/images/services/pigmentation.jpeg";
 import skinrejuvenation from "../assets/images/services/skin-rejunivation.jpg";
 
-const makeBeforeAfterGallery = (title, image) => [
+const makeBeforeAfterGallery = (title) => [
   {
     title: `${title} Before & After`,
-    before: image,
-    after: image,
-    note: "Replace these placeholder images with real before and after photos for this treatment.",
+    before: null,
+    after: null,
+    note: "Verified client result photos will be added here with consent.",
   },
 ];
 
@@ -38,7 +38,7 @@ Perfect before events or as monthly maintenance.
     title: "Laser Hair Removal",
     image:
       laserhairremoval,
-    beforeAfterGallery: makeBeforeAfterGallery("Laser Hair Removal", laserhairremoval),
+    beforeAfterGallery: makeBeforeAfterGallery("Laser Hair Removal in Langley, BC", laserhairremoval),
     short: "Long-term hair reduction for smooth, comfortable skin.",
     content: `
 Welcome to Riverflow Laser & Skin Clinic — your trusted destination for advanced skincare and beauty solutions. Discover our premium Laser Hair Removal treatment, designed to deliver silky-smooth, hair-free skin effortlessly. Say goodbye to the inconvenience of waxing and shaving, and embrace the long-lasting confidence that comes with our state-of-the-art laser technology.

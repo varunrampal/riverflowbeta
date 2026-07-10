@@ -1,6 +1,7 @@
 // src/components/TreatmentDetails.jsx
 import { Link } from "react-router-dom";
 import { getServiceGuide } from "../data/serviceGuides";
+import BeforeAfterGallery from "./BeforeAfterGallery";
 
 const contextLinkClass =
   "font-semibold text-primary underline underline-offset-4 transition hover:text-secondary";
@@ -142,7 +143,7 @@ export default function TreatmentDetails({ treatment }) {
         </article>
       )}
 
-      {/* <BeforeAfterGallery treatment={treatment} /> */}
+      <BeforeAfterGallery treatment={treatment} />
     </div>
   );
 }

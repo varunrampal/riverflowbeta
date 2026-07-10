@@ -19,8 +19,16 @@ function GalleryImage({ src, alt, label }) {
       {src ? (
         <img src={src} alt={alt} className="h-72 w-full object-cover" />
       ) : (
-        <div className="flex h-72 items-center justify-center px-4 text-center text-sm font-semibold text-slate-500">
-          Image coming soon
+        <div className="flex h-72 flex-col items-center justify-center gap-3 px-6 text-center">
+          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-2xl text-primary" aria-hidden="true">
+            ◇
+          </span>
+          <span className="text-sm font-semibold text-secondary">
+            Verified photo coming soon
+          </span>
+          <span className="max-w-52 text-xs leading-5 text-slate-500">
+            This space is reserved for a consented, unretouched client image.
+          </span>
         </div>
       )}
       <span className="absolute left-3 top-3 rounded-full bg-background/95 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-secondary shadow-sm">
@@ -38,24 +46,28 @@ export default function BeforeAfterGallery({ treatment }) {
   const galleryItems = getGalleryItems(treatment);
 
   return (
-    <section className="mt-12 border-t border-accent/20 pt-10">
+    <section className="mt-16 border-t border-accent/20 pt-12" aria-labelledby="results-gallery-heading">
       <div className="mb-6 max-w-2xl">
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
           results gallery
         </p>
-        <h2 className="mt-3 text-2xl font-bold text-secondary md:text-3xl">
+        <h2 id="results-gallery-heading" className="mt-3 text-2xl font-bold text-secondary md:text-3xl">
           Before & After Gallery
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-slate-600">
-          Browse treatment result examples for {treatment.title}.
+          Before-and-after photographs help show real examples while recognizing that every client responds differently.
         </p>
+      </div>
+
+      <div className="mb-7 rounded-xl border border-primary/15 bg-primary/5 px-5 py-4 text-sm leading-6 text-slate-600">
+        Photos are published only with client consent. Images should use consistent lighting and angles and should not be digitally altered. Results vary and photographs do not guarantee a particular outcome.
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
         {galleryItems.map((item, index) => (
           <article
             key={`${item.title || treatment.title}-${index}`}
-            className="rounded-2xl border border-accent/25 bg-background p-4 shadow-sm"
+            className="rounded-2xl border border-accent/25 bg-white p-4 shadow-sm"
           >
             <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
               <h3 className="text-base font-bold text-secondary">
