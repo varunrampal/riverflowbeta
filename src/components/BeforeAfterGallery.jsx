@@ -58,20 +58,20 @@ export default function BeforeAfterGallery({ treatment }) {
   return (
     <section className="mt-16 border-t border-accent/20 pt-12" aria-labelledby="results-gallery-heading">
       <div className="mb-6 max-w-2xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+        {/* <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
           results gallery
-        </p>
-        <h2 id="results-gallery-heading" className="mt-3 text-2xl font-bold text-secondary md:text-3xl">
+        </p> */}
+        {/* <h2 id="results-gallery-heading" className="mt-3 text-2xl font-bold text-secondary md:text-3xl">
           Before & After Gallery
-        </h2>
-        <p className="mt-3 text-sm leading-relaxed text-slate-600">
+        </h2> */}
+        {/* <p className="mt-3 text-sm leading-relaxed text-slate-600">
           Before-and-after photographs help show real examples while recognizing that every client responds differently.
-        </p>
+        </p> */}
       </div>
 
-      <div className="mb-7 rounded-xl border border-primary/15 bg-primary/5 px-5 py-4 text-sm leading-6 text-slate-600">
+      {/* <div className="mb-7 rounded-xl border border-primary/15 bg-primary/5 px-5 py-4 text-sm leading-6 text-slate-600">
         Photos are published only with client consent. Images should use consistent lighting and angles and should not be digitally altered. Results vary and photographs do not guarantee a particular outcome.
-      </div>
+      </div> */}
 
       <div className="grid gap-6 lg:grid-cols-2">
         {galleryItems.map((item, index) => (
@@ -83,9 +83,9 @@ export default function BeforeAfterGallery({ treatment }) {
               <h3 className="text-base font-bold text-secondary">
                 {item.title || treatment.title}
               </h3>
-              <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              {/* <span className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                 Case {index + 1}
-              </span>
+              </span> */}
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">

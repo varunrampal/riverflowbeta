@@ -103,6 +103,7 @@ export default function TreatmentDetails({ treatment }) {
 
       {guide && (
         <article className="mx-auto mt-14 max-w-4xl space-y-10 text-base leading-8 text-slate-600">
+           <BeforeAfterGallery treatment={treatment} />
           <section>
             <h2 className="mb-4 text-2xl font-bold text-secondary">A personalized approach in Langley</h2>
             <p>People searching for {guide.seoTitle.toLowerCase()} are often comparing options, recovery time, comfort, cost, and the kind of improvement that is realistic for their concern. At Riverflow Laser &amp; Skin Clinic, the starting point is a conversation rather than a one-size-fits-all promise. We review what you would like to change, your previous services, relevant sensitivities, daily routine, and the amount of maintenance you are comfortable with. The goal of {treatment.title} is {guide.focus}. It may be considered by clients concerned about {guide.concerns}. A consultation helps determine whether this service fits your needs or whether another option would be more appropriate.</p>
@@ -143,7 +144,7 @@ export default function TreatmentDetails({ treatment }) {
         </article>
       )}
 
-      <BeforeAfterGallery treatment={treatment} />
+     
     </div>
   );
 }
