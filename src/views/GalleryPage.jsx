@@ -58,7 +58,7 @@ export default function GalleryPage() {
               <section key={treatmentId} aria-labelledby={`gallery-${treatmentId}`}>
                 <div className="mb-6 border-l-4 border-primary pl-4">
                   <h2 id={`gallery-${treatmentId}`} className="text-2xl font-bold text-secondary md:text-3xl">{TREATMENTS[treatmentId]?.title || "Treatment Results"}</h2>
-                  <p className="mt-1 text-sm text-slate-500">{treatmentItems.length} result {treatmentItems.length === 1 ? "pair" : "pairs"}</p>
+                  {/* <p className="mt-1 text-sm text-slate-500">{treatmentItems.length} result {treatmentItems.length === 1 ? "pair" : "pairs"}</p> */}
                 </div>
                 <div className="grid gap-7 lg:grid-cols-2">
                   {treatmentItems.map((item) => (

@@ -54,7 +54,7 @@ export default function Header() {
           Blog
           </Link>
              <Link to="/gallery" className="hover:text-primary font-bold text-secondary">
-          Before &amp; After
+         Gallery
           </Link>
              <Link to="/faq" className="hover:text-primary font-bold text-secondary">
           FAQS

@@ -685,7 +685,11 @@ const server = http.createServer(async (req, res) => {
 
 const listen = (requestedPort) => {
   server.once("error", (error) => {
-    if (error.code === "EADDRINUSE" && requestedPort === port) {
+    if (
+      error.code === "EADDRINUSE" &&
+      process.env.NODE_ENV !== "production" &&
+      requestedPort === port
+    ) {
       const fallbackPort = port + 1;
       console.warn(`Port ${port} is already in use. Trying ${fallbackPort} instead.`);
       listen(fallbackPort);
@@ -695,8 +699,8 @@ const listen = (requestedPort) => {
     throw error;
   });
 
-  server.listen(requestedPort, () => {
-    console.log(`Riverflow server listening on http://127.0.0.1:${requestedPort}`);
+  server.listen(requestedPort, "0.0.0.0", () => {
+    console.log(`Riverflow server listening on 0.0.0.0:${requestedPort}`);
   });
 };
 
