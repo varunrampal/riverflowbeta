@@ -19,6 +19,10 @@ export const absoluteUrl = (pathOrUrl = "/") => {
     return SITE_CONFIG.url;
   }
 
+  if (typeof pathOrUrl === "object" && pathOrUrl.src) {
+    pathOrUrl = pathOrUrl.src;
+  }
+
   if (/^(https?:|data:|mailto:|tel:)/i.test(pathOrUrl)) {
     return pathOrUrl;
   }

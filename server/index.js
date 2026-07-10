@@ -5,6 +5,7 @@ import fsp from "node:fs/promises";
 import http from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import next from "next";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
@@ -603,6 +604,14 @@ const serveStatic = async (req, res, url) => {
   stream.pipe(res);
 };
 
+const nextApp = next({
+  dev: process.env.NODE_ENV !== "production",
+  dir: rootDir,
+});
+const handleNextRequest = nextApp.getRequestHandler();
+
+await nextApp.prepare();
+
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
 
@@ -612,7 +621,7 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    await serveStatic(req, res, url);
+    await handleNextRequest(req, res);
   } catch (error) {
     json(res, error.status || 500, {
       ok: false,

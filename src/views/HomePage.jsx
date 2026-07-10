@@ -1,4 +1,6 @@
 // src/pages/HomePage.jsx
+"use client";
+
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
 import Hero from "../components/Hero";

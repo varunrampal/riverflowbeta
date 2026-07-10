@@ -1,4 +1,6 @@
 // src/components/ServicesSlider.jsx
+"use client";
+
 import { useState,useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";

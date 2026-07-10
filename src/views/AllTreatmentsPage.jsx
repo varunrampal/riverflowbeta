@@ -1,3 +1,5 @@
+"use client";
+
 import { Link } from "react-router-dom";
 import { TREATMENTS } from "../data/treatments"; // adjust path if different
 import Layout from "../components/Layout";

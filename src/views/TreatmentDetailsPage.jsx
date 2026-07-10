@@ -1,3 +1,5 @@
+"use client";
+
 // src/pages/TreatmentDetailsPage.jsx
 import { useParams } from "react-router-dom";
 import { TREATMENTS } from "../data/treatments";

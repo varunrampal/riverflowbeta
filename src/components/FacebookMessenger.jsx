@@ -1,4 +1,6 @@
 // src/components/FacebookMessenger.jsx
+"use client";
+
 import { useEffect, useState } from "react";
 
 export default function FacebookMessenger() {

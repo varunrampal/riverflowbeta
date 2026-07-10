@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Layout from "../components/Layout";
