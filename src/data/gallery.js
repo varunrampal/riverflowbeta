@@ -6,6 +6,7 @@ const request = async (action, options = {}) => {
   return data;
 };
 export const fetchTreatmentGallery = async (treatmentId) => (await request("gallery-list", { query: { treatmentId } })).items || [];
+export const fetchPublicGallery = async () => (await request("gallery-public")).items || [];
 export const fetchAllGalleryItems = async () => (await request("gallery-all")).items || [];
 export const saveGalleryItem = async (item) => (await request("gallery-save", { method: "POST", body: { item } })).item;
 export const deleteGalleryItem = async (id) => request("gallery-delete", { method: "POST", body: { id } });

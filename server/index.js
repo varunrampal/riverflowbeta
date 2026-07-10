@@ -541,6 +541,11 @@ const handleBlogApi = async (req, res, url) => {
     json(res, 200, { ok: true, items }); return;
   }
 
+  if (action === "gallery-public") {
+    const items = await queryGallery(`SELECT ${galleryColumns} FROM treatment_gallery ORDER BY treatment_id, sort_order, created_at`);
+    json(res, 200, { ok: true, items }); return;
+  }
+
   if (action === "gallery-all") {
     requireAdmin(req);
     const items = await queryGallery(`SELECT ${galleryColumns} FROM treatment_gallery ORDER BY treatment_id, sort_order, created_at`);

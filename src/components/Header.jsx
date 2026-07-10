@@ -36,7 +36,7 @@ export default function Header() {
             ☰
           </button>
 
-          <nav className="hidden md:flex items-center gap-6 text-sm">
+          <nav className="hidden md:flex items-center gap-4 text-sm">
           
            <Link to="/" className="hover:text-primary font-bold text-secondary">
           Home
@@ -52,6 +52,9 @@ export default function Header() {
           </Link>
              <Link to="/blog" className="hover:text-primary font-bold text-secondary">
           Blog
+          </Link>
+             <Link to="/gallery" className="hover:text-primary font-bold text-secondary">
+          Before &amp; After
           </Link>
              <Link to="/faq" className="hover:text-primary font-bold text-secondary">
           FAQS
@@ -109,6 +112,9 @@ export default function Header() {
           </Link>
             <Link to="/blog"  className="block py-1 text-secondary hover:text-primary font-bold"  onClick={() => setOpen(false)}>
             Blog
+          </Link>
+            <Link to="/gallery" className="block py-1 text-secondary hover:text-primary font-bold" onClick={() => setOpen(false)}>
+            Before &amp; After
           </Link>
             <Link to="/faq"  className="block py-1 text-secondary hover:text-primary font-bold"  onClick={() => setOpen(false)}>
             FAQS
