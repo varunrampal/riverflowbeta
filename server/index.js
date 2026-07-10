@@ -257,6 +257,16 @@ const rowsToAssoc = (result) => {
 const queryPosts = async (sql, args = []) =>
   rowsToAssoc(executeResult(await executeSql(sql, args)));
 
+const galleryRows = (result) => {
+  const names = (result.cols || []).map((col) => typeof col === "string" ? col : col.name);
+  return (result.rows || []).map((row) => {
+    const item = Object.fromEntries(row.map((cell, index) => [names[index], cellValue(cell)]));
+    return { id: String(item.id || ""), treatmentId: String(item.treatmentId || ""), title: String(item.title || ""), before: String(item.before || ""), after: String(item.after || ""), note: String(item.note || ""), sortOrder: Number(item.sortOrder || 0) };
+  });
+};
+const queryGallery = async (sql, args = []) => galleryRows(executeResult(await executeSql(sql, args)));
+const galleryColumns = "id, treatment_id AS treatmentId, title, before_image AS before, after_image AS after, note, sort_order AS sortOrder";
+
 const queryValue = async (sql, args = []) => {
   const result = executeResult(await executeSql(sql, args));
   return cellValue(result.rows?.[0]?.[0]);
@@ -288,6 +298,13 @@ const initDatabase = async () => {
     statement(
       "CREATE INDEX IF NOT EXISTS idx_blog_posts_status_date ON blog_posts (status, published_at DESC)",
     ),
+    statement(`CREATE TABLE IF NOT EXISTS treatment_gallery (
+      id TEXT PRIMARY KEY, treatment_id TEXT NOT NULL, title TEXT NOT NULL DEFAULT "",
+      before_image TEXT NOT NULL, after_image TEXT NOT NULL, note TEXT NOT NULL DEFAULT "",
+      sort_order INTEGER NOT NULL DEFAULT 0, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    )`),
+    statement("CREATE INDEX IF NOT EXISTS idx_treatment_gallery ON treatment_gallery (treatment_id, sort_order, created_at)"),
     { type: "close" },
   ]);
 
@@ -516,6 +533,37 @@ const handleBlogApi = async (req, res, url) => {
     );
     json(res, 200, { ok: true, post: posts[0] || null });
     return;
+  }
+
+  if (action === "gallery-list") {
+    const treatmentId = String(url.searchParams.get("treatmentId") || "").trim();
+    const items = await queryGallery(`SELECT ${galleryColumns} FROM treatment_gallery WHERE treatment_id = ? ORDER BY sort_order, created_at`, [treatmentId]);
+    json(res, 200, { ok: true, items }); return;
+  }
+
+  if (action === "gallery-all") {
+    requireAdmin(req);
+    const items = await queryGallery(`SELECT ${galleryColumns} FROM treatment_gallery ORDER BY treatment_id, sort_order, created_at`);
+    json(res, 200, { ok: true, items }); return;
+  }
+
+  if (action === "gallery-save") {
+    requireAdmin(req); const body = await readRequestJson(req); const item = body.item || {};
+    const saved = { id: String(item.id || crypto.randomUUID()), treatmentId: String(item.treatmentId || "").trim(), title: String(item.title || "").trim(), before: String(item.before || ""), after: String(item.after || ""), note: String(item.note || "").trim(), sortOrder: Number(item.sortOrder || 0) };
+    if (!saved.treatmentId || !saved.before || !saved.after) throw new Error("Treatment, before image, and after image are required.");
+    await executeSql(`INSERT INTO treatment_gallery (id, treatment_id, title, before_image, after_image, note, sort_order, created_at, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+      ON CONFLICT(id) DO UPDATE SET treatment_id=excluded.treatment_id, title=excluded.title, before_image=excluded.before_image,
+      after_image=excluded.after_image, note=excluded.note, sort_order=excluded.sort_order, updated_at=CURRENT_TIMESTAMP`,
+      [saved.id, saved.treatmentId, saved.title, saved.before, saved.after, saved.note, saved.sortOrder]);
+    json(res, 200, { ok: true, item: saved }); return;
+  }
+
+  if (action === "gallery-delete") {
+    requireAdmin(req); const body = await readRequestJson(req); const id = String(body.id || "").trim();
+    if (!id) throw new Error("Gallery item id is required.");
+    await executeSql("DELETE FROM treatment_gallery WHERE id = ?", [id]);
+    json(res, 200, { ok: true }); return;
   }
 
   if (action === "all") {

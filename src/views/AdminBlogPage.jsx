@@ -333,7 +333,10 @@ export default function AdminBlogPage() {
             >
               <i className="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
               Blog
-            </Link>
+          </Link>
+          <Link to="/admin/gallery" className="rounded-md border border-primary px-4 py-2 text-sm font-semibold text-primary">
+            Before &amp; After Gallery
+          </Link>
             <button
               type="button"
               onClick={handleLogout}

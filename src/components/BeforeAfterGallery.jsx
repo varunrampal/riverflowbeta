@@ -1,3 +1,7 @@
+"use client";
+import { useEffect, useState } from "react";
+import { fetchTreatmentGallery } from "../data/gallery";
+
 function getGalleryItems(treatment) {
   if (Array.isArray(treatment.beforeAfterGallery) && treatment.beforeAfterGallery.length) {
     return treatment.beforeAfterGallery;
@@ -43,7 +47,13 @@ export default function BeforeAfterGallery({ treatment }) {
     return null;
   }
 
-  const galleryItems = getGalleryItems(treatment);
+  const [managedItems, setManagedItems] = useState([]);
+  useEffect(() => {
+    let active = true;
+    fetchTreatmentGallery(treatment.id).then((items) => active && setManagedItems(items)).catch(() => {});
+    return () => { active = false; };
+  }, [treatment.id]);
+  const galleryItems = managedItems.length ? managedItems : getGalleryItems(treatment);
 
   return (
     <section className="mt-16 border-t border-accent/20 pt-12" aria-labelledby="results-gallery-heading">
