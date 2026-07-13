@@ -12,6 +12,7 @@ import ExclusiveServices from '../components/ExclusiveServices';
 import Products from "../components/Products";
 import Consultation from "../components/Consultation";
 import LatestBlog from "../components/LatestBlog";
+import AreasWeServe from "../components/AreasWeServe";
 import { TREATMENTS } from "../data/treatments";
 import {
    localBusinessSchema,
@@ -26,8 +27,8 @@ export default function HomePage() {
    return (
       <Layout>
          <SEO
-            title="Riverflow Laser & Skin Clinic Langley | Laser Hair Removal & Skin Care"
-            description="Riverflow Laser & Skin Clinic in Langley offers laser hair removal, HydraFacial, facials, microneedling, acne care, and skin rejuvenation."
+            title="Laser Hair Removal & Skin Clinic in Langley, BC | Riverflow"
+            description="Visit Riverflow Laser & Skin Clinic in Langley for laser hair removal, HydraFacial, microneedling, facials and personalized skincare. Book a consultation."
             canonicalPath="/"
             structuredData={[
                localBusinessSchema(),
@@ -50,6 +51,7 @@ export default function HomePage() {
          <ExclusiveServices />
          {/* <MachinesSection /> */}
          <Products />
+         <AreasWeServe />
          <Consultation/>
          {/* <Contact/> */}
       </Layout>
