@@ -119,6 +119,19 @@ export default function TreatmentDetails({ treatment }) {
             <div className="rounded-xl border border-accent/25 bg-white p-5"><h2 className="mb-2 text-lg font-bold text-secondary">Appointment time</h2><p>{details.timing}</p></div>
             <div className="rounded-xl border border-accent/25 bg-white p-5"><h2 className="mb-2 text-lg font-bold text-secondary">Session planning</h2><p>{guide.schedule}</p></div>
           </section>
+          {details.prices && (
+            <section>
+              <h2 className="mb-5 text-2xl font-bold text-secondary">Laser Hair Removal Prices</h2>
+              <div className="grid gap-3 md:grid-cols-2">
+                {details.prices.map(([title, price, duration]) => (
+                  <div key={title} className="flex items-center justify-between gap-4 rounded-xl border border-accent/25 bg-white px-5 py-4">
+                    <h3 className="font-bold leading-6 text-slate-900">{title}</h3>
+                    <p className="shrink-0 text-right font-semibold text-primary">{price}<span className="block text-sm font-normal text-slate-500">{duration}</span></p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
           <section className="grid gap-8 md:grid-cols-2">
             <div><h2 className="mb-3 text-2xl font-bold text-secondary">Preparation specific to this service</h2><p>{guide.preparation}.</p></div>
             <div><h2 className="mb-3 text-2xl font-bold text-secondary">When the appointment should be postponed</h2><p>{details.postpone}</p></div>
