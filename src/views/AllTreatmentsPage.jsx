@@ -107,9 +107,7 @@ export default function AllTreatmentsPage() {
                     View details →
                   </Link>
                   <Link
-                    to={`/make-appointment?subject=${encodeURIComponent(
-                      item.title
-                    )}`}
+                    to="/make-appointment"
                     className="inline-flex items-center justify-center rounded-full border border-primary/30 px-4 py-2 text-xs font-semibold text-primary transition hover:bg-primary hover:text-white"
                   >
                     Make an Inquiry

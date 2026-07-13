@@ -120,7 +120,7 @@ export default function TreatmentFinder() {
                 ))}
               </div>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link to="/make-appointment?subject=Treatment%20Consultation" className="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white transition hover:bg-secondary">Request a consultation</Link>
+                <Link to="/make-appointment" className="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white transition hover:bg-secondary">Request a consultation</Link>
                 <button type="button" onClick={reset} className="rounded-full border border-primary/30 px-5 py-2.5 text-sm font-bold text-primary hover:bg-background">Start again</button>
               </div>
             </div>
