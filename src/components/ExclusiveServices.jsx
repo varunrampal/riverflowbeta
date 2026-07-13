@@ -57,7 +57,7 @@ export default function ExclusiveServices() {
           to="/treatments/laserhairremoval"
           className="inline-flex items-center gap-2 text-sm font-semibold mt-5 text-white hover:text-accent"
         >
-          Read More
+          Explore Laser Hair Removal
           <i className="fa-solid fa-arrow-right-long" />
         </Link>
       </div>
@@ -86,7 +86,7 @@ export default function ExclusiveServices() {
           to="/treatments/hydrafacial"
           className="inline-flex items-center gap-2 text-sm font-semibold mt-5 text-white hover:text-accent"
         >
-          Read More
+          Explore HydraFacial
           <i className="fa-solid fa-arrow-right-long" />
         </Link>
       </div>
@@ -112,7 +112,7 @@ export default function ExclusiveServices() {
           to="/treatments/oxygenofacial"
           className="inline-flex items-center gap-2 text-sm font-semibold mt-5 text-white hover:text-accent"
         >
-          Read More
+          Explore OxyGeneo Facial
           <i className="fa-solid fa-arrow-right-long" />
         </Link>
       </div>
