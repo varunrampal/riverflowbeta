@@ -3,6 +3,16 @@ import path from "node:path";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   allowedDevOrigins: ["127.0.0.1", "localhost"],
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.riverflowlaser.com" }],
+        destination: "https://riverflowlaser.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     // The migrated components use standard <img> elements. Keep static image
     // imports as URL strings instead of Next.js image metadata objects.

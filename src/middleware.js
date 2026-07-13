@@ -44,18 +44,6 @@ const hasValidAdminSession = async (request) => {
 
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
-  const forwardedHost = request.headers.get("x-forwarded-host")?.split(",")[0].trim();
-  const requestHost = forwardedHost || request.headers.get("host") || "";
-  const hostname = requestHost.split(":")[0].toLowerCase();
-
-  if (hostname === "www.riverflowlaser.com") {
-    const canonicalUrl = request.nextUrl.clone();
-    canonicalUrl.protocol = "https:";
-    canonicalUrl.hostname = "riverflowlaser.com";
-    canonicalUrl.port = "";
-    return NextResponse.redirect(canonicalUrl, 308);
-  }
-
   const isProtected = protectedAdminRoutes.some(
     (route) => pathname === route || pathname.startsWith(`${route}/`),
   );
@@ -73,5 +61,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.png).*)"],
+  matcher: ["/admin/:path*"],
 };
