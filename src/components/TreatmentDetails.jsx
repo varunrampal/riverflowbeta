@@ -121,7 +121,7 @@ export default function TreatmentDetails({ treatment }) {
           </section>
           {details.prices && (
             <section>
-              <h2 className="mb-5 text-2xl font-bold text-secondary">Laser Hair Removal Prices</h2>
+              <h2 className="mb-5 text-2xl font-bold text-secondary">{details.priceTitle || "Treatment Prices"}</h2>
               <div className="grid gap-3 md:grid-cols-2">
                 {details.prices.map(([title, price, duration]) => (
                   <div key={title} className="flex items-center justify-between gap-4 rounded-xl border border-accent/25 bg-white px-5 py-4">

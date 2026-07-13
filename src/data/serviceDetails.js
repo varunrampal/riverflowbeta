@@ -6,6 +6,15 @@ const details = {
     postpone: "Postpone for sunburn, an active cold sore, broken or infected skin, or a new unexplained rash. Recent peels, laser services, prescriptions, and strong home exfoliants must be disclosed.",
     limitations: "A facial can refresh hydration and surface appearance, but it cannot permanently correct acne, deep scarring, laxity, or a medical skin condition.",
     providerPerspective: "The useful part of a signature facial is the ability to leave out an unnecessary step. Congested skin and sensitized skin should not receive the same exfoliation simply because they booked the same service name.",
+    priceTitle: "Facial Treatment Prices",
+    prices: [
+      ["Pregnancy Safe Facial", "CA$140.00", "1 hr"],
+      ["Hydra Facial", "CA$140.00", "1 hr"],
+      ["OxyGeneo 3-in-1 (Exfoliate + Infuse + Oxygenate)", "CA$175.00", "1 hr"],
+      ["Age Corrective Facial", "CA$175.00", "1 hr"],
+      ["Seaside Facial LASER", "CA$110.00", "1 hr 30 min"],
+      ["Glow N' Go Facial", "CA$120.00", "50 min"],
+    ],
     faqs: [
       ["Will every facial include extraction?", "No. Extraction depends on the type of congestion, skin condition, and whether it can be performed without excessive trauma."],
       ["Should I stop retinol first?", "Ask the clinic about the exact product and strength. A pause may be recommended when exfoliation is planned."],
@@ -19,6 +28,7 @@ const details = {
     postpone: "Treatment should be reassessed after recent tanning or sunburn, while taking a photosensitizing medication, over broken or infected skin, or when hair has recently been waxed or plucked. Pregnancy and material health changes must be disclosed.",
     limitations: "Laser provides long-term reduction, not a guarantee that every hair will disappear permanently. White, grey, very light blond, and some fine hairs contain too little target pigment. Hormonal changes can also stimulate future growth.",
     providerPerspective: "Hair cycle matters as much as laser power. Treating too frequently does not create more active follicles, while excessive energy is not a substitute for selecting safe settings for the area and skin response.",
+    priceTitle: "Laser Hair Removal Prices",
     prices: [
       ["Neck (Front & Back) LASER", "CA$35.00", "15 min"],
       ["Feet or Hands LASER", "CA$20.00", "10 min"],
