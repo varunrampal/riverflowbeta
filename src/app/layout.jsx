@@ -7,6 +7,10 @@ export const metadata = {
   title: { default: SITE_CONFIG.defaultTitle, template: "%s | Riverflow Laser" },
   description: SITE_CONFIG.defaultDescription,
   keywords: SITE_CONFIG.keywords,
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
   openGraph: { type: "website", locale: "en_CA", siteName: SITE_CONFIG.shortName },
 };
 

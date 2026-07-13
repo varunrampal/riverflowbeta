@@ -2,6 +2,7 @@ import path from "node:path";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  allowedDevOrigins: ["127.0.0.1", "localhost"],
   images: {
     // The migrated components use standard <img> elements. Keep static image
     // imports as URL strings instead of Next.js image metadata objects.
