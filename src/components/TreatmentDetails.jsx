@@ -115,10 +115,9 @@ export default function TreatmentDetails({ treatment }) {
             <p>{details.technology}</p>
             <p className="mt-3">During the appointment, expect {guide.experience}. The provider should explain the device, product, tip, intensity, or treatment depth selected for that visit rather than relying only on the general service name.</p>
           </section>
-          <section className="grid gap-5 md:grid-cols-3">
+          <section className="grid gap-5 md:grid-cols-2">
             <div className="rounded-xl border border-accent/25 bg-white p-5"><h2 className="mb-2 text-lg font-bold text-secondary">Appointment time</h2><p>{details.timing}</p></div>
             <div className="rounded-xl border border-accent/25 bg-white p-5"><h2 className="mb-2 text-lg font-bold text-secondary">Session planning</h2><p>{guide.schedule}</p></div>
-            <div className="rounded-xl border border-accent/25 bg-white p-5"><h2 className="mb-2 text-lg font-bold text-secondary">Current pricing</h2><p>Pricing is confirmed by Riverflow for the selected area and protocol. No unverified starting price is published on this page.</p></div>
           </section>
           <section className="grid gap-8 md:grid-cols-2">
             <div><h2 className="mb-3 text-2xl font-bold text-secondary">Preparation specific to this service</h2><p>{guide.preparation}.</p></div>
