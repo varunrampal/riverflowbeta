@@ -8,7 +8,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "dev": "node server/index.js",
+    "dev": "node app.js",
     "build": "next build",
     "lint": "eslint .",
     "start": "node app.js"
