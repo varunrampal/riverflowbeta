@@ -484,7 +484,7 @@ const requireAdmin = (req) => {
   }
 };
 
-const handleBlogApi = async (req, res, url) => {
+export const handleBlogApi = async (req, res, url) => {
   const action = url.searchParams.get("action") || "list";
 
   if (action === "session") {
@@ -657,51 +657,53 @@ const serveStatic = async (req, res, url) => {
   stream.pipe(res);
 };
 
-const nextApp = next({
-  dev: process.env.NODE_ENV !== "production",
-  dir: rootDir,
-});
-const handleNextRequest = nextApp.getRequestHandler();
+export const startServer = async () => {
+  const nextApp = next({
+    dev: process.env.NODE_ENV !== "production",
+    dir: rootDir,
+  });
+  const handleNextRequest = nextApp.getRequestHandler();
 
-await nextApp.prepare();
+  await nextApp.prepare();
 
-const server = http.createServer(async (req, res) => {
-  const url = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
+  const server = http.createServer(async (req, res) => {
+    const url = new URL(req.url || "/", `http://${req.headers.host || "localhost"}`);
 
-  try {
-    if (url.pathname === "/api/blog") {
-      await handleBlogApi(req, res, url);
-      return;
+    try {
+      if (url.pathname === "/api/blog") {
+        await handleBlogApi(req, res, url);
+        return;
+      }
+
+      await handleNextRequest(req, res);
+    } catch (error) {
+      json(res, error.status || 500, {
+        ok: false,
+        error: error.message || "Server error.",
+      });
     }
+  });
 
-    await handleNextRequest(req, res);
-  } catch (error) {
-    json(res, error.status || 500, {
-      ok: false,
-      error: error.message || "Server error.",
+  const listen = (requestedPort) => {
+    server.once("error", (error) => {
+      if (
+        error.code === "EADDRINUSE" &&
+        process.env.NODE_ENV !== "production" &&
+        requestedPort === port
+      ) {
+        const fallbackPort = port + 1;
+        console.warn(`Port ${port} is already in use. Trying ${fallbackPort} instead.`);
+        listen(fallbackPort);
+        return;
+      }
+
+      throw error;
     });
-  }
-});
 
-const listen = (requestedPort) => {
-  server.once("error", (error) => {
-    if (
-      error.code === "EADDRINUSE" &&
-      process.env.NODE_ENV !== "production" &&
-      requestedPort === port
-    ) {
-      const fallbackPort = port + 1;
-      console.warn(`Port ${port} is already in use. Trying ${fallbackPort} instead.`);
-      listen(fallbackPort);
-      return;
-    }
+    server.listen(requestedPort, "0.0.0.0", () => {
+      console.log(`Riverflow server listening on 0.0.0.0:${requestedPort}`);
+    });
+  };
 
-    throw error;
-  });
-
-  server.listen(requestedPort, "0.0.0.0", () => {
-    console.log(`Riverflow server listening on 0.0.0.0:${requestedPort}`);
-  });
+  listen(port);
 };
-
-listen(port);
