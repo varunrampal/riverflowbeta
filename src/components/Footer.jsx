@@ -91,9 +91,6 @@ export default function Footer() {
               <li>
                   <Link to='/faq' className="hover:text-accent">FAQS</Link>
               </li>
-              <li>
-                  <Link to='/admin/login' className="hover:text-accent">Admin Login</Link>
-              </li>
             </ul>
           </div>
 

@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 export default function TopBar() {
     return (
 
@@ -18,12 +16,6 @@ export default function TopBar() {
                         +1 (604) 621-8311
                     </a>
                 </p> */}
-                <Link
-                    to="/admin/login"
-                    className="font-medium underline underline-offset-2 hover:text-accent"
-                >
-                    Admin Login
-                </Link>
             </div>
         </div>
 
