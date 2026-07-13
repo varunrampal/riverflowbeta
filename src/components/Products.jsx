@@ -27,7 +27,7 @@ export default function Products() {
          href="https://app.squareup.com/appointments/book/9qze62967coq3v/L0BCN9T6Y4JAQ/start"
          target="_blank" className="inline-flex items-center rounded-md text-white bg-primary px-6 py-2 text-sm font-semibold uppercase tracking-wide hover:bg-secondary transition"
         >
-          Book Now
+          Book a Skincare Visit
         </a>
       </div>
     </div>

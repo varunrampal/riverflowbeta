@@ -75,7 +75,7 @@ export default function Hero() {
                         rel="noreferrer"
                         className="inline-flex min-h-11 items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-secondary sm:px-6"
                       >
-                        Book Now
+                        Book a Consultation
                       </a>
                       <a
                         href={`tel:${SITE_CONFIG.phone}`}

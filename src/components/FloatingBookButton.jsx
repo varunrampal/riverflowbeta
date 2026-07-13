@@ -38,11 +38,11 @@ export default function FloatingBookButton() {
         href={SITE_CONFIG.bookingUrl}
         target="_blank"
         rel="noreferrer"
-        aria-label="Book Now"
+        aria-label="Book an appointment online"
         className="fixed bottom-6 right-6 z-50 hidden items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(15,45,82,0.28)] transition hover:-translate-y-0.5 hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 sm:inline-flex"
       >
         <CalendarIcon />
-        <span>Book Now</span>
+        <span>Book Online</span>
       </a>
     </>
   );

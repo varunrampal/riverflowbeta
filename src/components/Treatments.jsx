@@ -141,7 +141,7 @@ export default function Treatments() {
                   to="/make-appointment"
                   className="inline-flex w-full items-center justify-center rounded-full border border-primary/30 px-4 py-2 text-xs font-semibold text-primary transition hover:bg-primary hover:text-white"
                 >
-                  Make an Inquiry
+                  Ask About {item.title}
                 </Link>
               </div>
             </div>
