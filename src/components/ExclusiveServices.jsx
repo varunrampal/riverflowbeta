@@ -49,7 +49,7 @@ export default function ExclusiveServices() {
           <div className="absolute inset-0 bg-primary mix-blend-color opacity-80 pointer-events-none"></div>
         </div>
 
-        <h3 className="text-lg font-semibold mb-3">Laser Hair Removal</h3>
+        <h3 className="text-lg font-semibold mb-3">Soprano ICE Platinum Hair Reduction</h3>
         <p className="text-sm text-slate-100 flex-1">
           Discover our premium Laser Hair Removal treatment, designed to deliver silky-smooth, hair-free skin effortlessly.
         </p>
@@ -104,7 +104,7 @@ export default function ExclusiveServices() {
           <div className="absolute inset-0 bg-primary mix-blend-color opacity-80 pointer-events-none"></div>
         </div>
 
-        <h3 className="text-lg font-semibold mb-3">OxyGeneo Facial</h3>
+        <h3 className="text-lg font-semibold mb-3">OxyGeneo 3-in-1 Super Facial</h3>
         <p className="text-sm text-slate-100 flex-1">
           Replenish and hydrate with oxygen infusion and nourishing serums for soft, glowing skin.
         </p>
