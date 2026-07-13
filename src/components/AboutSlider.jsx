@@ -63,7 +63,7 @@ const AboutSlider = () => {
 
           <div className="mb-8.75">
             <div className="mb-3.75">
-              <h4 className="text-xl mb-0">Contact Us</h4>
+              <h4 className="text-xl mb-0">Contact Riverflow Laser & Skin Clinic in Langley, BC</h4>
             </div>
             <ul className="list-check">
               <li className="relative p-1.25 ps-7.5 text-base before:absolute before:left-0 before:font-black before:content-['\f109'] before:font-['flaticon'] before:text-primary before:top-2">

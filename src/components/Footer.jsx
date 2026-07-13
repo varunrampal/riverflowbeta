@@ -25,7 +25,7 @@ export default function Footer() {
          
 
           <h2 className="text-2xl md:text-3xl font-bold mb-10">
-            Discover personalized treatments that enhance your natural beauty
+           Personalized Laser and Skin Treatments in Langley, BC that enhance your natural beauty
           </h2>
         </div>
 

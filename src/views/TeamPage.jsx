@@ -36,7 +36,7 @@ export default function TeamPage() {
         Meet the Team
       </p>
       <h1 className="text-2xl md:text-3xl font-bold mt-1 mb-3">
-        Our Dream TEAM!
+        Meet Our Langley Laser and Skincare Team
       </h1>
       <p className="text-slate-600 mb-4">
         At The Riverflow Laser and Skin Clinic Inc, our team is respected for

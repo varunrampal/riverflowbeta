@@ -47,11 +47,12 @@ export default function HomePage() {
          <AboutHome />
          <GoogleReviews />
          <Treatments />
+         <AreasWeServe />
          <LatestBlog />
          <ExclusiveServices />
          {/* <MachinesSection /> */}
          <Products />
-         <AreasWeServe />
+         
          <Consultation/>
          {/* <Contact/> */}
       </Layout>

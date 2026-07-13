@@ -71,7 +71,7 @@ export default function BlogPage() {
             Blog
           </p>
           <h1 className="mt-2 text-3xl font-bold text-secondary md:text-4xl">
-            Skin Care Blog
+           Laser and Skincare Advice From Our Langley Clinic
           </h1>
           <p className="mt-3 max-w-2xl text-slate-500">
             Treatment notes, skin care guidance, and clinic updates from

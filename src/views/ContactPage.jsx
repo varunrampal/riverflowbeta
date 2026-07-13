@@ -33,7 +33,7 @@ export default function ContactPage() {
       {/* Header */}
       <section className="bg-background border-b border-accent/25">
         <div className="max-w-6xl mx-auto px-4 py-10">
-          <h1 className="text-3xl font-bold text-secondary">Contact Us</h1>
+          <h1 className="text-3xl font-bold text-secondary">Contact Riverflow Laser & Skin Clinic in Langley, BC</h1>
           <p className="text-slate-500 mt-2">
             We’d love to hear from you. Call, email, or visit us at our Langley location.
           </p>

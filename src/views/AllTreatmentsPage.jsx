@@ -47,7 +47,7 @@ export default function AllTreatmentsPage() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="mb-8 text-center">
           <h1 className="text-3xl md:text-4xl font-bold text-secondary mb-2">
-            Our Treatments
+            Laser and Skin Treatments in Langley, BC
           </h1>
           <p className="text-slate-500 max-w-2xl mx-auto">
             Explore our full range of services.

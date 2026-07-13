@@ -12,7 +12,7 @@ export default function AboutHome() {
             About Us
           </p>
           <h2 className="text-2xl md:text-3xl font-bold mt-2 mb-3">
-            Discover personalized treatments
+            Personalized Laser and Skin Treatments in Langley, BC
           </h2>
           <p className="text-slate-600 mb-4">
             RiverFlow Laser is your trusted destination for{" "}

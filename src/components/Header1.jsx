@@ -169,7 +169,7 @@ export default function Header1() {
 								</li>
 								<li className="lg:inline-block block max-lg:border-b max-lg:border-gray-200 relative group">
 									<a className="lg:py-7 py-2 xl:px-4 lg:px-2 relative lg:inline-block block xl:text-lg text-2sm font-medium hover:text-primary after:ml-1 after:-mt-1 after:inline-block after:size-3 after:bg-starsvg max-lg:after:hidden" href="javascript:void(0);">
-										<span className="inline-block leading-7.5">Contact Us</span>
+										<span className="inline-block leading-7.5">Contact Riverflow Laser & Skin Clinic in Langley, BC</span>
 										<i className="fas fa-chevron-right lg:!hidden !block size-7 !leading-7 text-center text-xs bg-secondary rounded text-white float-end"></i>
 									</a>
 									{/* <ul className="lg:absolute bg-white block lg:left-0 lg:py-5 max-lg:py-2.5 max-lg:border-t max-lg:border-gray-200 w-full lg:w-55 lg:opacity-0 lg:invisible lg:translate-y-10 z-10 mt-0 text-left duration-500 lg:group-hover:opacity-100 lg:group-hover:visible lg:group-hover:translate-y-0 max-lg:hidden mega-menu">
@@ -213,7 +213,7 @@ export default function Header1() {
 											<i className="feather icon-phone-call dz-ring-effect text-3xxl inline-flex animate-dzRing"></i>
 										</div>
 										<div className="widget-content">
-											<h6 className="text-primary text-sm font-normal mb-0">Contact us?</h6>
+											<h6 className="text-primary text-sm font-normal mb-0">Contact Riverflow Laser & Skin Clinic in Langley, BC</h6>
 											<a href="tel:+11234567890" className="sm:text-lg text-base font-semibold text-secondary">604-621-8311</a>
 										</div>
 									</li>
