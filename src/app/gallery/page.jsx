@@ -1,8 +1,8 @@
 import GalleryPage from "../../views/GalleryPage";
 
 export const metadata = {
-  title: "Before & After Gallery | Riverflow Laser Langley",
-  description: "View before-and-after treatment result photographs from Riverflow Laser & Skin Clinic in Langley, BC.",
+  title: { absolute: "Before & After Gallery | Riverflow Laser Langley" },
+  description: "View before-and-after photographs organized by treatment at Riverflow Laser & Skin Clinic in Langley, BC. Individual results vary.",
   alternates: { canonical: "/gallery" },
 };
 

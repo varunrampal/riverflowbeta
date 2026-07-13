@@ -3,9 +3,9 @@ export const SITE_CONFIG = {
   shortName: "Riverflow Laser & Skin Clinic",
   url: "https://riverflowlaser.com",
   defaultTitle:
-    "Riverflow Laser & Skin Clinic Langley | Laser Hair Removal & Skin Care",
+    "Laser Hair Removal & Skin Clinic in Langley, BC | Riverflow",
   defaultDescription:
-    "Riverflow Laser & Skin Clinic in Langley offers laser hair removal, HydraFacial, facials, microneedling, acne care, and skin rejuvenation.",
+    "Visit Riverflow Laser & Skin Clinic in Langley for laser hair removal, HydraFacial, microneedling, facials and personalized skincare. Book a consultation.",
   keywords: [
     "Riverflow Laser",
     "Riverflow Laser & Skin Clinic",
