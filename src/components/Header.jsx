@@ -64,7 +64,7 @@ export default function Header() {
             </a>
           </nav>
           <div className="hidden lg:flex items-center gap-4">
-            <a
+            {/* <a
               href="tel:+16046218311"
               className="inline-flex items-center gap-2 text-sm font-semibold text-secondary transition hover:text-primary"
               aria-label="Call Riverflow Laser at 604.621.8311"
@@ -82,7 +82,7 @@ export default function Header() {
                 />
               </svg>
               604.621.8311
-            </a>
+            </a> */}
             <a
               href="https://app.squareup.com/appointments/book/9qze62967coq3v/L0BCN9T6Y4JAQ/start"
               target="_blank"
