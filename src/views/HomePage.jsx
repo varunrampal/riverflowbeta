@@ -8,6 +8,7 @@ import Treatments from "../components/Treatments";
 // import About from "../components/About";
 import AboutHome from "../components/AboutHome";
 import GoogleReviews from "../components/GoogleReviews";
+import AestheticSimulatorBanner from "../components/AestheticSimulatorBanner";
 import ExclusiveServices from '../components/ExclusiveServices';
 import Products from "../components/Products";
 import Consultation from "../components/Consultation";
@@ -45,6 +46,7 @@ export default function HomePage() {
          />
          <Hero />
          <AboutHome />
+         <AestheticSimulatorBanner />
          <GoogleReviews />
          <Treatments />
          <AreasWeServe />

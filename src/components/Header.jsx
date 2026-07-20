@@ -41,8 +41,11 @@ export default function Header() {
            <Link to="/" className="hover:text-primary font-bold text-secondary">
           Home
           </Link>
-            <Link to="/treatments" className="hover:text-primary font-bold text-secondary">
+          <Link to="/treatments" className="hover:text-primary font-bold text-secondary">
           Treatments
+          </Link>
+          <Link to="/aesthetic-simulator" className="hover:text-primary font-bold text-secondary">
+          AI Simulator
           </Link>
           <Link to="/about" className="hover:text-primary font-bold text-secondary">
           About
@@ -102,6 +105,9 @@ export default function Header() {
           </Link>
             <Link to="/treatments"  className="block py-1 text-secondary hover:text-primary font-bold"  onClick={() => setOpen(false)}>
           Treatments
+          </Link>
+          <Link to="/aesthetic-simulator" className="block py-1 text-secondary hover:text-primary font-bold" onClick={() => setOpen(false)}>
+            AI Simulator
           </Link>
              <Link to="/about"  className="block py-1 text-secondary hover:text-primary font-bold"  onClick={() => setOpen(false)}>
             About
