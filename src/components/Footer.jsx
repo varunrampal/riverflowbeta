@@ -29,8 +29,8 @@ export default function Footer() {
           </h2>
         </div>
 
-        {/* 3 columns */}
-        <div className="grid gap-10 md:grid-cols-3 mb-10 md:mb-14">
+        {/* Footer links and contact details */}
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 mb-10 md:mb-14">
           {/* Socials */}
           <div>
             <h6 className="text-sm font-semibold mb-4 uppercase tracking-wide">
@@ -119,6 +119,23 @@ export default function Footer() {
                 >
                 Unit 108 – 19705 56 Avenue Langley, BC V3A 3X7
                 </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Business Hours */}
+          <div>
+            <h6 className="text-sm font-semibold mb-4 uppercase tracking-wide">
+              Business Hours
+            </h6>
+            <ul className="space-y-2 text-sm text-background/85">
+              <li>
+                <span className="block font-medium text-white">Monday – Friday</span>
+                <span>10:00 AM – 6:00 PM</span>
+              </li>
+              <li>
+                <span className="block font-medium text-white">Saturday &amp; Sunday</span>
+                <span>11:00 AM – 6:00 PM</span>
               </li>
             </ul>
           </div>
