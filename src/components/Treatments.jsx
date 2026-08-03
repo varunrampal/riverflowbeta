@@ -10,11 +10,18 @@ import acne from "../assets/images/services/acne.jpg";
 import antiaging from "../assets/images/services/anti-aging.webp";
 import pigmentation from "../assets/images/services/pigmentation.jpeg";
 import skinrejuvenation from "../assets/images/services/skin-rejunivation.jpg";
+import dermaplaningFacial from "../assets/images/services/dermaplaning-facial.jpeg";
 import RequestConsultationForm from "./RequestConsultationForm";
 import { Link } from "react-router-dom";
 import TreatmentFinder from "./TreatmentFinder";
 
 const treatments = [
+  {
+    title: "Dermaplaning Facial",
+    desc: "Removes peach fuzz and dead surface skin for a smoother, brighter-looking complexion.",
+    image: dermaplaningFacial,
+    link: "/treatments/dermaplaning",
+  },
   {
     title: "Laser Hair Removal",
     desc: "If you are not happy with shaving, tweezing, or waxing to remove unwanted hair, laser hair removal may be an option worth considering. Our lasers help remove hair from the face, leg, chin, back, arm, underarm, bikini line, and more.",

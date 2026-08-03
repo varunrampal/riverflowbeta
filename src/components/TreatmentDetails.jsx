@@ -8,6 +8,7 @@ const contextLinkClass =
   "font-semibold text-primary underline underline-offset-4 transition hover:text-secondary";
 
 const relatedTreatments = {
+  dermaplaning: ["facial", "hydrafacial", "chemicalpeels"],
   facial: ["hydrafacial", "chemicalpeels", "skinrejuvenation"],
   laserhairremoval: ["hydrafacial", "skinrejuvenation", "antiaging"],
   microneedling: ["skinrejuvenation", "chemicalpeels", "pigmentation"],
@@ -23,6 +24,7 @@ const relatedTreatments = {
 };
 
 const treatmentNames = {
+  dermaplaning: "dermaplaning facial",
   facial: "signature facial",
   laserhairremoval: "laser hair removal",
   microneedling: "microneedling",

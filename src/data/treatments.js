@@ -10,6 +10,7 @@ import acne from'../assets/images/services/acne.jpg'
 import antiaging from'../assets/images/services/anti-aging.webp'
 import pigmentation from "../assets/images/services/pigmentation.jpeg";
 import skinrejuvenation from "../assets/images/services/skin-rejunivation.jpg";
+import dermaplaningFacial from "../assets/images/services/dermaplaning-facial.jpeg";
 
 const makeBeforeAfterGallery = (title) => [
   {
@@ -21,6 +22,24 @@ const makeBeforeAfterGallery = (title) => [
 ];
 
 export const TREATMENTS = {
+  dermaplaning: {
+    id: "dermaplaning",
+    title: "Dermaplaning Facial",
+    image: dermaplaningFacial,
+    beforeAfterGallery: makeBeforeAfterGallery("Dermaplaning Facial"),
+    short: "Gently exfoliates dead surface skin and removes peach fuzz for a smoother-looking complexion.",
+    content: `
+Dermaplaning Facial offers the following benefits:
+
+• Removes superficial hairs, often called “peach fuzz”
+• Removes the dull, obstructive dead-skin barrier
+• Smoothes the skin’s surface
+• Helps repair and restore dull, dry skin
+• Helps improve the appearance of sun-damaged skin
+• Allows for better absorption of skin care products
+• Allows for easier application and absorption of make-up
+    `,
+  },
   facial: {
     id: "facial",
     title: "Signature Facial Treatment",
