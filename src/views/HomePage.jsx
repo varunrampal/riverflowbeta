@@ -46,9 +46,9 @@ export default function HomePage() {
          />
          <Hero />
          <AboutHome />
+         <Treatments />
          <AestheticSimulatorBanner />
          <GoogleReviews />
-         <Treatments />
          <AreasWeServe />
          <LatestBlog />
          <ExclusiveServices />

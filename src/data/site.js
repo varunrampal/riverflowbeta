@@ -18,8 +18,8 @@ export const SITE_CONFIG = {
     "acne treatment Langley",
     "skin rejuvenation Langley",
   ],
-  phone: "+16046218311",
-  phoneDisplay: "(604) 621-8311",
+  phone: "+18334989898",
+  phoneDisplay: "1-833-498-9898",
   email: "info@riverflowlaser.com",
   address: {
     streetAddress: "Unit 108 - 19705 56 Avenue",

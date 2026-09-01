@@ -48,7 +48,7 @@ export default function MakeAppointmentPage() {
         type: "error",
         message:
           error.message ||
-          "Your request could not be sent. Please call us at 604.621.8311.",
+          "Your request could not be sent. Please call us at 1-833-498-9898.",
       });
     } finally {
       setIsSubmitting(false);
@@ -110,10 +110,10 @@ export default function MakeAppointmentPage() {
                 Book Online
               </a>
               <a
-                href="tel:+16046218311"
+                href="tel:+18334989898"
                 className="inline-flex items-center justify-center rounded-full border border-primary/30 px-5 py-3 text-sm font-semibold text-primary transition hover:bg-primary hover:text-white"
               >
-                Call 604.621.8311
+                Call 1-833-498-9898
               </a>
             </div>
           </div>
@@ -151,10 +151,10 @@ export default function MakeAppointmentPage() {
                   Prefer to call?
                 </p>
                 <a
-                  href="tel:+16046218311"
+                  href="tel:+18334989898"
                   className="mt-2 inline-flex text-xl font-bold hover:text-accent"
                 >
-                  604.621.8311
+                  1-833-498-9898
                 </a>
               </div>
             </div>
@@ -177,7 +177,7 @@ export default function MakeAppointmentPage() {
                   className={inputClass}
                   type="tel"
                   name="phone"
-                  placeholder="604.621.8311"
+                  placeholder="1-833-498-9898"
                   required
                 />
               </label>

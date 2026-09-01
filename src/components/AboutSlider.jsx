@@ -76,7 +76,7 @@ const AboutSlider = () => {
               </li> */}
               <li className="relative p-1.25 ps-7.5 text-base before:absolute before:left-0 before:font-black before:content-['\f109'] before:font-['flaticon'] before:text-primary before:top-2">
                 <a href="tel:+11234567890" className="text-body">
-                  604-621-8311
+                  1-833-498-9898
                 </a>
               </li>
             </ul>

@@ -1,12 +1,11 @@
 import Header from './Header.jsx';
-import TopBar from './TopBar.jsx';
 import Footer from './Footer.jsx';
 import FloatingBookButton from './FloatingBookButton.jsx';
+import RiverflowLiveAssistant from './RiverflowLiveAssistant.jsx';
 
 export default function Layout({ children }) {
   return (
     <div className="min-h-screen bg-background pb-20 text-secondary sm:pb-0">
-      <TopBar/>
       <Header />
 
       {/* Main content */}
@@ -15,6 +14,7 @@ export default function Layout({ children }) {
       </main>
 
       <FloatingBookButton />
+      <RiverflowLiveAssistant />
 
       {/* <a
    href="https://www.facebook.com/ShopTrueCanada"

@@ -12,7 +12,7 @@ export default function ContactPage() {
     <Layout>
     <SEO
       title="Contact Riverflow Laser & Skin Clinic | Langley, BC"
-      description="Contact Riverflow Laser & Skin Clinic in Langley, BC. Call 604.621.8311, email info@riverflowlaser.com, or visit Unit 108 - 19705 56 Avenue."
+      description="Contact Riverflow Laser & Skin Clinic in Langley, BC. Call 1-833-498-9898, email info@riverflowlaser.com, or visit Unit 108 - 19705 56 Avenue."
       canonicalPath="/contact"
       structuredData={[
         webPageSchema({
@@ -77,8 +77,8 @@ export default function ContactPage() {
                 Phone
               </p>
               <p className="text-base font-medium text-secondary mt-1">
-                <a href="tel:+16046218311" className="hover:text-primary">
-                 (604) 621-8311
+                <a href="tel:+18334989898" className="hover:text-primary">
+                 1-833-498-9898
                 </a>
               </p>
             </div>

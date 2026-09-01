@@ -36,7 +36,7 @@ export default function Footer() {
             <h6 className="text-sm font-semibold mb-4 uppercase tracking-wide">
               Socials
             </h6>
-            <ul className="space-y-2 text-sm">
+            <ul className="footer-inline-links space-y-2 text-sm">
               <li>
                 <a
                   href="https://www.facebook.com/riverflowlaser/"
@@ -65,7 +65,7 @@ export default function Footer() {
             <h6 className="text-sm font-semibold mb-4 uppercase tracking-wide">
               Menu
             </h6>
-            <ul className="space-y-2 text-sm">
+            <ul className="footer-inline-links space-y-2 text-sm">
               <li>
                 <a href="" className="hover:text-accent">
                   Home
@@ -106,8 +106,8 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="tel:+16046218311" className="hover:text-accent">
-                (604) 621-8311
+                <a href="tel:+18334989898" className="hover:text-accent">
+                1-833-498-9898
                 </a>
               </li>
               <li>
@@ -142,53 +142,19 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="mt-6 border-t border-accent/20">
-        <div className="max-w-6xl mx-auto px-4 py-4 md:py-5 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-background/85">
-          <div className="text-center md:text-left">
-            © {new Date().getFullYear()}{" "}
-            <a href="https://riverflowlaser.com/" className="underline-offset-2 hover:underline">
-             Riverflow Laser & Skin Clinic Inc
-            </a>
-            . <span className="whitespace-nowrap">All rights reserved.</span>{" "}
-            <a
-              href="https://www.riverflow.com"
-              className="ml-1 hover:text-accent"
-              rel="noopener"
-            >
-              Website Design &amp; Marketing by Riverflow Team
-            </a>
+      <div className="footer-bottom">
+        <div className="footer-bottom__inner">
+          <div className="footer-bottom__copyright">
+            <span>© {new Date().getFullYear()} Riverflow Laser &amp; Skin Clinic Inc.</span>
+            <span>All rights reserved.</span>
           </div>
-          <div className="flex flex-wrap gap-3 justify-center md:justify-end">
-            <a
-              href="#"
-              className="hover:text-accent whitespace-nowrap"
-            >
-              Privacy Policy
-            </a>
-            {/* <span className="opacity-40">|</span> */}
-            {/* <a
-              href="https://langley.uptownmedspa.ca/shipping-policy/"
-              className="hover:text-accent whitespace-nowrap"
-            >
-              Shipping Policy
-            </a> */}
-            <span className="opacity-40">|</span>
-            <a
-              href="#"
-              className="hover:text-accent whitespace-nowrap"
-            >
-              Refund and Return Policy
-            </a>
-            <span className="opacity-40">|</span>
-            <a
-              href="#"
-              className="hover:text-white whitespace-nowrap"
-            >
-              Terms and Conditions
-            </a>
-          </div>
+          <nav className="footer-bottom__links" aria-label="Legal information">
+            <a href="#">Privacy</a>
+            <a href="#">Refunds &amp; returns</a>
+            <a href="#">Terms</a>
+          </nav>
         </div>
+        <div className="footer-bottom__credit">Designed by Shandilya Group Of Companies</div>
       </div>
     </footer>
   );

@@ -47,7 +47,7 @@ export default function RequestConsultationForm({ className = "" }) {
         type: "error",
         message:
           error.message ||
-          "Your request could not be sent. Please call us at 604.621.8311.",
+          "Your request could not be sent. Please call us at 1-833-498-9898.",
       });
     } finally {
       setIsSubmitting(false);
@@ -81,10 +81,10 @@ export default function RequestConsultationForm({ className = "" }) {
             Prefer to call?
           </p>
           <a
-            href="tel:+16046218311"
+            href="tel:+18334989898"
             className="mt-2 inline-flex text-xl font-bold hover:text-accent"
           >
-            604.621.8311
+            1-833-498-9898
           </a>
         </div>
       </div>
@@ -110,7 +110,7 @@ export default function RequestConsultationForm({ className = "" }) {
             className={inputClass}
             type="tel"
             name="phone"
-            placeholder="604.621.8311"
+            placeholder="1-833-498-9898"
             required
           />
         </label>

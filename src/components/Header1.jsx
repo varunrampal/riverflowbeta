@@ -214,7 +214,7 @@ export default function Header1() {
 										</div>
 										<div className="widget-content">
 											<h6 className="text-primary text-sm font-normal mb-0">Contact Riverflow Laser & Skin Clinic in Langley, BC</h6>
-											<a href="tel:+11234567890" className="sm:text-lg text-base font-semibold text-secondary">604-621-8311</a>
+											<a href="tel:+18334989898" className="sm:text-lg text-base font-semibold text-secondary">1-833-498-9898</a>
 										</div>
 									</li>
 									<li className="inline-block max-xl:hidden max-sm:!block">

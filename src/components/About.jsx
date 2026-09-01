@@ -35,7 +35,7 @@
               </div>
               <div className="bg-background rounded-2xl p-3 border border-accent/20">
                 <p className="text-slate-500 text-xs">Phone</p>
-                <p className="font-semibold">+1 (604) 621-8311</p>
+                <p className="font-semibold">1-833-498-9898</p>
               </div>
               <div className="bg-background rounded-2xl p-3 col-span-2 border border-accent/20">
                 <p className="text-slate-500 text-xs">Parking</p>

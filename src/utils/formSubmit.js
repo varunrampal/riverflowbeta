@@ -21,7 +21,7 @@ export async function submitClinicForm(payload) {
   if (!response.ok || data?.success === false) {
     throw new Error(
       data?.message ||
-        "Your request could not be sent. Please call us at 604.621.8311."
+        "Your request could not be sent. Please call us at 1-833-498-9898."
     );
   }
 

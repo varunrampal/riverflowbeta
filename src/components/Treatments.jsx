@@ -99,7 +99,6 @@ const treatments = [
 export default function Treatments() {
   return (
     <>
-    <TreatmentFinder />
     <section id="treatments" className="bg-secondary/5 py-12 lg:py-16">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -158,6 +157,7 @@ export default function Treatments() {
         <RequestConsultationForm className="mt-12" />
       </div>
     </section>
+    <TreatmentFinder />
     </>
   );
 }
