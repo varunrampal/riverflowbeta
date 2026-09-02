@@ -62,11 +62,18 @@ export function useGeminiLive() {
     try {
       const response = await fetch("/api/gemini/live-token", { method: "POST" }); const data = await response.json(); if (!response.ok) throw new Error(data.error);
       const ai = new GoogleGenAI({ apiKey: data.token, httpOptions: { apiVersion: "v1beta" } });
-      session.current = await ai.live.connect({ model: data.model, config: { responseModalities: [Modality.AUDIO], inputAudioTranscription: {}, outputAudioTranscription: {}, thinkingConfig: { thinkingLevel: ThinkingLevel.MINIMAL } }, callbacks: {
-        onerror: () => setStatus("error"), onclose: () => setStatus("disconnected"), onmessage: (message) => { const content = message.serverContent; if (content?.inputTranscription?.text) { append("user", content.inputTranscription.text, true); if (!playing.current) setStatus("thinking"); } if (content?.outputTranscription?.text) append("assistant", content.outputTranscription.text, true); for (const part of content?.modelTurn?.parts || []) if (part.inlineData?.data) playPcm(part.inlineData.data); },
+      session.current = await ai.live.connect({ model: data.model, config: { responseModalities: [Modality.AUDIO], inputAudioTranscription: {}, outputAudioTranscription: {}, thinkingConfig: { thinkingLevel: ThinkingLevel.MINIMAL }, realtimeInputConfig: { automaticActivityDetection: { disabled: false, silenceDurationMs: 700, prefixPaddingMs: 100 } } }, callbacks: {
+        onerror: (event) => { console.error("Suzi live session error", event); setStatus("error"); }, onclose: () => setStatus("disconnected"), onmessage: (message) => { const content = message.serverContent; if (content?.inputTranscription?.text) { append("user", content.inputTranscription.text, true); if (!playing.current) setStatus("thinking"); } if (content?.outputTranscription?.text) append("assistant", content.outputTranscription.text, true); for (const part of content?.modelTurn?.parts || []) if (part.inlineData?.data) playPcm(part.inlineData.data); },
       } });
-      session.current.sendRealtimeInput({ text: "Greet the visitor as Suzi and invite them to ask about Riverflow treatments or finding the right consultation." }); await startMic();
-    } catch { setStatus("error"); }
+      session.current.sendRealtimeInput({ text: "Greet the visitor as Suzi and invite them to ask about Riverflow treatments or finding the right consultation." });
+      try {
+        await startMic();
+      } catch (error) {
+        console.warn("Microphone unavailable; continuing with typed conversation", error);
+        setMuted(true);
+        setStatus("listening");
+      }
+    } catch (error) { console.error("Suzi could not connect", error); setStatus("error"); }
   }, [append, playPcm, startMic]);
   const sendText = (text) => { append("user", text); setStatus("thinking"); session.current?.sendRealtimeInput({ text }); };
   return { status, transcript, muted, setMuted, connect, disconnect, clearConversation, sendText };
