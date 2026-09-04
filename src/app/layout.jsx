@@ -1,4 +1,5 @@
 import "../index.css";
+import Script from "next/script";
 import { SITE_CONFIG } from "../data/site";
 import { localBusinessSchema, websiteSchema } from "../utils/seo";
 
@@ -18,5 +19,16 @@ export default function RootLayout({ children }) {
   const schemas = [localBusinessSchema(), websiteSchema()];
   return <html lang="en-CA"><body>{children}{schemas.map((schema, index) => (
     <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-  ))}</body></html>;
+  ))}
+    <Script
+      src="https://www.googletagmanager.com/gtag/js?id=G-DZL34NMBT9"
+      strategy="afterInteractive"
+    />
+    <Script id="google-analytics" strategy="afterInteractive">
+      {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-DZL34NMBT9');`}
+    </Script>
+  </body></html>;
 }
