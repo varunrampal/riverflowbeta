@@ -1,8 +1,6 @@
 // src/pages/Contact.jsx
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
-import SEO from "../components/SEO";
-import { breadcrumbSchema, localBusinessSchema, webPageSchema } from "../utils/seo";
 
 const contextLinkClass =
   "font-semibold text-primary underline underline-offset-4 transition hover:text-secondary";
@@ -10,25 +8,6 @@ const contextLinkClass =
 export default function ContactPage() {
   return (
     <Layout>
-    <SEO
-      title="Contact Riverflow Laser & Skin Clinic | Langley, BC"
-      description="Contact Riverflow Laser & Skin Clinic in Langley, BC. Call 1-833-498-9898, email info@riverflowlaser.com, or visit Unit 108 - 19705 56 Avenue."
-      canonicalPath="/contact"
-      structuredData={[
-        webPageSchema({
-          name: "Contact Riverflow Laser & Skin Clinic",
-          description:
-            "Clinic location, phone, email, map, and business hours for Riverflow Laser & Skin Clinic in Langley, BC.",
-          path: "/contact",
-          type: "ContactPage",
-        }),
-        breadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Contact", path: "/contact" },
-        ]),
-        localBusinessSchema(),
-      ]}
-    />
     <div className="min-h-screen bg-background">
       {/* Header */}
       <section className="bg-background border-b border-accent/25">

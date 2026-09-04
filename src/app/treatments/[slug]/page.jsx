@@ -1,6 +1,8 @@
 import TreatmentDetailsPage from "../../../views/TreatmentDetailsPage";
 import { TREATMENTS } from "../../../data/treatments";
 import { pageMetadata } from "../../../utils/metadata";
+import StructuredData from "../../../components/StructuredData";
+import { breadcrumbSchema, getTreatmentDescription, treatmentServiceSchema, webPageSchema } from "../../../utils/seo";
 
 const treatmentMetadata = {
   facial: ["Signature Facial in Langley, BC | Riverflow", "Book a customized facial in Langley for cleansing, exfoliation, extraction and hydration. Compare facial options, appointment times and preparation."],
@@ -23,4 +25,11 @@ export async function generateMetadata({ params }) {
   const [title, description] = treatmentMetadata[slug] || [`${treatment?.title} in Langley, BC`, treatment?.short];
   return treatment ? pageMetadata({ title: { absolute: title }, description, path: `/treatments/${slug}`, image: treatment.image }) : {};
 }
-export default function Page() { return <TreatmentDetailsPage />; }
+export default async function Page({ params }) {
+  const { slug } = await params;
+  const treatment = TREATMENTS[slug];
+  const path = `/treatments/${slug}`;
+  const description = treatment ? getTreatmentDescription(treatment) : "Treatment not found.";
+  const schemas = treatment ? [webPageSchema({ name: treatment.title, description, path }), breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Treatments", path: "/treatments" }, { name: treatment.title, path }]), treatmentServiceSchema(treatment)] : [];
+  return <><StructuredData data={schemas} /><TreatmentDetailsPage treatment={treatment} /></>;
+}

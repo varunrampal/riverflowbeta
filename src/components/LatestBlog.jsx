@@ -1,33 +1,10 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   blogExcerpt,
-  fetchLatestBlogPost,
   formatBlogDate,
-  getLatestBlogPost,
 } from "../data/blog";
 
-export default function LatestBlog() {
-  const [post, setPost] = useState(() => getLatestBlogPost());
-
-  useEffect(() => {
-    let active = true;
-
-    fetchLatestBlogPost()
-      .then((latestPost) => {
-        if (active && latestPost) {
-          setPost(latestPost);
-        }
-      })
-      .catch(() => {});
-
-    return () => {
-      active = false;
-    };
-  }, []);
-
+export default function LatestBlog({ post }) {
   if (!post) {
     return null;
   }

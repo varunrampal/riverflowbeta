@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
-import { breadcrumbSchema, faqPageSchema, webPageSchema } from "../utils/seo";
+import { faqPageSchema } from "../utils/seo";
 
 const contextLinkClass =
   "font-semibold text-primary underline underline-offset-4 transition hover:text-secondary";
@@ -81,23 +81,7 @@ export default function FAQPage(){
     return(
 <Layout>
  <SEO
-  title="Laser Hair Removal FAQs in Langley, BC | Riverflow Laser"
-  description="Read answers to common laser hair removal questions, including safety, preparation, side effects, treatment areas, cost, and expected results."
-  canonicalPath="/faq"
-  structuredData={[
-    webPageSchema({
-      name: "Laser Hair Removal FAQs",
-      description:
-        "Common laser hair removal questions answered by Riverflow Laser & Skin Clinic.",
-      path: "/faq",
-      type: "FAQPage",
-    }),
-    breadcrumbSchema([
-      { name: "Home", path: "/" },
-      { name: "FAQ", path: "/faq" },
-    ]),
-    faqPageSchema(faqs),
-  ]}
+  structuredData={faqPageSchema(faqs)}
  />
  <section className="bg-background py-10 lg:py-14">
       <div className="max-w-5xl mx-auto px-4">

@@ -4,8 +4,6 @@ import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import Layout from "../components/Layout";
 import { submitClinicForm } from "../utils/formSubmit";
-import SEO from "../components/SEO";
-import { breadcrumbSchema, webPageSchema } from "../utils/seo";
 
 const inputClass =
   "mt-2 w-full rounded-lg border border-accent/30 bg-white px-4 py-2.5 text-sm text-secondary outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 sm:py-3";
@@ -57,24 +55,6 @@ export default function MakeAppointmentPage() {
 
   return (
     <Layout>
-      <SEO
-        title="Make an Appointment Inquiry | Riverflow Laser Langley"
-        description="Send an appointment inquiry to Riverflow Laser & Skin Clinic in Langley, BC for laser hair removal, facials, HydraFacial, microneedling, peels, and skin treatments."
-        canonicalPath="/make-appointment"
-        structuredData={[
-          webPageSchema({
-            name: "Make an Appointment Inquiry",
-            description:
-              "Appointment inquiry form for Riverflow Laser & Skin Clinic in Langley, BC.",
-            path: "/make-appointment",
-            type: "ContactPage",
-          }),
-          breadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Make an Appointment", path: "/make-appointment" },
-          ]),
-        ]}
-      />
       <section className="bg-background py-10 lg:py-14">
         <div className="mx-auto max-w-6xl px-4">
           <div className="mb-8 max-w-2xl">

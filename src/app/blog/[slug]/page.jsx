@@ -1,6 +1,6 @@
 import BlogDetailsPage from "../../../views/BlogDetailsPage";
 import { SITE_CONFIG } from "../../../data/site";
-import { getServerBlogPostBySlug } from "../../../lib/blogServer";
+import { getServerBlogPostBySlug, getServerPublishedBlogPosts } from "../../../lib/blogServer";
 import {
   absoluteUrl,
   blogPostSchema,
@@ -52,6 +52,7 @@ export async function generateMetadata({ params }) {
 export default async function Page({ params }) {
   const { slug } = await params;
   const post = await getServerBlogPostBySlug(slug);
+  const posts = await getServerPublishedBlogPosts();
   const canonicalPath = `/blog/${slug}`;
   const schemas = post
     ? [
@@ -74,6 +75,6 @@ export default async function Page({ params }) {
     {schemas.map((schema, index) => (
       <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
     ))}
-    <BlogDetailsPage initialPost={post} />
+    <BlogDetailsPage initialPost={post} initialPosts={posts} slug={slug} />
   </>;
 }

@@ -1,8 +1,6 @@
 import img from '../assets/images/jyoti.jpeg'
 import { Link } from "react-router-dom";
 import Layout from '../components/Layout';
-import SEO from "../components/SEO";
-import { breadcrumbSchema, webPageSchema } from "../utils/seo";
 
 const contextLinkClass =
   "font-semibold text-primary underline underline-offset-4 transition hover:text-secondary";
@@ -10,24 +8,6 @@ const contextLinkClass =
 export default function TeamPage() {
   return (
     <Layout>
-<SEO
-  title="Meet the Riverflow Laser & Skin Clinic Team | Langley, BC"
-  description="Meet the Riverflow Laser & Skin Clinic team in Langley, BC, offering experienced, caring support for laser, cosmetic, injectable, and skin health treatments."
-  canonicalPath="/team"
-  structuredData={[
-    webPageSchema({
-      name: "Meet the Riverflow Laser & Skin Clinic Team",
-      description:
-        "Experienced skin health and laser care professionals serving Langley, BC.",
-      path: "/team",
-      type: "AboutPage",
-    }),
-    breadcrumbSchema([
-      { name: "Home", path: "/" },
-      { name: "Team", path: "/team" },
-    ]),
-  ]}
-/>
 <section id="about" className="py-10 lg:py-14 bg-background">
   <div className="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap- items-start">
     {/* TEXT */}

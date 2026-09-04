@@ -4,14 +4,6 @@ import { Link } from "react-router-dom";
 import { TREATMENTS } from "../data/treatments"; // adjust path if different
 import Layout from "../components/Layout";
 import RequestConsultationForm from "../components/RequestConsultationForm";
-import SEO from "../components/SEO";
-import {
-  breadcrumbSchema,
-  localBusinessSchema,
-  treatmentServiceSchema,
-  treatmentsItemListSchema,
-  webPageSchema,
-} from "../utils/seo";
 
 export default function AllTreatmentsPage() {
 
@@ -23,26 +15,6 @@ export default function AllTreatmentsPage() {
 
   return (
     <Layout>
-  <SEO
-    title="Laser & Skin Treatments in Langley, BC | Riverflow Laser"
-    description="Explore laser and skin treatments in Langley, including laser hair removal, HydraFacial, facials, microneedling, chemical peels, and acne care."
-    canonicalPath="/treatments"
-    structuredData={[
-      localBusinessSchema(),
-      webPageSchema({
-        name: "Laser and Skin Treatments in Langley, BC",
-        description:
-          "A full list of laser, facial, hair, and skin rejuvenation services at Riverflow Laser & Skin Clinic.",
-        path: "/treatments",
-      }),
-      breadcrumbSchema([
-        { name: "Home", path: "/" },
-        { name: "Treatments", path: "/treatments" },
-      ]),
-      treatmentsItemListSchema(treatmentsArray),
-      ...treatmentsArray.map(treatmentServiceSchema),
-    ]}
-  />
   <div className="min-h-screen bg-background py-10 lg:py-14">
       <div className="max-w-6xl mx-auto px-4">
         <div className="mb-8 text-center">

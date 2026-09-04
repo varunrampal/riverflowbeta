@@ -1,78 +1,25 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useMemo } from "react";
+import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
-import SEO from "../components/SEO";
 import {
   blogParagraphs,
   blogReadingTime,
-  fetchBlogPostBySlug,
-  fetchPublishedBlogPosts,
   formatBlogDate,
-  getBlogPostBySlug,
-  getPublishedBlogPosts,
 } from "../data/blog";
-import {
-  blogPostSchema,
-  breadcrumbSchema,
-  localBusinessSchema,
-  webPageSchema,
-} from "../utils/seo";
 
-export default function BlogDetailsPage({ initialPost = null }) {
-  const { slug } = useParams();
-  const [posts, setPosts] = useState(() => getPublishedBlogPosts());
-  const [remotePost, setRemotePost] = useState(initialPost);
-
-  useEffect(() => {
-    let active = true;
-    setRemotePost(initialPost);
-
-    Promise.all([
-      fetchPublishedBlogPosts().catch(() => null),
-      fetchBlogPostBySlug(slug).catch(() => null),
-    ]).then(([nextPosts, nextPost]) => {
-      if (!active) {
-        return;
-      }
-
-      if (nextPosts) {
-        setPosts(nextPosts);
-      }
-
-      if (nextPost) {
-        setRemotePost(nextPost);
-      }
-    });
-
-    return () => {
-      active = false;
-    };
-  }, [initialPost, slug]);
-
-  const post = useMemo(
-    () =>
-      remotePost ||
-      posts.find((item) => item.slug === slug) ||
-      getBlogPostBySlug(slug),
-    [posts, remotePost, slug],
-  );
+export default function BlogDetailsPage({ initialPost = null, initialPosts = [], slug = "" }) {
+  const post = initialPost;
 
   const relatedPosts = useMemo(
-    () => posts.filter((item) => item.slug !== slug).slice(0, 3),
-    [posts, slug],
+    () => initialPosts.filter((item) => item.slug !== slug).slice(0, 3),
+    [initialPosts, slug],
   );
 
   if (!post) {
     return (
       <Layout>
-        <SEO
-          title="Blog Post Not Found | Riverflow Laser"
-          description="Browse the Riverflow Laser & Skin Clinic blog for skin care and treatment articles."
-          canonicalPath={`/blog/${slug || ""}`}
-          robots="noindex, follow"
-        />
         <section className="bg-background py-16">
           <div className="mx-auto max-w-3xl px-4 text-center">
             <p className="text-xs uppercase tracking-[0.3em] text-primary">
@@ -97,34 +44,8 @@ export default function BlogDetailsPage({ initialPost = null }) {
     );
   }
 
-  const canonicalPath = `/blog/${post.slug}`;
-  const description = post.excerpt;
-
   return (
     <Layout>
-      <SEO
-        title={`${post.title} | Riverflow Laser Blog`}
-        description={description}
-        canonicalPath={canonicalPath}
-        image={post.image}
-        type="article"
-        structuredData={[
-          localBusinessSchema(),
-          webPageSchema({
-            name: post.title,
-            description,
-            path: canonicalPath,
-            type: "BlogPosting",
-          }),
-          breadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Blog", path: "/blog" },
-            { name: post.title, path: canonicalPath },
-          ]),
-          blogPostSchema(post),
-        ]}
-      />
-
       <article className="bg-background">
         <section className="border-b border-accent/25">
           <div className="mx-auto max-w-4xl px-4 py-10 lg:py-14">

@@ -1,70 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
-import SEO from "../components/SEO";
 import {
   blogExcerpt,
-  fetchPublishedBlogPosts,
   formatBlogDate,
-  getPublishedBlogPosts,
 } from "../data/blog";
-import {
-  blogItemListSchema,
-  breadcrumbSchema,
-  localBusinessSchema,
-  webPageSchema,
-} from "../utils/seo";
 
-export default function BlogPage() {
-  const [posts, setPosts] = useState(() => getPublishedBlogPosts());
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    let active = true;
-
-    fetchPublishedBlogPosts()
-      .then((nextPosts) => {
-        if (active) {
-          setPosts(nextPosts);
-          setError("");
-        }
-      })
-      .catch(() => {
-        if (active) {
-          setError("Blog posts are temporarily showing from the local fallback.");
-        }
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
-
+export default function BlogPage({ posts }) {
   return (
     <Layout>
-      <SEO
-        title="Skin Care Blog | Riverflow Laser & Skin Clinic Langley"
-        description="Read Riverflow Laser & Skin Clinic blog posts about laser hair removal, facials, HydraFacial, microneedling, skin care, and treatment planning."
-        canonicalPath="/blog"
-        structuredData={[
-          localBusinessSchema(),
-          webPageSchema({
-            name: "Riverflow Laser & Skin Clinic Blog",
-            description:
-              "Skin care and treatment articles from Riverflow Laser & Skin Clinic in Langley, BC.",
-            path: "/blog",
-            type: "Blog",
-          }),
-          breadcrumbSchema([
-            { name: "Home", path: "/" },
-            { name: "Blog", path: "/blog" },
-          ]),
-          blogItemListSchema(posts),
-        ]}
-      />
-
       <section className="border-b border-accent/25 bg-background">
         <div className="mx-auto max-w-6xl px-4 py-10">
           <p className="text-xs uppercase tracking-[0.3em] text-primary">
@@ -82,11 +27,6 @@ export default function BlogPage() {
 
       <section className="bg-background py-10 lg:py-14">
         <div className="mx-auto max-w-6xl px-4">
-          {error ? (
-            <p className="mb-6 rounded-md bg-secondary/5 px-4 py-3 text-sm text-slate-500">
-              {error}
-            </p>
-          ) : null}
           {posts.length ? (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {posts.map((post) => (
