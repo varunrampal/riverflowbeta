@@ -35,4 +35,5 @@ export const SITE_CONFIG = {
   bookingUrl:
     "https://app.squareup.com/appointments/book/9qze62967coq3v/L0BCN9T6Y4JAQ/start",
   logoPath: "/assets/riverflow-logo.png",
+  socialImage: "/assets/riverflow-social.webp",
 };

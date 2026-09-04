@@ -1,4 +1,4 @@
-import exclusiveBg from '../assets/images/services/ExclusiveServiceBkg.jpg'
+import exclusiveBg from '../assets/images/services/ExclusiveServiceBkg.webp'
 import { Link } from "react-router-dom";
 
 export default function ExclusiveServices() {
@@ -45,6 +45,9 @@ export default function ExclusiveServices() {
             src="https://langley.uptownmedspa.ca/wp-content/uploads/2024/09/morpheus8.png.webp"
             alt="Laser hair removal service at Riverflow Laser"
             className="h-28 w-auto object-contain"
+            width="112"
+            height="112"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-primary mix-blend-color opacity-80 pointer-events-none"></div>
         </div>
@@ -71,6 +74,9 @@ export default function ExclusiveServices() {
             src="https://langley.uptownmedspa.ca/wp-content/uploads/2024/09/Signature-Glass-Facial.png.webp"
             alt="HydraFacial signature service at Riverflow Laser"
             className="h-28 w-auto object-contain"
+            width="112"
+            height="112"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-primary mix-blend-color opacity-80 pointer-events-none"></div>
         </div>
@@ -100,6 +106,9 @@ export default function ExclusiveServices() {
             src="https://langley.uptownmedspa.ca/wp-content/uploads/2024/09/Hydr-Oxy-Facial.png.webp"
             alt="OxyGeneo facial service at Riverflow Laser"
             className="h-28 w-auto object-contain"
+            width="112"
+            height="112"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-primary mix-blend-color opacity-80 pointer-events-none"></div>
         </div>

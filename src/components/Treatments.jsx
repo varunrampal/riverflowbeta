@@ -9,7 +9,7 @@ import scalp from "../assets/images/services/scalp.webp";
 import acne from "../assets/images/services/acne.jpg";
 import antiaging from "../assets/images/services/anti-aging.webp";
 import pigmentation from "../assets/images/services/pigmentation.jpeg";
-import skinrejuvenation from "../assets/images/services/skin-rejunivation.jpg";
+import skinrejuvenation from "../assets/images/services/skin-rejunivation.webp";
 import dermaplaningFacial from "../assets/images/services/dermaplaning-facial.jpeg";
 import RequestConsultationForm from "./RequestConsultationForm";
 import { Link } from "react-router-dom";
@@ -131,6 +131,9 @@ export default function Treatments() {
                   src={item.image}
                   alt={item.title}
                   className="h-56 w-full object-cover transition duration-300 group-hover:scale-105"
+                  width="600"
+                  height="400"
+                  loading="lazy"
                 />
               </Link>
 

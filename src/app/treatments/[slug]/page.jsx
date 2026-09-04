@@ -1,5 +1,6 @@
 import TreatmentDetailsPage from "../../../views/TreatmentDetailsPage";
 import { TREATMENTS } from "../../../data/treatments";
+import { pageMetadata } from "../../../utils/metadata";
 
 const treatmentMetadata = {
   facial: ["Signature Facial in Langley, BC | Riverflow", "Book a customized facial in Langley for cleansing, exfoliation, extraction and hydration. Compare facial options, appointment times and preparation."],
@@ -20,6 +21,6 @@ export function generateStaticParams() { return Object.keys(TREATMENTS).map((slu
 export async function generateMetadata({ params }) {
   const { slug } = await params; const treatment = TREATMENTS[slug];
   const [title, description] = treatmentMetadata[slug] || [`${treatment?.title} in Langley, BC`, treatment?.short];
-  return treatment ? { title: { absolute: title }, description, alternates: { canonical: `/treatments/${slug}` } } : {};
+  return treatment ? pageMetadata({ title: { absolute: title }, description, path: `/treatments/${slug}`, image: treatment.image }) : {};
 }
 export default function Page() { return <TreatmentDetailsPage />; }

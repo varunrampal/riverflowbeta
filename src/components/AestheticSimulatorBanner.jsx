@@ -5,7 +5,7 @@ export default function AestheticSimulatorBanner() {
     <section className="simulator-feature" aria-labelledby="aesthetic-simulator-banner-title">
       <Link to="/aesthetic-simulator" className="simulator-card">
         <div className="simulator-card__visual">
-          <img src="/assets/ai-aesthetic-banner.png" alt="Digital facial analysis preview in the Riverflow aesthetic simulator" />
+          <img src="/assets/ai-aesthetic-banner.webp" alt="Digital facial analysis preview in the Riverflow aesthetic simulator" width="1200" height="427" loading="lazy" />
           <div className="simulator-card__badge"><i /> Complimentary preview</div>
         </div>
         <div className="simulator-card__content">

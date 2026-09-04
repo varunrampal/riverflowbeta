@@ -1,4 +1,4 @@
-import skincareproducts from '../assets/images/services/skincareproducts.jpg'
+import skincareproducts from '../assets/images/services/skincareproducts.webp'
 
 export default function Products() {
   return (
@@ -12,6 +12,8 @@ export default function Products() {
           alt="Certified skincare products used at Riverflow Laser & Skin Clinic"
           className="w-full max-w-md lg:max-w-lg h-auto"
           loading="lazy"
+          width="1400"
+          height="933"
         />
       </div>
 

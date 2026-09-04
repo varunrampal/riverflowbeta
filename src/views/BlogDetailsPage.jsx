@@ -20,14 +20,14 @@ import {
   webPageSchema,
 } from "../utils/seo";
 
-export default function BlogDetailsPage() {
+export default function BlogDetailsPage({ initialPost = null }) {
   const { slug } = useParams();
   const [posts, setPosts] = useState(() => getPublishedBlogPosts());
-  const [remotePost, setRemotePost] = useState(null);
+  const [remotePost, setRemotePost] = useState(initialPost);
 
   useEffect(() => {
     let active = true;
-    setRemotePost(null);
+    setRemotePost(initialPost);
 
     Promise.all([
       fetchPublishedBlogPosts().catch(() => null),
@@ -49,7 +49,7 @@ export default function BlogDetailsPage() {
     return () => {
       active = false;
     };
-  }, [slug]);
+  }, [initialPost, slug]);
 
   const post = useMemo(
     () =>
@@ -161,6 +161,8 @@ export default function BlogDetailsPage() {
               src={post.image}
               alt={post.imageAlt || post.title}
               className="max-h-[520px] w-full rounded-lg object-cover"
+              width="1200"
+              height="675"
             />
           </div>
         ) : null}
@@ -210,6 +212,8 @@ export default function BlogDetailsPage() {
                       alt={item.imageAlt || item.title}
                       className="h-40 w-full object-cover"
                       loading="lazy"
+                      width="600"
+                      height="360"
                     />
                   ) : null}
                   <div className="p-4">

@@ -71,7 +71,6 @@ const serializeStructuredData = (structuredData) => {
 export default function SEO({
   title = SITE_CONFIG.defaultTitle,
   description = SITE_CONFIG.defaultDescription,
-  keywords = SITE_CONFIG.keywords,
   canonicalPath,
   image = SITE_CONFIG.logoPath,
   robots = "index, follow",
@@ -82,7 +81,6 @@ export default function SEO({
   const canonicalUrl = absoluteUrl(canonicalPath || location.pathname || "/");
   const imageUrl = absoluteUrl(image);
   const cleanDescription = cleanText(description || SITE_CONFIG.defaultDescription);
-  const keywordContent = Array.isArray(keywords) ? keywords.join(", ") : keywords;
   const structuredDataString = serializeStructuredData(structuredData);
 
   useEffect(() => {
@@ -90,7 +88,6 @@ export default function SEO({
     document.title = title;
 
     upsertMeta("name", "description", cleanDescription);
-    upsertMeta("name", "keywords", keywordContent);
     upsertMeta("name", "robots", robots);
     upsertMeta("name", "author", SITE_CONFIG.name);
     upsertCanonical(canonicalUrl);
@@ -114,7 +111,6 @@ export default function SEO({
     canonicalUrl,
     cleanDescription,
     imageUrl,
-    keywordContent,
     robots,
     structuredDataString,
     title,

@@ -105,6 +105,8 @@ export default function BlogPage() {
                           alt={post.imageAlt || post.title}
                           className="h-full w-full object-cover transition duration-500 hover:scale-105"
                           loading="lazy"
+                          width="600"
+                          height="360"
                         />
                       </div>
                     ) : null}

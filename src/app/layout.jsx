@@ -7,12 +7,18 @@ export const metadata = {
   metadataBase: new URL(SITE_CONFIG.url),
   title: { default: SITE_CONFIG.defaultTitle, template: "%s | Riverflow Laser" },
   description: SITE_CONFIG.defaultDescription,
-  keywords: SITE_CONFIG.keywords,
   icons: {
     icon: "/favicon.png",
     apple: "/favicon.png",
   },
-  openGraph: { type: "website", locale: "en_CA", siteName: SITE_CONFIG.shortName },
+  openGraph: {
+    type: "website",
+    locale: "en_CA",
+    siteName: SITE_CONFIG.shortName,
+    images: [{ url: SITE_CONFIG.socialImage, alt: SITE_CONFIG.shortName }],
+  },
+  twitter: { card: "summary_large_image", images: [SITE_CONFIG.socialImage] },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }) {

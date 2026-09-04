@@ -1,8 +1,8 @@
-import image from "../assets/images/services/skin-rejunivation.jpg";
+import image from "../assets/images/services/skin-rejunivation.webp";
 import { Link } from "react-router-dom";
 export default function AboutHome() {
   return <section className="premium-about">
-    <div className="premium-about__image"><img src={image} alt="Advanced skin treatment at Riverflow" /><span>Every treatment begins with listening.</span></div>
+    <div className="premium-about__image"><img src={image} alt="Advanced skin treatment at Riverflow" width="594" height="591" loading="lazy" /><span>Every treatment begins with listening.</span></div>
     <div className="premium-about__copy"><div className="eyebrow"><span /> The Riverflow approach</div>
       <h2>Where clinical expertise meets <em>thoughtful care.</em></h2>
       <p className="lead">We believe the best results never look overdone. They look like you—rested, radiant, and at ease in your own skin.</p>

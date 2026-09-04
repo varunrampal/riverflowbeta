@@ -68,9 +68,15 @@ export const localBusinessSchema = () => ({
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      opens: "09:00",
-      closes: "20:00",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "10:00",
+      closes: "18:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Saturday", "Sunday"],
+      opens: "11:00",
+      closes: "18:00",
     },
   ],
 });
@@ -160,7 +166,9 @@ export const blogPostSchema = (post) => ({
   "@id": `${absoluteUrl(`/blog/${post.slug}`)}#blogposting`,
   headline: post.title,
   description: post.excerpt,
-  image: post.image ? absoluteUrl(post.image) : absoluteUrl(SITE_CONFIG.logoPath),
+  image: post.image && !post.image.startsWith("data:")
+    ? absoluteUrl(post.image)
+    : absoluteUrl(SITE_CONFIG.socialImage),
   datePublished: post.publishedAt,
   dateModified: post.publishedAt,
   author: {

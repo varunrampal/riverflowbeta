@@ -1,6 +1,6 @@
 import hydraFacialImage from "../assets/images/services/HydraFacial.jpg";
 import microneedlingImage from "../assets/images/services/microneedling.jpg";
-import skincareProductsImage from "../assets/images/services/skincareproducts.jpg";
+import skincareProductsImage from "../assets/images/services/skincareproducts.webp";
 
 const BLOG_API_URL = "/api/blog";
 

@@ -1,4 +1,4 @@
-import heroImage from "../assets/images/services/aboutimage.jpg";
+import heroImage from "../assets/images/services/aboutimage.webp";
 import { SITE_CONFIG } from "../data/site";
 
 export default function Hero() {
@@ -19,7 +19,7 @@ export default function Hero() {
         </div>
       </div>
       <div className="premium-hero__visual">
-        <img src={heroImage} alt="Personalized facial treatment at Riverflow Laser and Skin Clinic" />
+        <img src={heroImage} alt="Personalized facial treatment at Riverflow Laser and Skin Clinic" width="1600" height="1067" fetchPriority="high" />
         <div className="premium-hero__note"><span>01</span><p>Science-led care.<br />Naturally radiant results.</p></div>
       </div>
     </section>

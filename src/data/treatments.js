@@ -9,7 +9,7 @@ import scalp from'../assets/images/services/scalp.webp'
 import acne from'../assets/images/services/acne.jpg'
 import antiaging from'../assets/images/services/anti-aging.webp'
 import pigmentation from "../assets/images/services/pigmentation.jpeg";
-import skinrejuvenation from "../assets/images/services/skin-rejunivation.jpg";
+import skinrejuvenation from "../assets/images/services/skin-rejunivation.webp";
 import dermaplaningFacial from "../assets/images/services/dermaplaning-facial.jpeg";
 
 const makeBeforeAfterGallery = (title) => [

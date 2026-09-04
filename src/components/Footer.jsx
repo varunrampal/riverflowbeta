@@ -67,9 +67,9 @@ export default function Footer() {
             </h6>
             <ul className="footer-inline-links space-y-2 text-sm">
               <li>
-                <a href="" className="hover:text-accent">
+                <Link to="/" className="hover:text-accent">
                   Home
-                </a>
+                </Link>
 
               </li>
               <li>
@@ -148,11 +148,6 @@ export default function Footer() {
             <span>© {new Date().getFullYear()} Riverflow Laser &amp; Skin Clinic Inc.</span>
             <span>All rights reserved.</span>
           </div>
-          <nav className="footer-bottom__links" aria-label="Legal information">
-            <a href="#">Privacy</a>
-            <a href="#">Refunds &amp; returns</a>
-            <a href="#">Terms</a>
-          </nav>
         </div>
         <div className="footer-bottom__credit">Designed by Shandilya Group Of Companies</div>
       </div>
